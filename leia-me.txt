@@ -1,0 +1,13 @@
+LOQUINHA — AUs, FANFICS E ONESHOTS
+
+Arquivos que você edita:
+  obras.js    → as AUs, fanfics e oneshots (instruções no começo do arquivo)
+  perfis.js   → perfis padrão das personagens (usados quando a AU não define os próprios)
+
+Fotos de perfil, capas e imagens das AUs: envie soltas, junto com os outros
+arquivos (sem pasta), com o mesmo nome escrito em obras.js ou perfis.js.
+
+As capas de teste (teste-capa-au.jpg e teste-capa-oneshot.jpg) e as obras
+marcadas como TESTE em obras.js podem ser apagadas quando o conteúdo real chegar.
+
+index.html, app.js e estilo.css fazem o site funcionar: não precisa mexer neles.

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Loquinha · AUs, fanfics & oneshots</title>
+  <meta name="description" content="AUs, fanfics e oneshots de Loquinha (Lorena e Juquinha, de Três Graças).">
+  <meta name="theme-color" content="#FFF6EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16110D" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M30 20c6-2 13 2 14 9 1 6-12 27-21 31-3 1-5-1-4-4 3-10 4-33 11-36z' fill='%23F26B21'/%3E%3Cpath d='M33 20c-2-7 1-14 6-16-1 6 0 10 3 13 3-4 8-6 13-5-3 5-8 8-14 9z' fill='%231F8A5B'/%3E%3C/svg%3E">
+
+  <!-- Tema salvo aplicado antes de desenhar a página -->
+  <script>
+    (function () {
+      try {
+        var t = JSON.parse(localStorage.getItem('lq-tema'));
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
+        document.documentElement.setAttribute('data-tema', t);
+        var f = JSON.parse(localStorage.getItem('lq-fonte'));
+        if (f) document.documentElement.style.setProperty('--fonte-leitura', f + 'px');
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Sempre busca a versão mais nova dos arquivos -->
+  <script>window.LQ_VERSAO = Math.floor(Date.now() / 60000);</script>
+  <script>document.write('<link rel="stylesheet" href="estilo.css?v=' + window.LQ_VERSAO + '">');</script>
+  <noscript><link rel="stylesheet" href="estilo.css"></noscript>
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <div class="progresso" id="progresso" aria-hidden="true"><span></span></div>
+
+  <header class="topo">
+    <div class="topo-interno">
+      <a class="marca" href="#inicio" aria-label="Loquinha, início">
+        <span class="marca-icone" data-icone="cenoura" aria-hidden="true"></span>
+        <span class="marca-texto">Loquinha</span>
+      </a>
+      <nav class="menu" aria-label="Principal">
+        <a href="#aus" data-filtro="au">AUs</a>
+        <a href="#fanfics" data-filtro="fanfic">Fanfics</a>
+        <a href="#oneshots" data-filtro="oneshot">Oneshots</a>
+      </nav>
+      <div class="topo-acoes">
+        <div class="fonte" id="fonte">
+          <button class="botao-icone" id="botao-fonte" type="button" aria-label="Tamanho da letra" aria-expanded="false" aria-controls="fonte-painel">
+            <span class="aa" aria-hidden="true">A<small>A</small></span>
+          </button>
+          <div class="fonte-painel" id="fonte-painel" role="group" aria-label="Tamanho da letra" hidden>
+            <button type="button" id="fonte-menos" aria-label="Diminuir letra">A−</button>
+            <span id="fonte-valor">100%</span>
+            <button type="button" id="fonte-mais" aria-label="Aumentar letra">A+</button>
+          </div>
+        </div>
+        <button class="botao-icone" id="botao-tema" type="button" aria-label="Alternar modo escuro">
+          <svg class="icone-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" fill="currentColor"/></svg>
+          <svg class="icone-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" tabindex="-1">
+    <!-- GALERIA -->
+    <section class="pagina" data-pagina="galeria">
+      <div class="capa-site">
+        <div class="capa-site-fundo" id="capa-fundo" aria-hidden="true"></div>
+        <div class="capa-site-texto">
+          <p class="sobretitulo">Lorena <span aria-hidden="true">🧡</span> Juquinha · <em>Três Graças</em></p>
+          <h1>Loquinha</h1>
+          <p class="capa-site-sub">AUs, fanfics e oneshots para quem não aguenta esperar o próximo capítulo.</p>
+        </div>
+      </div>
+
+      <div class="largura">
+        <div class="ferramentas">
+          <div class="filtros" role="tablist" aria-label="Filtrar">
+            <button type="button" class="filtro" data-filtro="todas" role="tab">Tudo</button>
+            <button type="button" class="filtro" data-filtro="au" role="tab">AUs</button>
+            <button type="button" class="filtro" data-filtro="fanfic" role="tab">Fanfics</button>
+            <button type="button" class="filtro" data-filtro="oneshot" role="tab">Oneshots</button>
+          </div>
+          <label class="busca">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <input type="search" id="busca" placeholder="Buscar por título ou tag" autocomplete="off">
+          </label>
+        </div>
+        <p class="contagem" id="contagem"></p>
+        <div class="galeria" id="galeria"></div>
+      </div>
+    </section>
+
+    <!-- AU ou fanfic (abas Capítulos / Personagens / Infos) -->
+    <section class="pagina" data-pagina="hub">
+      <div id="hub"></div>
+    </section>
+
+    <!-- LEITURA (capítulo de AU ou oneshot) -->
+    <section class="pagina" data-pagina="leitura">
+      <div id="leitura"></div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>
+      <span class="rodape-icones" aria-hidden="true">
+        <span data-icone="cenoura"></span><span data-icone="onca"></span><span data-icone="veado"></span>
+      </span>
+      Site de fã de Loquinha · personagens de <em>Três Graças</em>
+    </p>
+  </footer>
+
+  <!-- Pílula "lendo agora" que aparece ao rolar a leitura -->
+  <div class="mini" id="mini" aria-hidden="true"></div>
+
+  <script>
+    ['perfis.js', 'obras.js', 'app.js'].forEach(function (arquivo) {
+      document.write('<script src="' + arquivo + '?v=' + window.LQ_VERSAO + '"><\/script>');
+    });
+  </script>
+</body>
+</html>
