@@ -1,5 +1,5 @@
 /*
-  Loquinha — lógica do site. O conteúdo vem de obras.js e perfis.js.
+  discografia ias — lógica do site. O conteúdo vem de obras.js e perfis.js.
   Rotas: #inicio · #aus · #fanfics · #oneshots
          #au/ID  (abas: #au/ID/personagens · #au/ID/infos)  · #au/ID/cap/N
          #fanfic/ID (mesmas abas) · #fanfic/ID/cap/N
@@ -576,9 +576,9 @@
     var o = partes[1] ? acharObra(partes[1]) : null;
     if (o && partes[0] === o.tipo) {
       marcarMenu(o.tipo);
-      if (o.tipo === 'oneshot') { mostrar('leitura'); mostrarOneshot(o); document.title = o.titulo + ' · Loquinha'; }
-      else if (partes[2] === 'cap') { mostrar('leitura'); mostrarCapitulo(o, Number(partes[3])); document.title = o.titulo + ' · Loquinha'; }
-      else { mostrar('hub'); mostrarHub(o, partes[2] || 'capitulos'); document.title = o.titulo + ' · Loquinha'; }
+      if (o.tipo === 'oneshot') { mostrar('leitura'); mostrarOneshot(o); document.title = o.titulo + ' · discografia ias'; }
+      else if (partes[2] === 'cap') { mostrar('leitura'); mostrarCapitulo(o, Number(partes[3])); document.title = o.titulo + ' · discografia ias'; }
+      else { mostrar('hub'); mostrarHub(o, partes[2] || 'capitulos'); document.title = o.titulo + ' · discografia ias'; }
       atualizarLeitura();
       return;
     }
@@ -588,7 +588,7 @@
     mostrar('galeria');
     montarGaleria();
     atualizarLeitura();
-    document.title = 'Loquinha · AUs, fanfics & oneshots';
+    document.title = 'discografia ias · AUs, fanfics & singles';
   }
 
   pintarIcones(document);

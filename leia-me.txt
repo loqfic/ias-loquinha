@@ -1,4 +1,4 @@
-LOQUINHA — AUs, FANFICS E ONESHOTS
+DISCOGRAFIA IAS (@medverias) — AUs, FANFICS E ONESHOTS DE LOQUINHA
 
 Arquivos que você edita:
   obras.js    → as AUs, fanfics e oneshots (instruções no começo do arquivo)

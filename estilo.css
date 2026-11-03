@@ -96,7 +96,7 @@ button { font: inherit; color: inherit; }
   .topo-acoes { margin-left: 2px; }
   .botao-icone { width: 36px; height: 36px; }
 }
-@media (max-width: 400px) { .marca-texto { display: none; } }
+@media (max-width: 420px) { .marca-1 { display: none; } .menu { gap: 12px; } }
 
 /* ---------- Páginas ---------- */
 
@@ -416,3 +416,8 @@ body[data-pagina="leitura"] .mini.visivel { opacity: 1; transform: translate(-50
 .cap-tempo { flex: none; font: 500 .82rem/1 var(--grotesca); color: var(--suave); font-variant-numeric: tabular-nums; }
 .cap-seta { font-size: .75rem !important; color: var(--suave); }
 .viagem-status .viagem-ponto { display: none; }
+
+/* Nome do site: "discografia ias" */
+.marca-texto b { font-weight: 700; color: var(--laranja); }
+.hero p a, .rodape a { color: var(--texto); text-underline-offset: 2px; }
+.hero p a:hover, .rodape a:hover { color: var(--laranja); }
