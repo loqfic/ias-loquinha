@@ -81,6 +81,7 @@ const OBRAS = [
     tipo: "oneshot",
     titulo: "se amar for crime, me prenda agora",
     autora: "ias | @medverias",
+    capa: "capa-se-amar-for-crime.jpg",
     icone: "onca",
     sinopse: "Na qual a investigadora Fragoso é acionada 3 vezes na mesma semana por causa de desordem pública, e a causa das 3 ocorrências era sempre a mesma morena de olhos verdes.",
     tags: ["cidade pequena", "policial", "filha do prefeito"],
