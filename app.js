@@ -136,7 +136,7 @@
   // c.midias = { prefixo, total, videos: [números], narracoes: { numero: { tempo: "..." } ou { texto: `...` } } }
   function capituloDeMidias(c, numero) {
     var m = c.midias, videos = (m.videos || []).map(Number), narr = m.narracoes || {};
-    var att = Number(m.att) || numero, itens = [], palavras = 0;
+    var att = (m.att != null ? m.att : numero), itens = [], palavras = 0;
     for (var n = 1; n <= Number(m.total || 0); n++) {
       var nar = narr[n];
       if (nar && nar.omitir) continue; // parte de uma narração que já entrou no número anterior
