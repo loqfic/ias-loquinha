@@ -7,7 +7,8 @@ Arquivos que você edita:
 Fotos de perfil, capas e imagens das AUs: envie soltas, junto com os outros
 arquivos (sem pasta), com o mesmo nome escrito em obras.js ou perfis.js.
 
-As capas de teste (teste-capa-au.jpg e teste-capa-oneshot.jpg) e as obras
-marcadas como TESTE em obras.js podem ser apagadas quando o conteúdo real chegar.
+AUs em prints (como apartamento 606): cada mídia se chama
+  a606-att{N}-{NNN}.jpg  (ou .mp4 + -capa.jpg para vídeos)
+Para uma nova atualização, siga o modelo comentado no começo de obras.js.
 
 index.html, app.js e estilo.css fazem o site funcionar: não precisa mexer neles.

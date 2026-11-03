@@ -128,6 +128,163 @@
     return blocos;
   }
 
+
+  /* ---------- Capítulo feito de prints e vídeos (com narrações no meio) ---------- */
+
+  function pad3(n) { return (n < 10 ? '00' : n < 100 ? '0' : '') + n; }
+
+  // c.midias = { prefixo, total, videos: [números], narracoes: { numero: { tempo: "..." } ou { texto: `...` } } }
+  function capituloDeMidias(c, numero) {
+    var m = c.midias, videos = (m.videos || []).map(Number), narr = m.narracoes || {};
+    var att = Number(m.att) || numero, itens = [], palavras = 0;
+    for (var n = 1; n <= Number(m.total || 0); n++) {
+      var nar = narr[n];
+      if (nar && nar.omitir) continue; // parte de uma narração que já entrou no número anterior
+      if (nar) {
+        var t = String(nar.tempo || nar.texto || '');
+        palavras += contarPalavras(t);
+        itens.push({ n: n, tipo: nar.tempo ? 'tempo' : 'texto', texto: t });
+      } else if (videos.indexOf(n) >= 0) {
+        itens.push({ n: n, tipo: 'video', src: m.prefixo + pad3(n) + '.mp4', capa: m.prefixo + pad3(n) + '-capa.jpg', legenda: 'Att ' + att + ' - Cap ' + n });
+      } else {
+        itens.push({ n: n, tipo: 'imagem', src: m.prefixo + pad3(n) + '.' + (m.extensao || 'jpg'), legenda: 'Att ' + att + ' - Cap ' + n });
+      }
+    }
+    var midias = itens.filter(function (x) { return x.tipo === 'imagem' || x.tipo === 'video'; });
+    return {
+      numero: numero, titulo: String(c.titulo || ''), att: att, itens: itens, texto: '', palavras: palavras,
+      total: midias.length, nVideos: midias.filter(function (x) { return x.tipo === 'video'; }).length,
+      nNarracoes: itens.length - midias.length, posts: midias.length
+    };
+  }
+
+  // Galerias separadas pelas narrações: o visualizador nunca pula uma narração
+  var GALERIAS = [];
+  function midiasHTML(c) {
+    GALERIAS = [];
+    var html = [], grupo = null;
+    function fechar(proxima) {
+      if (!grupo) return;
+      grupo.proxima = proxima || null;
+      var g = GALERIAS.push(grupo) - 1;
+      html.push('<div class="galeria-midias" data-g="' + g + '">' + grupo.itens.map(function (x, k) {
+        var img = x.tipo === 'video' ? x.capa : x.src;
+        return '<button type="button" class="midia' + (x.tipo === 'video' ? ' midia-video' : '') + '" data-g="' + g + '" data-k="' + k + '" aria-label="Abrir ' + escapar(x.legenda) + '">' +
+          '<img src="' + escapar(img) + '" alt="" loading="lazy" onload="if(this.naturalHeight/this.naturalWidth<1.25)this.classList.add(\'baixa\')">' +
+          (x.tipo === 'video' ? '<span class="midia-play" aria-hidden="true">▶</span>' : '') +
+          '<span class="midia-num">' + x.n + '</span></button>';
+      }).join('') + '</div>');
+      grupo = null;
+    }
+    c.itens.forEach(function (x) {
+      if (x.tipo === 'imagem' || x.tipo === 'video') {
+        if (!grupo) grupo = { itens: [] };
+        grupo.itens.push(x);
+      } else {
+        fechar(x);
+        html.push(x.tipo === 'tempo'
+          ? '<div class="marca-tempo" id="narracao-' + x.n + '"><span class="marca-tempo-rotulo">⏱ tempo</span><strong>' + formatar(x.texto) + '</strong></div>'
+          : '<section class="narracao-longa" id="narracao-' + x.n + '"><p class="narracao-rotulo">narração</p><div class="texto">' + prosaHTML(x.texto) + '</div></section>');
+      }
+    });
+    fechar(null);
+    return html.join('');
+  }
+
+  /* ---------- Visualizador em tela cheia (passar pro lado) ---------- */
+
+  var visor = { itens: [], i: 0, proxima: null, origem: null };
+  function montarVisor() {
+    if ($('#visor')) return;
+    document.body.insertAdjacentHTML('beforeend',
+      '<div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Visualizador de mídia">' +
+        '<button type="button" class="visor-fechar" id="visor-fechar" aria-label="Fechar">✕</button>' +
+        '<button type="button" class="visor-seta visor-ant" id="visor-ant" aria-label="Anterior">‹</button>' +
+        '<div class="visor-palco" id="visor-palco"></div>' +
+        '<button type="button" class="visor-seta visor-prox" id="visor-prox" aria-label="Próxima">›</button>' +
+        '<p class="visor-legenda" id="visor-legenda"></p>' +
+      '</div>');
+    $('#visor-fechar').addEventListener('click', fecharVisor);
+    $('#visor-ant').addEventListener('click', function () { passarVisor(-1); });
+    $('#visor-prox').addEventListener('click', function () { passarVisor(1); });
+    $('#visor').addEventListener('click', function (e) { if (e.target.id === 'visor' || e.target.id === 'visor-palco') fecharVisor(); });
+    var x0 = null, y0 = null;
+    $('#visor').addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    $('#visor').addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) passarVisor(dx < 0 ? 1 : -1);
+      x0 = null;
+    });
+    document.addEventListener('keydown', function (e) {
+      if ($('#visor').hidden) return;
+      if (e.key === 'Escape') fecharVisor();
+      if (e.key === 'ArrowRight') passarVisor(1);
+      if (e.key === 'ArrowLeft') passarVisor(-1);
+    });
+  }
+  function abrirVisor(itens, i, proxima, origem) {
+    montarVisor();
+    visor = { itens: itens, i: i, proxima: proxima || null, origem: origem || null };
+    $('#visor').hidden = false;
+    document.body.classList.add('sem-rolagem');
+    desenharVisor();
+    $('#visor-fechar').focus({ preventScroll: true });
+  }
+  function fecharVisor() {
+    var v = $('#visor'); if (!v || v.hidden) return;
+    $$('video', v).forEach(function (el) { el.pause(); });
+    v.hidden = true;
+    document.body.classList.remove('sem-rolagem');
+    if (visor.origem) visor.origem.focus({ preventScroll: true });
+  }
+  function passarVisor(d) {
+    var fim = visor.itens.length - 1 + (visor.proxima ? 1 : 0);
+    var novo = Math.min(fim, Math.max(0, visor.i + d));
+    if (novo === visor.i) return;
+    visor.i = novo;
+    desenharVisor();
+  }
+  function desenharVisor() {
+    var palco = $('#visor-palco'), x = visor.itens[visor.i];
+    $$('video', palco).forEach(function (el) { el.pause(); });
+    if (!x) {
+      // Fim da galeria: aviso da narração que vem a seguir (a galeria não continua sozinha)
+      var t = visor.proxima;
+      palco.innerHTML = '<div class="visor-aviso"><p class="visor-aviso-rotulo">' + (t.tipo === 'tempo' ? '⏱ passagem de tempo' : 'narração') + '</p>' +
+        '<p class="visor-aviso-texto">' + (t.tipo === 'tempo' ? t.texto.split('\n').map(formatar).join('<br>') : 'Há uma narração antes das próximas mídias.') + '</p>' +
+        '<button type="button" class="botao" id="visor-ler">ler a narração</button></div>';
+      $('#visor-ler').addEventListener('click', function () {
+        fecharVisor();
+        var alvo = document.getElementById('narracao-' + t.n);
+        if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      $('#visor-legenda').textContent = '';
+    } else {
+      palco.innerHTML = x.tipo === 'video'
+        ? '<video src="' + escapar(x.src) + '" poster="' + escapar(x.capa) + '" controls playsinline autoplay></video>'
+        : '<img src="' + escapar(x.src) + '" alt="' + escapar(x.legenda) + '">';
+      $('#visor-legenda').textContent = x.legenda;
+      [visor.i - 1, visor.i + 1].forEach(function (k) { var y = visor.itens[k]; if (y && y.tipo === 'imagem') { var im = new Image(); im.src = y.src; } });
+    }
+    $('#visor-ant').disabled = visor.i === 0;
+    $('#visor-prox').disabled = visor.i >= visor.itens.length - 1 + (visor.proxima ? 1 : 0);
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.midia');
+    if (b) {
+      var g = GALERIAS[Number(b.getAttribute('data-g'))];
+      if (g) abrirVisor(g.itens, Number(b.getAttribute('data-k')), g.proxima, b);
+      return;
+    }
+    var f = e.target.closest('[data-visor]');
+    if (f) {
+      var grupoEl = f.closest('.info-figuras') || f.closest('[data-visor-grupo]') || f.parentNode;
+      var lista = $$('[data-visor]', grupoEl);
+      abrirVisor(lista.map(function (el) { return { tipo: 'imagem', src: el.getAttribute('data-visor'), legenda: el.getAttribute('data-legenda') || '' }; }), lista.indexOf(f), null, f);
+    }
+  });
+
   /* ---------- Dados ---------- */
 
   var perfisPadrao = {};
@@ -144,6 +301,7 @@
         autora: String(o.autora || ''), status: String(o.status || ''), tags: (o.tags || []).map(String),
         maior18: !!o.maior18, data: o.data || '', infos: String(o.infos || ''),
         personagens: (o.personagens || []).filter(function (p) { return p && (p.id || p.nome); }),
+        nucleos: Array.isArray(o.nucleos) ? o.nucleos : [], secoesInfo: Array.isArray(o.secoesInfo) ? o.secoesInfo : [],
         mapa: {}
       };
       obra.personagens.forEach(function (p) { obra.mapa[String(p.id || p.nome).toLowerCase()] = p; });
@@ -153,9 +311,11 @@
       } else {
         var caps = Array.isArray(o.capitulos) && o.capitulos.length ? o.capitulos : (o.texto ? [{ numero: 1, titulo: obra.titulo, texto: o.texto }] : []);
         obra.capitulos = caps.map(function (c, i) {
+          var numero = Number(c.numero) || i + 1;
+          if (c.midias) return capituloDeMidias(c, numero);
           var texto = String(c.texto || ''), blocos = tipo === 'au' ? lerAU(texto) : null;
           return {
-            numero: Number(c.numero) || i + 1, titulo: String(c.titulo || ''), texto: texto, blocos: blocos,
+            numero: numero, titulo: String(c.titulo || ''), texto: texto, blocos: blocos,
             palavras: contarPalavras(texto),
             posts: blocos ? blocos.filter(function (b) { return b.tipo !== 'narracao' && b.tipo !== 'divisor'; }).length : 0
           };
@@ -272,8 +432,8 @@
     var extra = o.tipo === 'oneshot' ? 'single · ' + o.minutos + ' min' : o.capitulos.length + (o.capitulos.length === 1 ? ' faixa' : ' faixas');
     return '<a class="cartao" href="' + linkObra(o) + '" style="--atraso:' + (i * 40) + 'ms">' + capaHTML(o) +
       '<div class="cartao-legenda">' +
-        '<span class="cartao-titulo">' + escapar(o.titulo.toLowerCase()) + (o.autora ? ' <span class="cartao-autora">— ' + escapar(o.autora) + '</span>' : '') + '</span>' +
-        '<span class="cartao-extra">' + extra + '</span>' +
+        '<span class="cartao-titulo">' + escapar(o.titulo.toLowerCase()) + '</span>' +
+        '<span class="cartao-sub">' + (o.autora ? '<span class="cartao-autora">' + escapar(o.autora) + '</span>' : '<span></span>') + '<span class="cartao-extra">' + extra + '</span></span>' +
       '</div></a>';
   }
 
@@ -325,6 +485,27 @@
 
   /* ---------- AU / fanfic: abas Capítulos · Personagens · Infos ---------- */
 
+  function figuraHTML(arquivo, legenda, explicacao, classe) {
+    return '<figure class="figura ' + (classe || '') + '" data-visor-grupo>' +
+      '<button type="button" class="figura-img" data-visor="' + escapar(arquivo) + '" data-legenda="' + escapar(legenda || '') + '" aria-label="Ampliar ' + escapar(legenda || 'imagem') + '"><img src="' + escapar(arquivo) + '" alt="' + escapar(legenda || '') + '" loading="lazy"></button>' +
+      ((legenda || explicacao) ? '<figcaption>' + (legenda ? '<strong>' + escapar(legenda) + '</strong>' : '') + (explicacao ? '<span>' + formatar(explicacao) + '</span>' : '') + '</figcaption>' : '') +
+    '</figure>';
+  }
+  function perfilHTML(p) {
+    var imgs = p.imagens || [];
+    return '<article class="perfil" data-visor-grupo>' +
+      (imgs[0] ? '<button type="button" class="perfil-img" data-visor="' + escapar(imgs[0].arquivo) + '" data-legenda="' + escapar(imgs[0].legenda || p.nome) + '" aria-label="Ampliar perfil de ' + escapar(p.nome) + '"><img src="' + escapar(imgs[0].arquivo) + '" alt="" loading="lazy"></button>' : '') +
+      '<div class="perfil-corpo">' +
+        '<h3>' + escapar(p.nome) + '</h3>' +
+        (p.arroba ? '<p class="personagem-arroba">' + escapar(p.arroba) + '</p>' : '') +
+        (p.papel ? '<p class="personagem-papel">' + escapar(p.papel) + '</p>' : '') +
+        (p.descricao ? '<p class="personagem-desc">' + formatar(p.descricao) + '</p>' : '') +
+        (imgs.length > 1 ? '<div class="perfil-extras">' + imgs.slice(1).map(function (im) {
+          return '<button type="button" class="perfil-extra" data-visor="' + escapar(im.arquivo) + '" data-legenda="' + escapar(im.legenda || '') + '"><img src="' + escapar(im.arquivo) + '" alt="" loading="lazy"><span>' + escapar(im.legenda || 'outra conta') + '</span></button>';
+        }).join('') + '</div>' : '') +
+      '</div></article>';
+  }
+
   function mostrarHub(o, aba) {
     var alvo = $('#hub');
     if (precisaAviso(o, alvo, function () { mostrarHub(o, aba); })) return;
@@ -332,7 +513,16 @@
     var abas = [['capitulos', 'Faixas', base], ['personagens', 'Personagens', base + '/personagens'], ['infos', 'Infos', base + '/infos']];
     var conteudo = '';
 
-    if (aba === 'personagens') {
+    if (aba === 'personagens' && o.nucleos.length) {
+      conteudo = o.nucleos.map(function (nu) {
+        var membros = (nu.personagens || []).map(function (id) { return o.mapa[String(id).toLowerCase()]; }).filter(Boolean);
+        return '<section class="nucleo">' +
+          '<header class="nucleo-topo"><h2>' + escapar(nu.titulo) + '</h2>' + (nu.descricao ? '<p>' + formatar(nu.descricao) + '</p>' : '') + '</header>' +
+          (nu.imagem ? figuraHTML(nu.imagem, nu.legenda, nu.explicacao, 'figura-grupo') : '') +
+          (membros.length ? '<div class="grade-perfis">' + membros.map(perfilHTML).join('') + '</div>' : '') +
+        '</section>';
+      }).join('');
+    } else if (aba === 'personagens') {
       conteudo = o.personagens.length ? '<div class="grade-personagens">' + o.personagens.map(function (p) {
         var pp = perfil(String(p.id || p.nome).toLowerCase(), o);
         return '<article class="personagem">' + avatar(pp, 'avatar-grande') +
@@ -344,7 +534,11 @@
     } else if (aba === 'infos') {
       var linhas = [
         ['Tipo', NOMES[o.tipo].um], ['Autora', o.autora], ['Status', o.status],
-        ['Faixas', String(o.capitulos.length)], ['Palavras', numeroBR(o.palavras)], ['Leitura', '≈ ' + o.minutos + ' min no total'],
+        ['Faixas', String(o.capitulos.length)],
+        o.capitulos.some(function (c) { return c.itens; })
+          ? ['Mídias', numeroBR(o.capitulos.reduce(function (t, c) { return t + (c.total || 0); }, 0))]
+          : ['Palavras', numeroBR(o.palavras)],
+        o.capitulos.some(function (c) { return c.itens; }) ? ['', ''] : ['Leitura', '≈ ' + o.minutos + ' min no total'],
         ['Publicada em', dataBR(o.data)], ['Classificação', o.maior18 ? '+18' : 'Livre']
       ].filter(function (l) { return l[1]; });
       conteudo = '<div class="infos">' +
@@ -352,6 +546,12 @@
         '<dl class="infos-lista">' + linhas.map(function (l) { return '<div><dt>' + l[0] + '</dt><dd>' + escapar(l[1]) + '</dd></div>'; }).join('') + '</dl>' +
         (o.tags.length ? '<h3>Tags</h3>' + tagsHTML(o.tags) : '') +
         (o.infos.trim() ? '<h3>Notas da autora</h3><div class="infos-notas">' + prosaHTML(o.infos) + '</div>' : '') +
+        o.secoesInfo.map(function (se) {
+          return '<section class="info-secao"><h3>' + escapar(se.titulo) + '</h3>' +
+            (se.texto ? '<div class="info-texto">' + prosaHTML(se.texto) + '</div>' : '') +
+            ((se.imagens || []).length ? '<div class="info-figuras" data-visor-grupo>' + se.imagens.map(function (im) { return figuraHTML(im.arquivo, im.legenda, im.explicacao); }).join('') + '</div>' : '') +
+          '</section>';
+        }).join('') +
       '</div>';
     } else {
       aba = 'capitulos';
@@ -361,9 +561,10 @@
         return '<li><a class="cap-linha' + (lido ? ' lido' : '') + '" href="' + base + '/cap/' + c.numero + '">' +
           '<span class="cap-num">' + (c.numero < 10 ? '0' : '') + c.numero + '</span>' +
           '<span class="cap-corpo"><strong>' + escapar(tituloCap(c)) + '</strong><small>' +
-            (o.tipo === 'au' ? c.posts + (c.posts === 1 ? ' post' : ' posts') : numeroBR(c.palavras) + ' palavras') +
+            (c.itens ? c.total + ' mídias' + (c.nVideos ? ' · ' + c.nVideos + (c.nVideos === 1 ? ' vídeo' : ' vídeos') : '') + (c.nNarracoes ? ' · ' + c.nNarracoes + (c.nNarracoes === 1 ? ' narração' : ' narrações') : '')
+              : o.tipo === 'au' ? c.posts + (c.posts === 1 ? ' post' : ' posts') : numeroBR(c.palavras) + ' palavras') +
             (lido ? ' · <span class="lido-selo">ouvida</span>' : '') + '</small></span>' +
-          '<span class="cap-tempo">' + minutosDe(c.palavras) + ' min</span>' +
+          '<span class="cap-tempo">' + (c.itens ? c.total : minutosDe(c.palavras) + ' min') + '</span>' +
           '<span class="cap-seta" aria-hidden="true">▶</span></a></li>';
       }).join('') + '</ol>' : '<p class="vazio">Nenhuma faixa publicada ainda.</p>';
     }
@@ -402,20 +603,20 @@
       '<h1>' + escapar(opc.titulo) + '</h1>' +
       (opc.subtitulo ? '<p class="viagem-sub">' + formatar(opc.subtitulo) + '</p>' : '') +
       '<div class="player" aria-hidden="true">' +
-        '<span class="player-tempo" id="viagem-hora">0 min</span>' +
+        '<span class="player-tempo" id="viagem-hora">0 ' + (opc.unidade || 'min') + '</span>' +
         '<div class="viagem-barra"><span id="viagem-barra"></span><i class="player-ponto" id="player-ponto"></i></div>' +
-        '<span class="player-tempo">' + opc.minutos + ' min</span>' +
+        '<span class="player-tempo">' + opc.minutos + ' ' + (opc.unidade || 'min') + '</span>' +
       '</div>' +
-      '<p class="viagem-eta"><strong id="viagem-falta">faltam ' + opc.minutos + ' min</strong></p>' +
+      '<p class="viagem-eta"><strong id="viagem-falta">faltam ' + opc.minutos + ' ' + (opc.unidade || 'min') + '</strong></p>' +
       '<ul class="viagem-dados">' + opc.dados.map(function (d) { return '<li><strong>' + d[0] + '</strong><small>' + d[1] + '</small></li>'; }).join('') + '</ul>' +
       (opc.autora ? '<p class="viagem-autora"><span class="viagem-autora-icone" data-icone="onca"></span><span><small>Escrita por</small>' + escapar(opc.autora) + '</span></p>' : '') +
     '</header>';
   }
 
-  function prepararLeitura(alvo, minutos, rotuloMini) {
+  function prepararLeitura(alvo, minutos, rotuloMini, unidade) {
     pintarIcones(alvo);
-    leituraAtual = { minutos: minutos, rotuloMini: rotuloMini };
-    $('#mini').innerHTML = '<span class="viagem-ponto"></span><span>' + escapar(rotuloMini) + ' · <strong id="mini-falta">' + minutos + ' min</strong></span><span class="mini-barra"><span id="mini-barra"></span></span>';
+    leituraAtual = { minutos: minutos, rotuloMini: rotuloMini, unidade: unidade || 'min' };
+    $('#mini').innerHTML = '<span class="viagem-ponto"></span><span>' + escapar(rotuloMini) + ' · <strong id="mini-falta">' + minutos + ' ' + leituraAtual.unidade + '</strong></span><span class="mini-barra"><span id="mini-barra"></span></span>';
     $('#mini').classList.remove('visivel');
     vigiarCabecalho();
     $$('.curtir', alvo).forEach(function (b) {
@@ -435,20 +636,24 @@
     if (!c) { alvo.innerHTML = '<div class="nao-achei"><h1>Faixa não encontrada</h1><a class="botao" href="' + linkObra(o) + '">Ver faixas</a></div>'; return; }
     var ant = o.capitulos[i - 1], prox = o.capitulos[i + 1], base = linkObra(o), ehAU = o.tipo === 'au';
     var lidos = guardar.ler('lq-lidos', {}); lidos[o.id + '/' + c.numero] = true; guardar.salvar('lq-lidos', lidos);
-    var corpo = ehAU ? auHTML(c.blocos, o) : prosaHTML(c.texto);
+    var deMidias = !!c.itens;
+    var corpo = deMidias ? midiasHTML(c) : ehAU ? auHTML(c.blocos, o) : prosaHTML(c.texto);
     var paragrafos = ehAU ? c.posts : (corpo.match(/<p>/g) || []).length;
-    var min = minutosDe(c.palavras);
+    var min = deMidias ? c.total : minutosDe(c.palavras);
     alvo.innerHTML =
       '<article class="leitura leitura-' + o.tipo + '">' +
         cabecalhoLeitura({
           status: 'tocando agora · ' + NOMES[o.tipo].um + ' · faixa ' + c.numero + ' de ' + o.capitulos.length,
           titulo: tituloCap(c), subtitulo: o.titulo, minutos: min,
-          dados: [['≈ ' + min + ' min', 'de leitura'], [numeroBR(c.palavras), 'palavras'], [numeroBR(paragrafos), ehAU ? 'posts' : 'parágrafos']],
+          dados: deMidias
+            ? [[numeroBR(c.total - c.nVideos), 'prints'], [numeroBR(c.nVideos), c.nVideos === 1 ? 'vídeo' : 'vídeos'], [numeroBR(c.nNarracoes), c.nNarracoes === 1 ? 'narração' : 'narrações']]
+            : [['≈ ' + min + ' min', 'de leitura'], [numeroBR(c.palavras), 'palavras'], [numeroBR(paragrafos), ehAU ? 'posts' : 'parágrafos']],
+          unidade: deMidias ? 'mídias' : 'min',
           autora: o.autora,
           voltar: [base, 'Faixas'],
           proximo: prox ? [base + '/cap/' + prox.numero, 'próxima faixa'] : null
         }) +
-        '<div class="' + (ehAU ? 'fio' : 'texto') + '">' + corpo + '</div>' +
+        '<div class="' + (deMidias ? 'midias' : ehAU ? 'fio' : 'texto') + '">' + corpo + '</div>' +
         '<p class="fim" aria-hidden="true"><span data-icone="onca"></span><span data-icone="cenoura"></span><span data-icone="veado"></span></p>' +
         '<nav class="leitura-rodape">' +
           (ant ? '<a class="botao botao-claro" href="' + base + '/cap/' + ant.numero + '"><small>faixa anterior</small>' + escapar(tituloCap(ant)) + '</a>' : '<span></span>') +
@@ -456,7 +661,7 @@
           (prox ? '<a class="botao" href="' + base + '/cap/' + prox.numero + '"><small>próxima faixa</small>' + escapar(tituloCap(prox)) + '</a>' : '<span></span>') +
         '</nav>' +
       '</article>';
-    prepararLeitura(alvo, min, '▶ faixa ' + c.numero);
+    prepararLeitura(alvo, min, '▶ faixa ' + c.numero, deMidias ? 'mídias' : 'min');
   }
 
   function mostrarOneshot(o) {
@@ -497,11 +702,12 @@
     var f = $('#viagem-falta'), h = $('#viagem-hora'), b = $('#viagem-barra'), mf = $('#mini-falta'), mb = $('#mini-barra');
     var passou = Math.min(leituraAtual.minutos, Math.floor(pos * leituraAtual.minutos));
     var ponto = $('#player-ponto');
-    if (f) f.textContent = chegou ? 'fim do disco 💚' : 'faltam ' + falta + ' min';
-    if (h) h.textContent = (chegou ? leituraAtual.minutos : passou) + ' min';
+    var u = ' ' + leituraAtual.unidade;
+    if (f) f.textContent = chegou ? 'fim do disco 💚' : 'faltam ' + falta + u;
+    if (h) h.textContent = (chegou ? leituraAtual.minutos : passou) + u;
     if (ponto) ponto.style.left = (Math.max(0.02, pos) * 100) + '%';
     if (b) b.style.transform = 'scaleX(' + Math.max(0.02, pos) + ')';
-    if (mf) mf.textContent = chegou ? 'fim do disco' : 'faltam ' + falta + ' min';
+    if (mf) mf.textContent = chegou ? 'fim do disco' : 'faltam ' + falta + ' ' + leituraAtual.unidade;
     if (mb) mb.style.transform = 'scaleX(' + pos + ')';
   }
   var agendado = false;
@@ -566,6 +772,7 @@
     var trocaDeAba = document.body.getAttribute('data-pagina') === 'galeria' && /^(aus|fanfics|oneshots|inicio)$/.test(h);
     if (!trocaDeAba) window.scrollTo(0, 0);
     abrirPainel(false);
+    fecharVisor();
     leituraAtual = null;
     $('#mini').classList.remove('visivel');
     if (observador) observador.disconnect();
