@@ -173,9 +173,9 @@ main { flex: 1; outline: none; }
 /* ---------- Capas (imagem da obra, ou cor lisa + ícone) ---------- */
 
 .capa { position: relative; overflow: hidden; display: grid; place-items: center; background: var(--cinza); }
-.capa-onca { background: var(--laranja); }
-.capa-veado { background: var(--verde); }
-.capa-cenoura { background: var(--texto); }
+.capa-onca, .capa-veado, .capa-cenoura { background: var(--cinza); }
+.capa:not(.com-imagem)::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--laranja); }
+.capa-veado:not(.com-imagem)::after { background: var(--verde); }
 .capa-icone { width: 38%; max-width: 140px; transition: transform .3s; }
 .capa-icone svg { width: 100%; height: 100%; display: block; }
 .capa.com-imagem .capa-icone { display: none; }
@@ -496,3 +496,11 @@ body.sem-rolagem { overflow: hidden; }
 .info-texto p { margin: 0 0 .8em; }
 .info-figuras { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px; }
 @media (max-width: 560px) { .info-figuras { grid-template-columns: 1fr; } }
+
+/* Títulos de seção dentro do texto corrido (## Título) */
+.texto .secao-prosa { display: flex; align-items: center; gap: 10px; margin: 2.6em 0 1.2em; font: 600 .74em/1.2 var(--grotesca); letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.texto .secao-prosa::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--laranja); flex: none; }
+.texto .secao-prosa::after { content: ""; flex: 1; height: 1px; background: var(--linha); }
+.texto .secao-prosa:first-child { margin-top: 0; }
+.texto .secao-prosa + p { text-indent: 0; }
+.texto .secao-prosa:first-child + p::first-letter { float: left; font: 500 2.6em/.85 var(--grotesca); letter-spacing: -.04em; color: var(--laranja); margin: .06em .08em 0 0; }

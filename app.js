@@ -73,7 +73,7 @@
   function contarPalavras(t) { var m = String(t).match(/[\p{L}\p{N}]+(?:[-'’][\p{L}\p{N}]+)*/gu); return m ? m.length : 0; }
   function numeroBR(n) { return Number(n).toLocaleString('pt-BR'); }
   function minutosDe(p) { return Math.max(1, Math.ceil(p / PALAVRAS_POR_MINUTO)); }
-  var ehDivisor = function (l) { return /^(\*\s*){3,}$/.test(l) || /^\[(\.{3}|…)\]$/.test(l); };
+  var ehDivisor = function (l) { return /^(\*\s*){3,}$/.test(l) || /^[\[(](\.{3}|…)[\])]$/.test(l); };
   function divisor() { return '<div class="divisor" role="separator"><span data-icone="cenoura"></span></div>'; }
 
   function prosaHTML(texto) {
@@ -83,6 +83,8 @@
       var l = b.trim();
       if (!l) { fechar(); return; }
       if (ehDivisor(l)) { fechar(); html.push(divisor()); return; }
+      var sec = l.match(/^#{2,3}\s+(.+)$/);
+      if (sec) { fechar(); html.push('<h3 class="secao-prosa">' + formatar(sec[1]) + '</h3>'); return; }
       if (atual.length && /^[—–]/.test(l)) fechar();
       atual.push(l);
     });
