@@ -248,8 +248,7 @@
 
   function capaHTML(o, extra) {
     return '<div class="capa capa-' + escapar(o.icone) + (o.capa ? ' com-imagem' : '') + (extra ? ' ' + extra : '') + '">' +
-      '<span class="capa-padrao" aria-hidden="true"></span>' +
-      '<span class="capa-icone" data-icone="' + escapar(o.icone) + '"></span>' +
+            '<span class="capa-icone" data-icone="' + escapar(o.icone) + '"></span>' +
       (o.capa ? '<img src="' + escapar(o.capa) + '" alt="" loading="lazy" onerror="this.parentNode.classList.remove(\'com-imagem\');this.remove()">' : '') +
       '<span class="selo-tipo">' + NOMES[o.tipo].emoji + ' ' + NOMES[o.tipo].um + '</span>' +
       (o.maior18 ? '<span class="selo-18">+18</span>' : '') +
@@ -267,41 +266,56 @@
   var filtroAtual = 'todas', termo = '';
   var semAcento = function (s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
 
+  var SETA = '<svg class="seta-secao" viewBox="0 0 32 32" aria-hidden="true"><path d="M25 7L8 24M8 11v13h13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>';
+
+  function cartaoHTML(o, i) {
+    var extra = o.tipo === 'oneshot' ? '≈ ' + o.minutos + ' min' : o.capitulos.length + (o.capitulos.length === 1 ? ' cap.' : ' caps.');
+    return '<a class="cartao" href="' + linkObra(o) + '" style="--atraso:' + (i * 40) + 'ms">' + capaHTML(o) +
+      '<div class="cartao-legenda">' +
+        '<span class="cartao-titulo">' + escapar(o.titulo.toLowerCase()) + (o.autora ? ' <span class="cartao-autora">— ' + escapar(o.autora) + '</span>' : '') + '</span>' +
+        '<span class="cartao-extra">' + extra + '</span>' +
+      '</div></a>';
+  }
+
+  function grade(lista) {
+    return lista.length ? '<div class="grade">' + lista.map(cartaoHTML).join('') + '</div>' : '<p class="vazio">nada por aqui ainda.</p>';
+  }
+
   function montarGaleria() {
-    var t = semAcento(termo);
-    var lista = obras.filter(function (o) {
-      if (filtroAtual !== 'todas' && o.tipo !== filtroAtual) return false;
-      return !t || semAcento(o.titulo + ' ' + o.sinopse + ' ' + o.tags.join(' ') + ' ' + o.autora).indexOf(t) >= 0;
-    });
-    var ROTULOS = { todas: ['obra', 'obras'], au: ['AU', 'AUs'], fanfic: ['fanfic', 'fanfics'], oneshot: ['oneshot', 'oneshots'] };
-    $('#contagem').textContent = lista.length + ' ' + ROTULOS[filtroAtual][lista.length === 1 ? 0 : 1];
-    $('#galeria').innerHTML = lista.length ? lista.map(function (o, i) {
-      return '<a class="cartao" href="' + linkObra(o) + '" style="--atraso:' + (i * 40) + 'ms">' + capaHTML(o) +
-        '<div class="cartao-corpo"><h2>' + escapar(o.titulo) + '</h2>' +
-          '<p class="cartao-sinopse">' + formatar(o.sinopse) + '</p>' +
-          '<p class="cartao-meta">' + metaObra(o) + (o.data ? ' · ' + dataBR(o.data) : '') + '</p>' + tagsHTML(o.tags) +
-        '</div></a>';
-    }).join('') : '<p class="vazio">Nada por aqui ainda. 🥕</p>';
-    pintarIcones($('#galeria'));
-    $$('.filtro').forEach(function (b) { var a = b.getAttribute('data-filtro') === filtroAtual; b.classList.toggle('ativo', a); b.setAttribute('aria-selected', String(a)); });
+    var alvo = $('#galeria');
+    $('#hero').hidden = filtroAtual !== 'todas';
+    $('#lista-topo').hidden = filtroAtual === 'todas';
+    if (filtroAtual === 'todas') {
+      alvo.innerHTML = ['au', 'fanfic', 'oneshot'].map(function (tipo) {
+        var lista = obras.filter(function (o) { return o.tipo === tipo; });
+        if (!lista.length) return '';
+        return '<section class="secao">' +
+          '<header class="secao-topo"><h2 class="secao-titulo">' + NOMES[tipo].varios.toLowerCase() + '</h2>' +
+            '<a class="ver-todas" href="#' + NOMES[tipo].rota + '">(ver todas)</a>' + SETA + '</header>' +
+          grade(lista.slice(0, 4)) +
+        '</section>';
+      }).join('') || '<p class="vazio">nada por aqui ainda.</p>';
+    } else {
+      var t = semAcento(termo);
+      var lista = obras.filter(function (o) {
+        return o.tipo === filtroAtual && (!t || semAcento(o.titulo + ' ' + o.sinopse + ' ' + o.tags.join(' ') + ' ' + o.autora).indexOf(t) >= 0);
+      });
+      $('#lista-titulo').textContent = NOMES[filtroAtual].varios.toLowerCase();
+      var R = { au: ['AU', 'AUs'], fanfic: ['fanfic', 'fanfics'], oneshot: ['oneshot', 'oneshots'] };
+      $('#contagem').textContent = lista.length + ' ' + R[filtroAtual][lista.length === 1 ? 0 : 1];
+      alvo.innerHTML = grade(lista);
+    }
+    pintarIcones(alvo);
     marcarMenu(filtroAtual);
   }
   function marcarMenu(tipo) {
     $$('.menu a').forEach(function (a) { if (a.getAttribute('data-filtro') === tipo) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   }
-  $$('.filtro').forEach(function (b) {
-    b.addEventListener('click', function () { var f = b.getAttribute('data-filtro'); location.hash = f === 'todas' ? '#inicio' : '#' + NOMES[f].rota; });
-  });
   $('#busca').addEventListener('input', function (e) { termo = e.target.value; montarGaleria(); });
-
-  (function () {
-    var fundo = $('#capa-fundo'), nomes = ['cenoura', 'onca', 'veado'], html = '';
-    for (var i = 0; i < 18; i++) {
-      var x = (i * 37 + 7) % 100, y = (i * 53 + 11) % 100, r = ((i * 47) % 50) - 25, s = 0.7 + ((i * 13) % 6) / 10;
-      html += '<span class="flutua" style="left:' + x + '%;top:' + y + '%;--r:' + r + 'deg;--s:' + s + ';--d:' + (i % 6) + 's">' + icone(nomes[i % 3]) + '</span>';
-    }
-    fundo.innerHTML = html;
-  })();
+  $('.pilula').addEventListener('click', function (e) {
+    e.preventDefault();
+    $('#galeria').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
   /* ---------- Aviso +18 ---------- */
 
@@ -569,6 +583,8 @@
       atualizarLeitura();
       return;
     }
+    termo = (filtroAtual === (h === 'aus' ? 'au' : h === 'fanfics' ? 'fanfic' : h === 'oneshots' ? 'oneshot' : 'todas')) ? termo : '';
+    if ($('#busca')) $('#busca').value = termo;
     filtroAtual = h === 'aus' ? 'au' : h === 'fanfics' ? 'fanfic' : h === 'oneshots' ? 'oneshot' : 'todas';
     mostrar('galeria');
     montarGaleria();

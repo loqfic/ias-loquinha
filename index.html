@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Loquinha · AUs, fanfics & oneshots</title>
   <meta name="description" content="AUs, fanfics e oneshots de Loquinha (Lorena e Juquinha, de Três Graças).">
-  <meta name="theme-color" content="#FFF6EC" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#16110D" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F4F4F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M30 20c6-2 13 2 14 9 1 6-12 27-21 31-3 1-5-1-4-4 3-10 4-33 11-36z' fill='%23F26B21'/%3E%3Cpath d='M33 20c-2-7 1-14 6-16-1 6 0 10 3 13 3-4 8-6 13-5-3 5-8 8-14 9z' fill='%231F8A5B'/%3E%3C/svg%3E">
 
   <!-- Tema salvo aplicado antes de desenhar a página -->
@@ -24,7 +24,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <!-- Sempre busca a versão mais nova dos arquivos -->
   <script>window.LQ_VERSAO = Math.floor(Date.now() / 60000);</script>
@@ -68,30 +68,31 @@
   <main id="conteudo" tabindex="-1">
     <!-- GALERIA -->
     <section class="pagina" data-pagina="galeria">
-      <div class="capa-site">
-        <div class="capa-site-fundo" id="capa-fundo" aria-hidden="true"></div>
-        <div class="capa-site-texto">
-          <p class="sobretitulo">Lorena <span aria-hidden="true">🧡</span> Juquinha · <em>Três Graças</em></p>
-          <h1>Loquinha</h1>
-          <p class="capa-site-sub">AUs, fanfics e oneshots para quem não aguenta esperar o próximo capítulo.</p>
+      <div class="hero" id="hero">
+        <div class="hero-texto">
+          <h1>Loquinha<br>AUs &amp;<br>fanfics</h1>
+          <p>Lorena e Juquinha, de <em>Três Graças</em>, em AUs, fanfics e oneshots para ler quando bater a saudade.</p>
+          <a class="pilula" href="#aus">escolher o que ler <span class="pilula-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 9v8H9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+        <div class="hero-arte" aria-hidden="true">
+          <svg viewBox="0 0 600 600" focusable="false">
+            <path class="roseta" fill-rule="evenodd" d="M300 18c78-6 150 34 198 92 50 60 86 128 78 208-8 84-60 150-128 196-64 44-140 70-216 54C152 552 86 500 50 430 12 356 8 272 44 198 82 120 156 64 230 34c22-9 46-14 70-16zM300 170c-44-4-92 16-116 54-26 40-26 96 0 138 28 44 82 72 134 66 56-6 104-48 118-102 14-52-8-112-52-140-24-12-56-16-84-16z"/>
+            <path class="roseta-centro" d="M300 170c28 0 60 4 84 16 44 28 66 88 52 140-14 54-62 96-118 102-52 6-106-22-134-66-26-42-26-98 0-138 24-38 72-58 116-54z"/>
+            <g class="roseta-pinta"><circle cx="300" cy="300" r="22"/></g>
+          </svg>
         </div>
       </div>
 
       <div class="largura">
-        <div class="ferramentas">
-          <div class="filtros" role="tablist" aria-label="Filtrar">
-            <button type="button" class="filtro" data-filtro="todas" role="tab">Tudo</button>
-            <button type="button" class="filtro" data-filtro="au" role="tab">AUs</button>
-            <button type="button" class="filtro" data-filtro="fanfic" role="tab">Fanfics</button>
-            <button type="button" class="filtro" data-filtro="oneshot" role="tab">Oneshots</button>
-          </div>
+        <div class="lista-topo" id="lista-topo" hidden>
+          <h1 class="secao-titulo" id="lista-titulo"></h1>
           <label class="busca">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <input type="search" id="busca" placeholder="Buscar por título ou tag" autocomplete="off">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="busca" placeholder="buscar por título, tag ou autora" autocomplete="off">
           </label>
+          <p class="contagem" id="contagem"></p>
         </div>
-        <p class="contagem" id="contagem"></p>
-        <div class="galeria" id="galeria"></div>
+        <div id="galeria"></div>
       </div>
     </section>
 
@@ -111,7 +112,7 @@
       <span class="rodape-icones" aria-hidden="true">
         <span data-icone="cenoura"></span><span data-icone="onca"></span><span data-icone="veado"></span>
       </span>
-      Site de fã de Loquinha · personagens de <em>Três Graças</em>
+      <span>site de fã de Loquinha · personagens de <em>Três Graças</em></span>
     </p>
   </footer>
 
