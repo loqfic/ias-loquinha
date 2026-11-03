@@ -39,8 +39,11 @@
                              41: { omitir: true } } }
     - Os arquivos se chamam prefixo + número com 3 dígitos: a606-att6-001.jpg,
       a606-att6-012.mp4 (vídeo) e a606-att6-012-capa.jpg (capa do vídeo).
-    - Atualização em partes: uma faixa por parte, com prefixo próprio
-      (a606-att4a-, a606-att4b-) e att: "4 · parte I" / "4 · parte II".
+    - Atualização que chegou em partes continua sendo UMA faixa: use
+      midias: { att: 4, partes: [ { prefixo: "a606-att4a-", total, videos, narracoes },
+                                 { prefixo: "a606-att4b-", total, videos, narracoes } ] }
+      Cada parte numera as próprias narrações (1, 2, 3...); no site a contagem
+      das mídias continua (Cap 111 = 1º arquivo da segunda parte).
     - "tempo": marcações da conta TEMPO; "texto": narração em prosa.
     - "omitir": imagem que é continuação da narração anterior (não aparece).
     - A legenda no visualizador sai sozinha: "Att 6 - Cap 12".
@@ -1084,8 +1087,9 @@ Mudou a câmera, focando na do elevador. Ampliou a imagem para o monitor de núm
 -Te peguei. - Eduarda disse baixinho para a tela do celular e finalizou a gravação.` },
             87: { omitir: true }
           } } },
-      { numero: 4, titulo: "4ª atualização · parte I",
-        midias: { att: "4 · parte I", prefixo: "a606-att4a-", total: 110, videos: [28, 29, 30, 33, 36, 53, 60],
+      { numero: 4, titulo: "4ª atualização",
+        midias: { att: 4, partes: [
+          {prefixo: "a606-att4a-", total: 110, videos: [28, 29, 30, 33, 36, 53, 60],
           narracoes: {
             1: { texto: `Lorena não se considerava uma pessoa violenta, tampouco barraqueira.
 
@@ -1166,9 +1170,8 @@ Não sabe ao certo como conseguiu se erguer e como parou no apartamento de Saman
             37: { tempo: "DOMINGO, manhã." },
             98: { tempo: "DOMINGO, noite." },
             110: { tempo: "⌚ QUEBRA DE TEMPO ⌚\nDE DOMINGO PARA SEXTA-FEIRA" }
-          } } },
-      { numero: 5, titulo: "4ª atualização · parte II",
-        midias: { att: "4 · parte II", prefixo: "a606-att4b-", total: 78, videos: [32, 48, 57, 60, 62, 68, 73],
+          } },
+          {prefixo: "a606-att4b-", total: 78, videos: [32, 48, 57, 60, 62, 68, 73],
           narracoes: {
             1: { tempo: "⌚ QUEBRA DE TEMPO ⌚\nSEGUNDA PARA SEXTA" },
             24: { tempo: "SÁBADO, manhã" },
@@ -1187,9 +1190,10 @@ Mais que depressa, apanhou sua arma na gaveta do aparador que ficava próximo à
 
 -Lorena? - Eduarda murmurou, meio incrédula e meio surpresa.` },
             78: { omitir: true }
-          } } },
-      { numero: 6, titulo: "5ª atualização",
-        midias: { att: "5", prefixo: "a606-att5-", total: 160, videos: [18, 26, 52, 60, 83, 85, 93, 96, 104],
+          } }
+        ] } },
+      { numero: 5, titulo: "5ª atualização",
+        midias: { att: 5, prefixo: "a606-att5-", total: 160, videos: [18, 26, 52, 60, 83, 85, 93, 96, 104],
           narracoes: {
             1: { texto: `*-Lorena? - Eduarda murmurou, meio incrédula e meio surpresa.*
 

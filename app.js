@@ -137,21 +137,28 @@
 
   // c.midias = { prefixo, total, videos: [números], narracoes: { numero: { tempo: "..." } ou { texto: `...` } } }
   function capituloDeMidias(c, numero) {
-    var m = c.midias, videos = (m.videos || []).map(Number), narr = m.narracoes || {};
-    var att = (m.att != null ? m.att : numero), itens = [], palavras = 0;
-    for (var n = 1; n <= Number(m.total || 0); n++) {
-      var nar = narr[n];
-      if (nar && nar.omitir) continue; // parte de uma narração que já entrou no número anterior
-      if (nar) {
-        var t = String(nar.tempo || nar.texto || '');
-        palavras += contarPalavras(t);
-        itens.push({ n: n, tipo: nar.tempo ? 'tempo' : 'texto', texto: t });
-      } else if (videos.indexOf(n) >= 0) {
-        itens.push({ n: n, tipo: 'video', src: m.prefixo + pad3(n) + '.mp4', capa: m.prefixo + pad3(n) + '-capa.jpg', legenda: 'Att ' + att + ' - Cap ' + n });
-      } else {
-        itens.push({ n: n, tipo: 'imagem', src: m.prefixo + pad3(n) + '.' + (m.extensao || 'jpg'), legenda: 'Att ' + att + ' - Cap ' + n });
+    // Uma atualização pode juntar vários lotes de arquivos (ex.: zips em partes):
+    // midias: { att: 4, partes: [ { prefixo, total, videos, narracoes }, ... ] }
+    // A numeração das mídias continua de uma parte para a outra.
+    var m = c.midias, partes = m.partes || [m];
+    var att = (m.att != null ? m.att : numero), itens = [], palavras = 0, base = 0;
+    partes.forEach(function (pt) {
+      var videos = (pt.videos || []).map(Number), narr = pt.narracoes || {}, total = Number(pt.total || 0);
+      for (var k = 1; k <= total; k++) {
+        var n = base + k, nar = narr[k];
+        if (nar && nar.omitir) continue; // parte de uma narração que já entrou no número anterior
+        if (nar) {
+          var t = String(nar.tempo || nar.texto || '');
+          palavras += contarPalavras(t);
+          itens.push({ n: n, tipo: nar.tempo ? 'tempo' : 'texto', texto: t });
+        } else if (videos.indexOf(k) >= 0) {
+          itens.push({ n: n, tipo: 'video', src: pt.prefixo + pad3(k) + '.mp4', capa: pt.prefixo + pad3(k) + '-capa.jpg', legenda: 'Att ' + att + ' - Cap ' + n });
+        } else {
+          itens.push({ n: n, tipo: 'imagem', src: pt.prefixo + pad3(k) + '.' + (pt.extensao || m.extensao || 'jpg'), legenda: 'Att ' + att + ' - Cap ' + n });
+        }
       }
-    }
+      base += total;
+    });
     var midias = itens.filter(function (x) { return x.tipo === 'imagem' || x.tipo === 'video'; });
     return {
       numero: numero, titulo: String(c.titulo || ''), att: att, itens: itens, texto: '', palavras: palavras,
