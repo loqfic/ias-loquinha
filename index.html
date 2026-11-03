@@ -70,27 +70,33 @@
     <section class="pagina" data-pagina="galeria">
       <div class="hero" id="hero">
         <div class="hero-texto">
-          <h1>Loquinha<br>AUs &amp;<br>fanfics</h1>
-          <p>Lorena e Juquinha, de <em>Três Graças</em>, em AUs, fanfics e oneshots para ler quando bater a saudade.</p>
-          <a class="pilula" href="#aus">escolher o que ler <span class="pilula-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 9v8H9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <h1>Loquinha</h1>
+          <p>O lado B de Lorena e Juquinha, de <em>Três Graças</em>: AUs, fanfics e singles para colocar pra tocar.</p>
+          <a class="pilula" href="#galeria">escolher um disco <span class="pilula-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 9v8H9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         </div>
         <div class="hero-arte" aria-hidden="true">
           <svg viewBox="0 0 600 600" focusable="false">
-            <path class="roseta" fill-rule="evenodd" d="M300 18c78-6 150 34 198 92 50 60 86 128 78 208-8 84-60 150-128 196-64 44-140 70-216 54C152 552 86 500 50 430 12 356 8 272 44 198 82 120 156 64 230 34c22-9 46-14 70-16zM300 170c-44-4-92 16-116 54-26 40-26 96 0 138 28 44 82 72 134 66 56-6 104-48 118-102 14-52-8-112-52-140-24-12-56-16-84-16z"/>
-            <path class="roseta-centro" d="M300 170c28 0 60 4 84 16 44 28 66 88 52 140-14 54-62 96-118 102-52 6-106-22-134-66-26-42-26-98 0-138 24-38 72-58 116-54z"/>
-            <g class="roseta-pinta"><circle cx="300" cy="300" r="22"/></g>
+            <circle class="vinil" cx="300" cy="300" r="296"/>
+            <circle class="vinil-sulco" cx="300" cy="300" r="130"/><circle class="vinil-sulco" cx="300" cy="300" r="144"/><circle class="vinil-sulco" cx="300" cy="300" r="158"/><circle class="vinil-sulco" cx="300" cy="300" r="172"/><circle class="vinil-sulco" cx="300" cy="300" r="186"/><circle class="vinil-sulco" cx="300" cy="300" r="200"/><circle class="vinil-sulco" cx="300" cy="300" r="214"/><circle class="vinil-sulco" cx="300" cy="300" r="228"/><circle class="vinil-sulco" cx="300" cy="300" r="242"/><circle class="vinil-sulco" cx="300" cy="300" r="256"/><circle class="vinil-sulco" cx="300" cy="300" r="270"/><circle class="vinil-sulco" cx="300" cy="300" r="284"/>
+            <path class="vinil-brilho" d="M300 4A296 296 0 0 1 596 300H470A170 170 0 0 0 300 130z"/>
+            <circle class="vinil-rotulo" cx="300" cy="300" r="108"/>
+            <circle class="vinil-detalhe" cx="300" cy="300" r="108" />
+            <circle class="vinil-furo" cx="300" cy="300" r="9"/>
           </svg>
         </div>
       </div>
 
       <div class="largura">
-        <div class="lista-topo" id="lista-topo" hidden>
-          <h1 class="secao-titulo" id="lista-titulo"></h1>
+        <div class="lista-topo" id="lista-topo">
+          <nav class="abas abas-home" id="abas-home" aria-label="Tipo de obra">
+            <a href="#aus" data-filtro="au">AUs <span class="abas-n" data-n="au"></span></a>
+            <a href="#fanfics" data-filtro="fanfic">Fanfics <span class="abas-n" data-n="fanfic"></span></a>
+            <a href="#oneshots" data-filtro="oneshot">Oneshots <span class="abas-n" data-n="oneshot"></span></a>
+          </nav>
           <label class="busca">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             <input type="search" id="busca" placeholder="buscar por título, tag ou autora" autocomplete="off">
           </label>
-          <p class="contagem" id="contagem"></p>
         </div>
         <div id="galeria"></div>
       </div>
@@ -116,7 +122,7 @@
     </p>
   </footer>
 
-  <!-- Pílula "lendo agora" que aparece ao rolar a leitura -->
+  <!-- Pílula "tocando agora" que aparece ao rolar a leitura -->
   <div class="mini" id="mini" aria-hidden="true"></div>
 
   <script>

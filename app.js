@@ -169,7 +169,7 @@
 
   function acharObra(id) { return obras.find(function (o) { return o.id === id; }); }
   function linkObra(o) { return '#' + o.tipo + '/' + encodeURIComponent(o.id); }
-  function tituloCap(c) { return c.titulo ? c.titulo : 'Capítulo ' + c.numero; }
+  function tituloCap(c) { return c.titulo ? c.titulo : 'Faixa ' + c.numero; }
 
   function perfil(id, obra) {
     var p = (obra && obra.mapa[id]) || perfisPadrao[id];
@@ -257,7 +257,7 @@
   function metaObra(o) {
     if (o.tipo === 'oneshot') return '≈ ' + o.minutos + ' min de leitura';
     var n = o.capitulos.length;
-    return n + (n === 1 ? ' capítulo' : ' capítulos') + (o.status ? ' · ' + o.status.toLowerCase() : '');
+    return n + (n === 1 ? ' faixa' : ' faixas') + (o.status ? ' · ' + o.status.toLowerCase() : '');
   }
   function tagsHTML(t) { return t.length ? '<ul class="tags">' + t.map(function (g) { return '<li>' + escapar(g) + '</li>'; }).join('') + '</ul>' : ''; }
 
@@ -269,7 +269,7 @@
   var SETA = '<svg class="seta-secao" viewBox="0 0 32 32" aria-hidden="true"><path d="M25 7L8 24M8 11v13h13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>';
 
   function cartaoHTML(o, i) {
-    var extra = o.tipo === 'oneshot' ? '≈ ' + o.minutos + ' min' : o.capitulos.length + (o.capitulos.length === 1 ? ' cap.' : ' caps.');
+    var extra = o.tipo === 'oneshot' ? 'single · ' + o.minutos + ' min' : o.capitulos.length + (o.capitulos.length === 1 ? ' faixa' : ' faixas');
     return '<a class="cartao" href="' + linkObra(o) + '" style="--atraso:' + (i * 40) + 'ms">' + capaHTML(o) +
       '<div class="cartao-legenda">' +
         '<span class="cartao-titulo">' + escapar(o.titulo.toLowerCase()) + (o.autora ? ' <span class="cartao-autora">— ' + escapar(o.autora) + '</span>' : '') + '</span>' +
@@ -278,35 +278,29 @@
   }
 
   function grade(lista) {
-    return lista.length ? '<div class="grade">' + lista.map(cartaoHTML).join('') + '</div>' : '<p class="vazio">nada por aqui ainda.</p>';
+    return lista.length ? '<div class="grade">' + lista.map(cartaoHTML).join('') + '</div>' : '<p class="vazio">nenhum disco por aqui ainda.</p>';
   }
 
   function montarGaleria() {
     var alvo = $('#galeria');
-    $('#hero').hidden = filtroAtual !== 'todas';
-    $('#lista-topo').hidden = filtroAtual === 'todas';
-    if (filtroAtual === 'todas') {
-      alvo.innerHTML = ['au', 'fanfic', 'oneshot'].map(function (tipo) {
-        var lista = obras.filter(function (o) { return o.tipo === tipo; });
-        if (!lista.length) return '';
-        return '<section class="secao">' +
-          '<header class="secao-topo"><h2 class="secao-titulo">' + NOMES[tipo].varios.toLowerCase() + '</h2>' +
-            '<a class="ver-todas" href="#' + NOMES[tipo].rota + '">(ver todas)</a>' + SETA + '</header>' +
-          grade(lista.slice(0, 4)) +
-        '</section>';
-      }).join('') || '<p class="vazio">nada por aqui ainda.</p>';
-    } else {
-      var t = semAcento(termo);
-      var lista = obras.filter(function (o) {
-        return o.tipo === filtroAtual && (!t || semAcento(o.titulo + ' ' + o.sinopse + ' ' + o.tags.join(' ') + ' ' + o.autora).indexOf(t) >= 0);
-      });
-      $('#lista-titulo').textContent = NOMES[filtroAtual].varios.toLowerCase();
-      var R = { au: ['AU', 'AUs'], fanfic: ['fanfic', 'fanfics'], oneshot: ['oneshot', 'oneshots'] };
-      $('#contagem').textContent = lista.length + ' ' + R[filtroAtual][lista.length === 1 ? 0 : 1];
-      alvo.innerHTML = grade(lista);
-    }
+    var t = semAcento(termo);
+    var lista = obras.filter(function (o) {
+      return o.tipo === filtroAtual && (!t || semAcento(o.titulo + ' ' + o.sinopse + ' ' + o.tags.join(' ') + ' ' + o.autora).indexOf(t) >= 0);
+    });
+    $$('#abas-home a').forEach(function (a) {
+      if (a.getAttribute('data-filtro') === filtroAtual) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    $$('.abas-n').forEach(function (el) {
+      var tipo = el.getAttribute('data-n');
+      el.textContent = obras.filter(function (o) { return o.tipo === tipo; }).length;
+    });
+    alvo.innerHTML = grade(lista);
     pintarIcones(alvo);
     marcarMenu(filtroAtual);
+  }
+  function primeiroTipo() {
+    var t = ['au', 'fanfic', 'oneshot'].find(function (x) { return obras.some(function (o) { return o.tipo === x; }); });
+    return t || 'au';
   }
   function marcarMenu(tipo) {
     $$('.menu a').forEach(function (a) { if (a.getAttribute('data-filtro') === tipo) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
@@ -314,7 +308,7 @@
   $('#busca').addEventListener('input', function (e) { termo = e.target.value; montarGaleria(); });
   $('.pilula').addEventListener('click', function (e) {
     e.preventDefault();
-    $('#galeria').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    $('#lista-topo').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   /* ---------- Aviso +18 ---------- */
@@ -335,7 +329,7 @@
     var alvo = $('#hub');
     if (precisaAviso(o, alvo, function () { mostrarHub(o, aba); })) return;
     var base = linkObra(o);
-    var abas = [['capitulos', 'Capítulos', base], ['personagens', 'Personagens', base + '/personagens'], ['infos', 'Infos', base + '/infos']];
+    var abas = [['capitulos', 'Faixas', base], ['personagens', 'Personagens', base + '/personagens'], ['infos', 'Infos', base + '/infos']];
     var conteudo = '';
 
     if (aba === 'personagens') {
@@ -350,7 +344,7 @@
     } else if (aba === 'infos') {
       var linhas = [
         ['Tipo', NOMES[o.tipo].um], ['Autora', o.autora], ['Status', o.status],
-        ['Capítulos', String(o.capitulos.length)], ['Palavras', numeroBR(o.palavras)], ['Leitura', '≈ ' + o.minutos + ' min no total'],
+        ['Faixas', String(o.capitulos.length)], ['Palavras', numeroBR(o.palavras)], ['Leitura', '≈ ' + o.minutos + ' min no total'],
         ['Publicada em', dataBR(o.data)], ['Classificação', o.maior18 ? '+18' : 'Livre']
       ].filter(function (l) { return l[1]; });
       conteudo = '<div class="infos">' +
@@ -365,12 +359,13 @@
       conteudo = o.capitulos.length ? '<ol class="lista-caps">' + o.capitulos.map(function (c) {
         var lido = lidos[o.id + '/' + c.numero];
         return '<li><a class="cap-linha' + (lido ? ' lido' : '') + '" href="' + base + '/cap/' + c.numero + '">' +
-          '<span class="cap-num">' + c.numero + '</span>' +
+          '<span class="cap-num">' + (c.numero < 10 ? '0' : '') + c.numero + '</span>' +
           '<span class="cap-corpo"><strong>' + escapar(tituloCap(c)) + '</strong><small>' +
-            (o.tipo === 'au' ? c.posts + (c.posts === 1 ? ' post' : ' posts') : '≈ ' + minutosDe(c.palavras) + ' min de leitura') +
-            (lido ? ' · <span class="lido-selo">lido</span>' : '') + '</small></span>' +
-          '<span class="cap-seta" aria-hidden="true">›</span></a></li>';
-      }).join('') + '</ol>' : '<p class="vazio">Nenhum capítulo publicado ainda.</p>';
+            (o.tipo === 'au' ? c.posts + (c.posts === 1 ? ' post' : ' posts') : numeroBR(c.palavras) + ' palavras') +
+            (lido ? ' · <span class="lido-selo">ouvida</span>' : '') + '</small></span>' +
+          '<span class="cap-tempo">' + minutosDe(c.palavras) + ' min</span>' +
+          '<span class="cap-seta" aria-hidden="true">▶</span></a></li>';
+      }).join('') + '</ol>' : '<p class="vazio">Nenhuma faixa publicada ainda.</p>';
     }
 
     var primeiro = o.capitulos[0];
@@ -381,7 +376,7 @@
           '<div class="hub-texto"><h1>' + escapar(o.titulo) + '</h1>' +
             (o.autora ? '<p class="hub-autora">por ' + escapar(o.autora) + '</p>' : '') +
             '<p class="hub-meta">' + metaObra(o) + '</p>' +
-            (primeiro ? '<a class="botao" href="' + base + '/cap/' + primeiro.numero + '">Começar a ler</a>' : '') +
+            (primeiro ? '<a class="botao" href="' + base + '/cap/' + primeiro.numero + '">▶ dar o play</a>' : '') +
           '</div>' +
         '</header>' +
         '<nav class="abas" aria-label="Seções">' + abas.map(function (a) {
@@ -392,7 +387,7 @@
     pintarIcones(alvo);
   }
 
-  /* ---------- Leitura: cabeçalho "lendo agora" ---------- */
+  /* ---------- Leitura: cabeçalho em forma de player ("tocando agora") ---------- */
 
   var leituraAtual = null; // { minutos, rotuloMini }
 
@@ -406,10 +401,12 @@
       '<p class="viagem-status"><span class="viagem-ponto" aria-hidden="true"></span>' + escapar(opc.status) + '</p>' +
       '<h1>' + escapar(opc.titulo) + '</h1>' +
       (opc.subtitulo ? '<p class="viagem-sub">' + formatar(opc.subtitulo) + '</p>' : '') +
-      '<p class="viagem-eta"><strong id="viagem-falta">Termina em ' + opc.minutos + ' min</strong> <span id="viagem-hora">· previsão ' + horaBR(opc.minutos) + '</span></p>' +
-      '<div class="viagem-barra" aria-hidden="true"><span id="viagem-barra"></span></div>' +
-      (opc.partida ? '<ol class="viagem-rota"><li><span class="marca-rota" data-icone="cenoura"></span><span><small>Partida</small>' + escapar(opc.partida) + '</span></li>' +
-        '<li><span class="marca-rota" data-icone="' + escapar(opc.iconeDestino || 'veado') + '"></span><span><small>Destino</small>' + escapar(opc.destino) + '</span></li></ol>' : '') +
+      '<div class="player" aria-hidden="true">' +
+        '<span class="player-tempo" id="viagem-hora">0 min</span>' +
+        '<div class="viagem-barra"><span id="viagem-barra"></span><i class="player-ponto" id="player-ponto"></i></div>' +
+        '<span class="player-tempo">' + opc.minutos + ' min</span>' +
+      '</div>' +
+      '<p class="viagem-eta"><strong id="viagem-falta">faltam ' + opc.minutos + ' min</strong></p>' +
       '<ul class="viagem-dados">' + opc.dados.map(function (d) { return '<li><strong>' + d[0] + '</strong><small>' + d[1] + '</small></li>'; }).join('') + '</ul>' +
       (opc.autora ? '<p class="viagem-autora"><span class="viagem-autora-icone" data-icone="onca"></span><span><small>Escrita por</small>' + escapar(opc.autora) + '</span></p>' : '') +
     '</header>';
@@ -435,7 +432,7 @@
     if (precisaAviso(o, alvo, function () { mostrarCapitulo(o, numero); })) return;
     var i = o.capitulos.findIndex(function (c) { return c.numero === numero; });
     var c = o.capitulos[i];
-    if (!c) { alvo.innerHTML = '<div class="nao-achei"><h1>Capítulo não encontrado</h1><a class="botao" href="' + linkObra(o) + '">Ver capítulos</a></div>'; return; }
+    if (!c) { alvo.innerHTML = '<div class="nao-achei"><h1>Faixa não encontrada</h1><a class="botao" href="' + linkObra(o) + '">Ver faixas</a></div>'; return; }
     var ant = o.capitulos[i - 1], prox = o.capitulos[i + 1], base = linkObra(o), ehAU = o.tipo === 'au';
     var lidos = guardar.ler('lq-lidos', {}); lidos[o.id + '/' + c.numero] = true; guardar.salvar('lq-lidos', lidos);
     var corpo = ehAU ? auHTML(c.blocos, o) : prosaHTML(c.texto);
@@ -444,24 +441,22 @@
     alvo.innerHTML =
       '<article class="leitura leitura-' + o.tipo + '">' +
         cabecalhoLeitura({
-          status: 'Lendo agora · ' + NOMES[o.tipo].um + ' · Capítulo ' + c.numero + ' de ' + o.capitulos.length,
+          status: 'tocando agora · ' + NOMES[o.tipo].um + ' · faixa ' + c.numero + ' de ' + o.capitulos.length,
           titulo: tituloCap(c), subtitulo: o.titulo, minutos: min,
-          partida: ant ? 'Capítulo ' + ant.numero + ' · ' + tituloCap(ant) : 'Início da ' + (ehAU ? 'AU' : 'fanfic'),
-          destino: tituloCap(c), iconeDestino: ehAU ? 'onca' : 'veado',
           dados: [['≈ ' + min + ' min', 'de leitura'], [numeroBR(c.palavras), 'palavras'], [numeroBR(paragrafos), ehAU ? 'posts' : 'parágrafos']],
           autora: o.autora,
-          voltar: [base, 'Capítulos'],
-          proximo: prox ? [base + '/cap/' + prox.numero, 'Próximo'] : null
+          voltar: [base, 'Faixas'],
+          proximo: prox ? [base + '/cap/' + prox.numero, 'próxima faixa'] : null
         }) +
         '<div class="' + (ehAU ? 'fio' : 'texto') + '">' + corpo + '</div>' +
         '<p class="fim" aria-hidden="true"><span data-icone="onca"></span><span data-icone="cenoura"></span><span data-icone="veado"></span></p>' +
         '<nav class="leitura-rodape">' +
-          (ant ? '<a class="botao botao-claro" href="' + base + '/cap/' + ant.numero + '"><small>Anterior</small>' + escapar(tituloCap(ant)) + '</a>' : '<span></span>') +
-          '<a class="botao botao-claro centro" href="' + base + '">Capítulos</a>' +
-          (prox ? '<a class="botao" href="' + base + '/cap/' + prox.numero + '"><small>Próximo</small>' + escapar(tituloCap(prox)) + '</a>' : '<span></span>') +
+          (ant ? '<a class="botao botao-claro" href="' + base + '/cap/' + ant.numero + '"><small>faixa anterior</small>' + escapar(tituloCap(ant)) + '</a>' : '<span></span>') +
+          '<a class="botao botao-claro centro" href="' + base + '">Faixas</a>' +
+          (prox ? '<a class="botao" href="' + base + '/cap/' + prox.numero + '"><small>próxima faixa</small>' + escapar(tituloCap(prox)) + '</a>' : '<span></span>') +
         '</nav>' +
       '</article>';
-    prepararLeitura(alvo, min, 'Cap. ' + c.numero);
+    prepararLeitura(alvo, min, '▶ faixa ' + c.numero);
   }
 
   function mostrarOneshot(o) {
@@ -474,7 +469,7 @@
       '<article class="leitura leitura-oneshot">' +
         (o.capa ? capaHTML(o, 'capa-leitura') : '') +
         cabecalhoLeitura({
-          status: 'Lendo agora · Oneshot',
+          status: 'tocando agora · single',
           titulo: o.titulo, subtitulo: o.sinopse, minutos: o.minutos,
           dados: [['≈ ' + o.minutos + ' min', 'de leitura'], [numeroBR(o.palavras), 'palavras'], [numeroBR(paragrafos), 'parágrafos']],
           autora: o.autora,
@@ -482,12 +477,12 @@
         }) +
         '<div class="texto">' + corpo + '</div>' +
         '<p class="fim" aria-hidden="true"><span data-icone="onca"></span><span data-icone="cenoura"></span><span data-icone="veado"></span></p>' +
-        (outras.length ? '<h2 class="mais-titulo">Outras oneshots</h2><div class="mais">' + outras.map(function (x) {
+        (outras.length ? '<h2 class="mais-titulo">outros singles</h2><div class="mais">' + outras.map(function (x) {
           return '<a class="mais-item" href="' + linkObra(x) + '">' + capaHTML(x) + '<strong>' + escapar(x.titulo) + '</strong><small>≈ ' + x.minutos + ' min</small></a>';
         }).join('') + '</div>' : '') +
         '<nav class="leitura-rodape uma"><a class="botao" href="#inicio">Voltar para a galeria</a></nav>' +
       '</article>';
-    prepararLeitura(alvo, o.minutos, 'Oneshot');
+    prepararLeitura(alvo, o.minutos, '▶ single');
   }
 
   /* ---------- Progresso, tempo restante e pílula ---------- */
@@ -500,10 +495,13 @@
     if (!leituraAtual) return;
     var falta = Math.max(1, Math.ceil((1 - pos) * leituraAtual.minutos)), chegou = pos >= 0.985;
     var f = $('#viagem-falta'), h = $('#viagem-hora'), b = $('#viagem-barra'), mf = $('#mini-falta'), mb = $('#mini-barra');
-    if (f) f.textContent = chegou ? 'Você chegou ao fim 💚' : 'Termina em ' + falta + ' min';
-    if (h) h.textContent = chegou ? '' : '· previsão ' + horaBR(falta);
+    var passou = Math.min(leituraAtual.minutos, Math.floor(pos * leituraAtual.minutos));
+    var ponto = $('#player-ponto');
+    if (f) f.textContent = chegou ? 'fim do disco 💚' : 'faltam ' + falta + ' min';
+    if (h) h.textContent = (chegou ? leituraAtual.minutos : passou) + ' min';
+    if (ponto) ponto.style.left = (Math.max(0.02, pos) * 100) + '%';
     if (b) b.style.transform = 'scaleX(' + Math.max(0.02, pos) + ')';
-    if (mf) mf.textContent = chegou ? 'fim' : 'faltam ' + falta + ' min';
+    if (mf) mf.textContent = chegou ? 'fim do disco' : 'faltam ' + falta + ' min';
     if (mb) mb.style.transform = 'scaleX(' + pos + ')';
   }
   var agendado = false;
@@ -565,7 +563,8 @@
   function rota() {
     var h = decodeURIComponent(location.hash.replace(/^#\/?/, '')) || 'inicio';
     var partes = h.split('/');
-    window.scrollTo(0, 0);
+    var trocaDeAba = document.body.getAttribute('data-pagina') === 'galeria' && /^(aus|fanfics|oneshots|inicio)$/.test(h);
+    if (!trocaDeAba) window.scrollTo(0, 0);
     abrirPainel(false);
     leituraAtual = null;
     $('#mini').classList.remove('visivel');
@@ -585,7 +584,7 @@
     }
     termo = (filtroAtual === (h === 'aus' ? 'au' : h === 'fanfics' ? 'fanfic' : h === 'oneshots' ? 'oneshot' : 'todas')) ? termo : '';
     if ($('#busca')) $('#busca').value = termo;
-    filtroAtual = h === 'aus' ? 'au' : h === 'fanfics' ? 'fanfic' : h === 'oneshots' ? 'oneshot' : 'todas';
+    filtroAtual = h === 'aus' ? 'au' : h === 'fanfics' ? 'fanfic' : h === 'oneshots' ? 'oneshot' : primeiroTipo();
     mostrar('galeria');
     montarGaleria();
     atualizarLeitura();
