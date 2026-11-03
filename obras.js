@@ -48,6 +48,9 @@
     - "omitir": imagem que é continuação da narração anterior (não aparece).
     - A legenda no visualizador sai sozinha: "Att 6 - Cap 12".
 
+  - jogo:        opcional; cria a aba "Jogo" ao lado de Personagens:
+        jogo: { arquivo: "interfone.html", titulo: "...", descricao: "..." }
+
   SÓ PARA ONESHOT
   - texto:     o texto inteiro, entre as crases.
 
@@ -953,6 +956,13 @@ Aquela noite foi só a primeira noite longa das vidas delas. Poderiam não se am
     ],
 
     // Aba Personagens: cada núcleo com o print do grupo e os perfis
+    // Aba "Jogo" (aparece ao lado de Personagens). Suba o arquivo do jogo solto, junto dos outros.
+    jogo: {
+      arquivo: "interfone.html",
+      titulo: "Interfone do Rochester",
+      descricao: "Meia-noite no condomínio: a Eduarda interfona para a vizinha de cima reclamar do barulho. Toque no chão da sala para andar e no quarto escuro para espiar."
+    },
+
     nucleos: [
       { titulo: "Núcleo da Eduarda", descricao: "Eduarda e os amigos que se reúnem para o café da tarde na casa dela.",
         imagem: "a606-grupo-eduarda-cozinheira.jpg", legenda: "Grupo “Eduarda cozinheira”",

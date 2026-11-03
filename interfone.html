@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interfone do Rochester</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Mundo único de noite: céu azul-marinho, prédio claro, laranja e verde só nos detalhes.
+     Layout: corte lateral do prédio no centro, barra de comandos estilo hotel pixelado embaixo. */
+  --ceu: #121a33;
+  --ceu-2: #1d2850;
+  --barra: #26282c;
+  --barra-2: #3a3d43;
+  --texto: #f3f1ea;
+  --suave: #a9adb8;
+  --laranja: #f26b21;
+  --verde: #33b27a;
+  --pixel: "Pixelify Sans", "Trebuchet MS", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: radial-gradient(120% 90% at 50% 0%, var(--ceu-2), var(--ceu) 70%); color: var(--texto); font: 400 15px/1.35 var(--pixel); display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
+header { width: 100%; max-width: 760px; padding: 14px 16px 6px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+h1 { margin: 0; font: 700 20px/1.1 var(--pixel); }
+h1 span { color: var(--laranja); }
+header p { margin: 0; color: var(--suave); font-size: 13px; }
+#palco { position: relative; margin: 4px auto 0; touch-action: manipulation; }
+canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; cursor: pointer; }
+.bolha { position: absolute; transform: translate(-50%, -100%); background: #fff; color: #111; border: 2px solid #111; border-radius: 7px; padding: 4px 9px 5px 6px; font: 400 13px/1.2 var(--pixel); white-space: nowrap; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 0 rgba(0,0,0,.35); pointer-events: none; transition: opacity .6s; }
+.bolha::after { content: ""; position: absolute; left: 50%; bottom: -7px; width: 8px; height: 8px; background: #fff; border-right: 2px solid #111; border-bottom: 2px solid #111; transform: translateX(-50%) rotate(45deg); }
+.bolha .cabeca { width: 14px; height: 14px; border-radius: 3px; border: 2px solid #111; flex: none; }
+.bolha b { font-weight: 700; }
+.barra { width: 100%; max-width: 760px; margin: 10px auto 18px; padding: 0 12px; }
+.barra-in { background: var(--barra); border: 2px solid #111; border-radius: 10px; box-shadow: inset 0 2px 0 var(--barra-2), 0 3px 0 rgba(0,0,0,.4); padding: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+#status { flex: 1 1 220px; min-width: 0; font-size: 14px; }
+#status small { display: block; color: var(--suave); font-size: 12px; margin-top: 2px; }
+.botao { font: 600 14px/1 var(--pixel); color: #111; background: #f3f1ea; border: 2px solid #111; border-radius: 7px; padding: 10px 14px; cursor: pointer; box-shadow: inset 0 -3px 0 rgba(0,0,0,.18), 0 2px 0 #111; }
+.botao:active { transform: translateY(2px); box-shadow: inset 0 -1px 0 rgba(0,0,0,.18); }
+.botao.laranja { background: var(--laranja); color: #fff; }
+.botao.verde { background: var(--verde); color: #fff; }
+.botao.sec { background: var(--barra-2); color: var(--texto); }
+.botao[hidden] { display: none; }
+.botao:focus-visible { outline: 3px solid #ffd35a; outline-offset: 2px; }
+.pulsa { animation: pulsa 1s steps(2) infinite; }
+@keyframes pulsa { 50% { filter: brightness(1.25); transform: translateY(-1px); } }
+@media (prefers-reduced-motion: reduce) { .pulsa { animation: none; } }
+.embutido header { display: none; }
+.embutido #palco { margin-top: 14px; }
+.dica { width: 100%; max-width: 760px; padding: 0 16px 20px; color: var(--suave); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Interfone do <span>Rochester</span></h1>
+  <p>apartamento 606 · uma AU de ias | @medverias</p>
+</header>
+
+<div id="palco"><canvas id="tela" width="480" height="520" aria-label="Corte lateral do prédio: Lorena no andar de cima, Eduarda no de baixo"></canvas></div>
+
+<div class="barra">
+  <div class="barra-in">
+    <div id="status">Meia-noite no Rochester. Lá de cima vem um barulho que não para…<small>Toque no chão da sala para andar com a Eduarda ou com a Lorena.</small></div>
+    <button class="botao laranja" id="b-interfonar" type="button">Interfonar pra Lorena</button>
+    <button class="botao verde pulsa" id="b-atender" type="button" hidden>Atender (Lorena)</button>
+    <button class="botao" id="b-denovo" type="button" hidden>De novo</button>
+    <button class="botao sec" id="b-som" type="button" aria-pressed="true">Som: ligado</button>
+  </div>
+</div>
+<p class="dica">Toque no quarto escuro de cima para ver o que está fazendo tanto barulho.</p>
+
+<script>
+try { if (window.self !== window.top) document.documentElement.classList.add('embutido'); } catch (e) { document.documentElement.classList.add('embutido'); }
+(function () {
+  var W = 480, H = 520, S = 3; // S = tamanho do "pixel" das personagens
+  var tela = document.getElementById('tela'), ctx = tela.getContext('2d');
+  var palco = document.getElementById('palco');
+  var escala = 1;
+
+  function R(x, y, w, h, cor) { ctx.fillStyle = cor; ctx.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); }
+  function alfa(a, f) { ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); }
+
+  /* ---------- Andares e cômodos (vista lateral) ---------- */
+  // Cada andar é um apartamento contínuo; a parede entre os cômodos é fina.
+  var andares = {
+    cima:  { y0: 36,  piso: 236, y1: 250 },
+    baixo: { y0: 268, piso: 470, y1: 484 }
+  };
+  var comodos = {
+    lorQuarto: { andar: 'cima',  x0: 20,  x1: 286, escuro: true,  nome: 'Lorena · quarto',  parede: '#b9a6cc', parede2: '#ab97bf', piso: '#a97f5b', piso2: '#94704f' },
+    lorSala:   { andar: 'cima',  x0: 290, x1: 460, escuro: false, nome: 'Lorena · sala',    parede: '#f3e0cb', parede2: '#e8d2bb', piso: '#c98f5a', piso2: '#b98250' },
+    eduSala:   { andar: 'baixo', x0: 20,  x1: 186, escuro: false, nome: 'Eduarda · sala',   parede: '#d1e6da', parede2: '#c1d9cb', piso: '#93a8ba', piso2: '#8599ab' },
+    eduQuarto: { andar: 'baixo', x0: 190, x1: 460, escuro: true,  nome: 'Eduarda · quarto', parede: '#c3d0e2', parede2: '#b3c1d5', piso: '#a3815f', piso2: '#937455' }
+  };
+  Object.keys(comodos).forEach(function (k) { var c = comodos[k], a = andares[c.andar]; c.id = k; c.y0 = a.y0; c.piso = a.piso; c.y1 = a.y1; });
+
+  /* ---------- Personagens ---------- */
+  var gente = {
+    eduarda: { nome: 'Eduarda', comodo: 'eduSala', x: 92, dir: -1, alvo: null, fone: false,
+      pele: '#f2c9a8', cabelo: '#c8461d', cabelo2: '#9e3313', blusa: '#24262b', blusa2: '#16171a', calca: '#2f3c58', sapato: '#111' },
+    lorena: { nome: 'Lorena', comodo: 'lorSala', x: 392, dir: -1, alvo: null, fone: false,
+      pele: '#d9a47e', cabelo: '#4a2a17', cabelo2: '#331b0d', blusa: '#f4f1ea', blusa2: '#c9473a', calca: '#4c6fa6', sapato: '#2a2a2a' }
+  };
+  var FONE = { eduarda: { x: 166, y: 384 }, lorena: { x: 438, y: 150 } }; // interfones na parede do fundo
+  var PARADA = { eduarda: 150, lorena: 424 };
+
+  function pessoa(p, t) {
+    var c = comodos[p.comodo], x0 = Math.round(p.x), y0 = c.piso;
+    var anda = p.alvo ? (Math.floor(t * 8) % 2) : 0;
+    function q(dx, dy, w, h, cor) {
+      var x = p.dir > 0 ? -(dx + w) : dx;
+      R(x0 + x * S, y0 + dy * S, w * S, h * S, cor);
+    }
+    alfa(0.28, function () { ctx.fillStyle = '#000'; ctx.beginPath(); ctx.ellipse(x0, y0 + 1, 22, 5, 0, 0, Math.PI * 2); ctx.fill(); });
+    var lor = p === gente.lorena, manga = lor ? p.blusa2 : p.blusa;
+    if (!lor) q(-6, -30, 12, 15, p.cabelo2);
+    q(-4, -9 - (anda ? 1 : 0), 3, 8, p.calca); q(1, -9 - (anda ? 0 : 1), 3, 8, p.calca);
+    q(-5, -2, 4, 2, p.sapato); q(1, -2, 4, 2, p.sapato);
+    q(-5, -19, 10, 11, p.blusa);
+    if (lor) { for (var k = 0; k < 5; k++) q(-5, -18 + k * 2, 10, 1, p.blusa2); }
+    else { q(-5, -19, 1, 11, p.blusa2); q(2, -16, 2, 2, '#e7b93a'); }
+    q(-7, -18, 2, 8, manga); q(-7, -10, 2, 2, p.pele);
+    if (p.fone) { q(5, -25, 2, 8, manga); q(4, -29, 3, 7, '#3b3f46'); q(4, -29, 3, 1, '#62666e'); }
+    else { q(5, -18, 2, 8, manga); q(5, -10, 2, 2, p.pele); }
+    q(-1, -21, 3, 2, p.pele);
+    q(-5, -30, 10, 10, p.pele);
+    q(-3, -25, 1, 2, '#1d1d1d'); q(1, -25, 1, 2, '#1d1d1d'); q(-1, -22, 2, 1, '#a35a4a');
+    if (lor) {
+      q(-7, -33, 14, 5, p.cabelo); q(-8, -30, 3, 9, p.cabelo); q(5, -30, 3, 9, p.cabelo);
+      q(-6, -34, 3, 1, p.cabelo); q(-1, -34, 3, 1, p.cabelo); q(3, -34, 3, 1, p.cabelo);
+      q(-8, -22, 2, 2, p.cabelo2); q(6, -22, 2, 2, p.cabelo2); q(-4, -31, 2, 1, p.cabelo2);
+    } else {
+      q(-6, -32, 12, 4, p.cabelo); q(-6, -29, 2, 8, p.cabelo); q(4, -29, 2, 6, p.cabelo); q(-3, -32, 5, 1, '#e0663a');
+    }
+    var mao = p.dir > 0 ? -(4 + 1.5) : (4 + 1.5);
+    return { x: x0, y: y0, mao: { x: x0 + mao * S, y: y0 - 23 * S } };
+  }
+
+  /* ---------- Estado ---------- */
+  var estado = { roteiro: false, tocando: false, coracoes: [], poeira: [], textos: [] };
+  var bolhas = [];
+
+  /* ---------- Elementos de cenário ---------- */
+  function fundo(c) {
+    R(c.x0, c.y0, c.x1 - c.x0, c.piso - c.y0, c.parede);
+    for (var x = c.x0; x < c.x1; x += 24) R(x, c.y0, 12, c.piso - c.y0, c.parede2); // papel de parede listrado
+    R(c.x0, c.y0, c.x1 - c.x0, 6, 'rgba(0,0,0,.10)');
+    R(c.x0, c.piso - 8, c.x1 - c.x0, 8, 'rgba(0,0,0,.14)'); // rodapé
+    R(c.x0, c.piso, c.x1 - c.x0, c.y1 - c.piso, c.piso2);
+    for (var t = c.x0; t < c.x1; t += 30) R(t, c.piso, 28, 4, c.piso);
+  }
+  function janela(x, y, w, h) {
+    R(x - 4, y - 4, w + 8, h + 8, '#f7f4ee'); R(x, y, w, h, '#22305e');
+    ctx.fillStyle = '#fff4c6'; ctx.beginPath(); ctx.arc(x + w * 0.68, y + h * 0.3, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#22305e'; ctx.beginPath(); ctx.arc(x + w * 0.68 + 4, y + h * 0.3 - 2, 7, 0, Math.PI * 2); ctx.fill();
+    R(x + 8, y + 14, 2, 2, '#fff'); R(x + w * 0.35, y + h * 0.65, 2, 2, '#fff'); R(x + w - 12, y + h - 12, 2, 2, '#fff');
+    R(x + w / 2 - 1, y, 3, h, '#f7f4ee'); R(x, y + h / 2 - 1, w, 3, '#f7f4ee');
+    R(x - 8, y + h + 4, w + 16, 4, '#e5e0d6');
+  }
+  function interfone(f, tocando, t, foraDoGancho) {
+    var tr = tocando ? (Math.floor(t * 20) % 2 ? 1 : -1) : 0, x = f.x + tr, y = f.y;
+    R(x - 9, y - 14, 18, 30, '#e9e6df'); R(x - 9, y - 14, 18, 2, '#ffffff'); R(x - 9, y + 14, 18, 2, '#b9b4aa');
+    R(x - 5, y - 9, 10, 6, '#9fd0b6'); R(x - 5, y + 1, 3, 3, '#555'); R(x + 2, y + 1, 3, 3, '#555'); R(x - 5, y + 7, 3, 3, '#555'); R(x + 2, y + 7, 3, 3, '#555');
+    if (!foraDoGancho) { R(x + 9, y - 13, 6, 28, '#3b3f46'); R(x + 9, y - 13, 6, 2, '#62666e'); }
+  }
+  function textoPixel(txt, x, y, cor, tam, a) {
+    ctx.save(); ctx.globalAlpha = a == null ? 1 : a;
+    ctx.font = (tam || 8) + 'px Silkscreen, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'rgba(0,0,0,.55)'; ctx.fillText(txt, Math.round(x) + 1, Math.round(y) + 1);
+    ctx.fillStyle = cor; ctx.fillText(txt, Math.round(x), Math.round(y)); ctx.restore();
+  }
+  function coracao(x, y, cor, a, k) {
+    k = k || 2; x = Math.round(x); y = Math.round(y);
+    alfa(a, function () {
+      R(x - 3 * k, y - 2 * k, 2 * k, 2 * k, cor); R(x + 1 * k, y - 2 * k, 2 * k, 2 * k, cor);
+      R(x - 4 * k, y - 1 * k, 8 * k, 2 * k, cor); R(x - 3 * k, y + 1 * k, 6 * k, k, cor); R(x - 2 * k, y + 2 * k, 4 * k, k, cor); R(x - k, y + 3 * k, 2 * k, k, cor);
+    });
+  }
+  function estrela(x, y, cor, a) {
+    alfa(a, function () { R(x, y - 5, 2, 12, cor); R(x - 5, y, 12, 2, cor); R(x - 1, y - 1, 4, 4, cor); });
+  }
+  function brilho(x, y, r, cor) {
+    ctx.save(); ctx.globalCompositeOperation = 'screen';
+    var g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, cor); g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2); ctx.restore();
+  }
+  function penumbra(c, f) { R(c.x0, c.y0, c.x1 - c.x0, c.y1 - c.y0, 'rgba(8,10,32,' + f + ')'); }
+  function luar(c, jx, jy, jw, jh) {
+    ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = 'rgba(150,175,255,.13)';
+    ctx.beginPath(); ctx.moveTo(jx, jy); ctx.lineTo(jx + jw, jy); ctx.lineTo(jx + jw + 60, c.piso); ctx.lineTo(jx + 20, c.piso); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+  function rotulo(c) {
+    ctx.save(); ctx.font = '8px Silkscreen, monospace'; var w = ctx.measureText(c.nome).width + 10;
+    R(c.x0 + 6, c.y0 + 8, w, 13, 'rgba(10,10,14,.72)');
+    ctx.fillStyle = c.escuro ? '#c9cfe6' : '#fff4dc'; ctx.textBaseline = 'middle'; ctx.fillText(c.nome, c.x0 + 11, c.y0 + 15); ctx.restore();
+  }
+  function luminaria(xa, ya, comp, ang, cor) {
+    var bx = xa + Math.sin(ang) * comp, by = ya + Math.cos(ang) * comp;
+    ctx.strokeStyle = '#222'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(xa, ya); ctx.lineTo(bx, by); ctx.stroke();
+    ctx.save(); ctx.translate(bx, by); ctx.rotate(-ang);
+    ctx.fillStyle = cor; ctx.beginPath(); ctx.moveTo(-14, 12); ctx.lineTo(14, 12); ctx.lineTo(6, 0); ctx.lineTo(-6, 0); ctx.closePath(); ctx.fill();
+    R(-4, 12, 8, 4, '#fff6cf'); ctx.restore();
+    return { x: bx, y: by + 14 };
+  }
+
+  /* --- Quarto da Lorena: a namorada na cama com outra, fazendo barulho --- */
+  function quartoLorena(t) {
+    var c = comodos.lorQuarto; fundo(c);
+    janela(46, 72, 62, 72);
+    // criado-mudo com abajur apagado
+    R(70, 200, 34, 36, '#7a5b46'); R(70, 200, 34, 4, '#93725a'); R(74, 214, 26, 2, '#5d4639');
+    R(82, 186, 10, 14, '#d9cfc0'); R(78, 180, 18, 8, '#efe6d6');
+    // cama tremendo
+    var pulo = Math.abs(Math.sin(t * 9)), dx = Math.round(Math.sin(t * 18) * 1), dy = -Math.round(pulo * 2);
+    ctx.save(); ctx.translate(dx, 0);
+    R(114, 156, 10, 80, '#6a4231'); R(112, 152, 14, 6, '#7b4f3a');               // cabeceira
+    R(262, 192, 8, 44, '#6a4231'); R(260, 188, 12, 6, '#7b4f3a');                // pé da cama
+    R(124, 206, 138, 16, '#7b4f3a'); R(126, 222, 6, 14, '#58372a'); R(254, 222, 6, 14, '#58372a');
+    R(124, 194 + dy, 138, 14, '#f3efe8'); R(124, 206 + dy, 138, 2, '#d8d1c6');
+    R(126, 182 + dy, 36, 14, '#ffffff'); R(126, 194 + dy, 36, 2, '#e2ddd4');     // travesseiro
+    // as duas cabeças no travesseiro
+    var hy = 172 + dy;
+    R(132, hy, 18, 16, '#e3b694'); R(130, hy - 4, 22, 8, '#2c1d14'); R(130, hy, 4, 10, '#2c1d14');           // a namorada
+    R(140, hy + 6, 2, 2, '#111');
+    var h2y = 168 + dy - Math.round(pulo * 2);
+    R(146, h2y, 18, 16, '#f1cdb0'); R(144, h2y - 4, 22, 7, '#f0cf62'); R(160, h2y, 6, 16, '#f0cf62');      // a outra (loira)
+    R(152, h2y + 6, 2, 2, '#111');
+    // edredom com montinho que mexe
+    var m = Math.round(Math.abs(Math.sin(t * 9)) * 5);
+    R(150, 186 + dy - m, 112, 14 + m, '#e86f93');
+    R(178, 178 + dy - m * 2, 52, 10 + m, '#f08aa7');
+    R(150, 198 + dy, 112, 4, '#c85476');
+    R(196, 172 + dy - m * 2, 22, 8, '#f6a3bb');
+    ctx.restore();
+    // roupas no chão
+    R(232, 230, 26, 6, '#d94c6a'); R(238, 226, 14, 4, '#d94c6a'); R(196, 231, 10, 5, '#2a2a2a'); R(208, 231, 10, 5, '#2a2a2a');
+    penumbra(c, 0.55);
+    luar(c, 46, 144, 62, 0);
+    janela(46, 72, 62, 72);
+    brilho(190, 182, 90, 'rgba(255,110,160,' + (0.18 + 0.07 * Math.sin(t * 9)) + ')');
+    estado.coracoes.forEach(function (h) { coracao(h.x, h.y, h.cor, Math.max(0, 1 - h.vida / h.max)); });
+    var sac = Math.sin(t * 18) * 2;
+    textoPixel('nheco nheco', 214 + sac, 132, '#ffb3cb', 16, 0.75 + 0.25 * Math.sin(t * 9));
+    estrela(150, 120 + Math.sin(t * 6) * 3, '#ffe28a', 0.85);
+    estrela(262, 160 + Math.sin(t * 7) * 3, '#ffe28a', 0.7);
+    estrela(124, 140, '#ffd1e0', 0.5 + 0.5 * Math.abs(Math.sin(t * 5)));
+    rotulo(c);
+  }
+
+  /* --- Sala da Lorena (iluminada) --- */
+  function salaLorena(t) {
+    var c = comodos.lorSala; fundo(c);
+    // quadro de flores (o papel de parede do celular dela)
+    R(304, 78, 66, 48, '#f7f4ee'); R(308, 82, 58, 40, '#fbe9ee');
+    [[318, 104, '#e8577a'], [332, 94, '#f3a23c'], [346, 106, '#c94fa0'], [356, 92, '#f0d24a'], [326, 88, '#e8577a']].forEach(function (f) {
+      R(f[0], f[1] + 4, 2, 14, '#4f9a5c'); R(f[0] - 4, f[1] - 4, 10, 10, f[2]); R(f[0] - 1, f[1] - 1, 4, 4, '#fff3a8');
+    });
+    // sofá verde com almofada laranja
+    R(298, 180, 82, 22, '#46a777'); R(298, 180, 82, 3, '#5bbd8c');
+    R(298, 200, 82, 22, '#3f9a6d'); R(294, 192, 8, 34, '#378660'); R(376, 192, 8, 34, '#378660');
+    R(300, 222, 4, 14, '#2b2b2b'); R(374, 222, 4, 14, '#2b2b2b');
+    R(306, 186, 18, 16, '#f26b21'); R(306, 186, 18, 3, '#ff8a4a');
+    // mesinha com abajur aceso e livros de poesia
+    R(388, 206, 26, 30, '#9a6c4b'); R(386, 204, 30, 4, '#b07e59');
+    R(394, 186, 14, 18, '#fff1c2'); R(398, 180, 6, 6, '#e8cc80');
+    R(390, 200, 6, 4, '#3d7fb7'); R(408, 200, 6, 4, '#e46b3a');
+    brilho(401, 190, 80, 'rgba(255,214,140,.32)');
+    interfone(FONE.lorena, estado.tocando, t, gente.lorena.fone);
+    rotulo(c);
+  }
+
+  /* --- Sala da Eduarda (iluminada, com o teto tremendo) --- */
+  function salaEduarda(t) {
+    var c = comodos.eduSala; fundo(c);
+    // armário de cima e bancada da cozinha (ela ama cozinhar)
+    R(24, 316, 78, 34, '#eef1ee'); R(24, 348, 78, 3, '#c9cfcb'); R(72, 316, 2, 34, '#c9cfcb'); R(64, 330, 4, 6, '#888'); R(78, 330, 4, 6, '#888');
+    R(24, 430, 100, 40, '#e3e7ea'); R(22, 426, 104, 6, '#f6f6f2'); R(72, 434, 2, 34, '#c4ccd2'); R(62, 446, 4, 4, '#888'); R(78, 446, 4, 4, '#888');
+    R(34, 420, 36, 6, '#2d2f33'); R(38, 404, 28, 16, '#b8bec5'); R(36, 404, 32, 3, '#d4d9de'); R(30, 410, 6, 3, '#8c949c');
+    for (var v = 0; v < 4; v++) {
+      var f = ((t * 14 + v * 7) % 26);
+      alfa(0.55 - f / 52, function () { R(48 + Math.sin(t * 3 + v) * 3 + v * 4, 398 - f, 3, 3, '#ffffff'); });
+    }
+    R(92, 418, 22, 8, '#7fb39a');
+    // pôster de fitas cassete (o papel de parede do celular dela)
+    R(108, 304, 44, 34, '#2c2a28');
+    for (var k = 0; k < 2; k++) {
+      var py = 309 + k * 13; R(112, py, 36, 11, k ? '#d94b3a' : '#e8d9b0'); R(120, py + 3, 5, 5, '#222'); R(135, py + 3, 5, 5, '#222'); R(124, py + 4, 12, 3, '#555');
+    }
+    interfone(FONE.eduarda, false, t, gente.eduarda.fone);
+    // luminária pendurada que balança com o barulho de cima
+    var lp = luminaria(100, c.y0, 40, Math.sin(t * 9) * 0.22, '#f26b21');
+    brilho(lp.x, lp.y + 10, 90, 'rgba(255,220,150,.30)');
+    estado.poeira.forEach(function (p) { alfa(p.a, function () { R(p.x, p.y, 2, 2, '#f5efe0'); }); });
+    var sac = Math.floor(t * 18) % 2 ? 2 : -2;
+    textoPixel('tum tum', 150 + sac, c.y0 + 24, '#ffe0a8', 8, 0.55 + 0.45 * Math.abs(Math.sin(t * 9)));
+    rotulo(c);
+  }
+
+  /* --- Quarto da Eduarda (escuro e calmo) --- */
+  function quartoEduarda(t) {
+    var c = comodos.eduQuarto; fundo(c);
+    janela(300, 304, 62, 72);
+    // tapete, plantinha e criado-mudo
+    R(212, 466, 70, 4, '#3d4a63');
+    R(206, 438, 26, 32, '#c26a3e'); R(204, 436, 30, 5, '#d57c4f');
+    R(206, 410, 26, 28, '#3a8a5a'); R(212, 398, 14, 16, '#46a06a'); R(200, 418, 10, 10, '#3a8a5a'); R(228, 414, 10, 12, '#46a06a');
+    R(420, 432, 32, 38, '#7a5b46'); R(420, 432, 32, 4, '#93725a'); R(428, 418, 14, 14, '#d9cfc0'); R(424, 412, 22, 8, '#efe6d6');
+    // cama arrumada, ninguém nela
+    R(404, 386, 10, 84, '#4b5c78'); R(402, 382, 14, 6, '#5c6f8f');
+    R(250, 424, 8, 46, '#4b5c78'); R(248, 420, 12, 6, '#5c6f8f');
+    R(258, 440, 146, 16, '#5c6f8f'); R(262, 456, 6, 14, '#3f4e66'); R(394, 456, 6, 14, '#3f4e66');
+    R(258, 428, 146, 14, '#f3efe8');
+    R(366, 414, 36, 14, '#ffffff'); R(366, 426, 36, 2, '#e2ddd4');
+    R(258, 420, 106, 12, '#7fa7d9'); R(258, 430, 106, 4, '#6890c2'); R(350, 420, 14, 12, '#f3efe8');
+    penumbra(c, 0.55);
+    luar(c, 300, 376, 62, 0);
+    janela(300, 304, 62, 72);
+    // cortina respirando devagar
+    var cort = Math.round(Math.sin(t * 1.2) * 2);
+    alfa(0.4, function () { R(288 + cort, 296, 12, 92, '#c8d2eb'); R(362 - cort, 296, 12, 92, '#c8d2eb'); });
+    rotulo(c);
+  }
+
+  /* ---------- Prédio ---------- */
+  var estrelas = []; for (var e = 0; e < 40; e++) estrelas.push([Math.random() * W, Math.random() * 18, Math.random()]);
+  function predio(t) {
+    estrelas.forEach(function (s) { alfa(0.3 + 0.4 * Math.abs(Math.sin(t * 0.8 + s[2] * 9)), function () { R(s[0], s[1], 1, 1, '#fff'); }); });
+    R(8, 20, W - 16, 466, '#d8d1c2');
+    R(4, 18, W - 8, 6, '#a89f90'); R(8, 24, W - 16, 12, '#bdb5a6');
+    ctx.save(); ctx.font = '8px Silkscreen, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    R(W / 2 - 74, 24, 148, 12, '#1d2238'); ctx.fillStyle = '#ffd35a'; ctx.fillText('CONDOMÍNIO ROCHESTER', W / 2, 30); ctx.restore();
+    // laje grossa entre os andares
+    R(14, 250, W - 28, 18, '#b3ab9c'); R(14, 266, W - 28, 2, '#958d7f'); R(14, 250, W - 28, 2, '#c9c2b4');
+    R(14, 484, W - 28, 6, '#b3ab9c');
+    // paredes finas entre os cômodos de cada apartamento
+    R(286, 36, 4, 214, '#f2ece0'); R(286, 36, 1, 214, '#bdb5a6'); R(289, 36, 1, 214, '#bdb5a6');
+    R(186, 268, 4, 216, '#f2ece0'); R(186, 268, 1, 216, '#bdb5a6'); R(189, 268, 1, 216, '#bdb5a6');
+    // rua
+    R(0, 490, W, H - 490, '#3a3e48'); R(0, 490, W, 3, '#555a66');
+    for (var k = 0; k < 12; k++) R(k * 42 + 6, 506, 22, 2, '#6b7080');
+    ctx.save(); ctx.font = '8px Silkscreen, monospace'; ctx.fillStyle = '#6d6556'; ctx.textAlign = 'center';
+    ctx.translate(14, 143); ctx.rotate(-Math.PI / 2); ctx.fillText('ap. da Lorena', 0, 0); ctx.restore();
+    ctx.save(); ctx.font = '8px Silkscreen, monospace'; ctx.fillStyle = '#6d6556'; ctx.textAlign = 'center';
+    ctx.translate(14, 376); ctx.rotate(-Math.PI / 2); ctx.fillText('ap. da Eduarda', 0, 0); ctx.restore();
+  }
+
+  function fio(f, mao) {
+    ctx.strokeStyle = '#2b2e33'; ctx.lineWidth = 2; ctx.beginPath();
+    var ax = f.x + 12, ay = f.y + 12; ctx.moveTo(ax, ay);
+    for (var k = 1; k <= 12; k++) {
+      var g = k / 12, x = ax + (mao.x - ax) * g, y = ay + (mao.y - ay) * g + Math.sin(g * Math.PI) * 18;
+      ctx.lineTo(x + (k % 2 ? 2 : -2), y);
+    }
+    ctx.stroke();
+  }
+
+  /* ---------- Laço ---------- */
+  var ultimo = 0, relogio = 0;
+  function quadro(agora) {
+    var t = agora / 1000, dt = Math.min(0.05, t - ultimo); ultimo = t; relogio += dt;
+    atualizar(dt);
+    ctx.clearRect(0, 0, W, H);
+    predio(relogio);
+    quartoLorena(relogio); salaLorena(relogio); salaEduarda(relogio); quartoEduarda(relogio);
+    var pe = pessoa(gente.eduarda, relogio), pl = pessoa(gente.lorena, relogio);
+    if (gente.eduarda.fone) fio(FONE.eduarda, pe.mao);
+    if (gente.lorena.fone) fio(FONE.lorena, pl.mao);
+    if (estado.tocando) {
+      var f = FONE.lorena;
+      textoPixel('trim trim!', f.x - 28 + (Math.floor(relogio * 16) % 2), f.y - 32, '#ffe56a', 8, 1);
+      estrela(f.x - 22, f.y - 18, '#ffe56a', Math.abs(Math.sin(relogio * 10)));
+      estrela(f.x + 16, f.y - 24, '#ffe56a', Math.abs(Math.cos(relogio * 10)));
+    }
+    estado.textos.forEach(function (x) { textoPixel(x.txt, x.x, x.y, x.cor, x.tam || 8, Math.max(0, 1 - x.vida / x.max)); });
+    posicionarBolhas();
+    requestAnimationFrame(quadro);
+  }
+
+  function atualizar(dt) {
+    ['eduarda', 'lorena'].forEach(function (k) {
+      var p = gente[k]; if (!p.alvo) return;
+      var d = p.alvo.x - p.x, v = 70 * dt;
+      if (Math.abs(d) > 1) p.dir = d > 0 ? 1 : -1;
+      if (Math.abs(d) <= v) { p.x = p.alvo.x; var fim = p.alvo.fim; p.alvo = null; if (fim) fim(); }
+      else p.x += Math.sign(d) * v;
+    });
+    if (Math.random() < dt * 3.4) estado.coracoes.push({ x: 160 + Math.random() * 90, y: 170, vida: 0, max: 2.2 + Math.random(), cor: Math.random() < 0.5 ? '#ff7aa6' : '#ffc0d4', vx: (Math.random() - 0.5) * 14 });
+    estado.coracoes.forEach(function (h) { h.vida += dt; h.y -= 24 * dt; h.x += h.vx * dt + Math.sin(h.vida * 5) * 0.4; });
+    estado.coracoes = estado.coracoes.filter(function (h) { return h.vida < h.max && h.y > 44; });
+    var s = comodos.eduSala;
+    if (Math.random() < dt * 16) estado.poeira.push({ x: s.x0 + 6 + Math.random() * (s.x1 - s.x0 - 12), y: s.y0 + 2, v: 18 + Math.random() * 22, a: 0.9 });
+    estado.poeira.forEach(function (p) { p.y += p.v * dt; p.a -= dt * 0.3; });
+    estado.poeira = estado.poeira.filter(function (p) { return p.a > 0 && p.y < s.piso; });
+    estado.textos.forEach(function (x) { x.vida += dt; x.y -= 12 * dt; });
+    estado.textos = estado.textos.filter(function (x) { return x.vida < x.max; });
+  }
+
+  /* ---------- Balões de fala ---------- */
+  function bolha(p, txt) {
+    var el = document.createElement('div'); el.className = 'bolha';
+    el.innerHTML = '<span class="cabeca" style="background:' + p.cabelo + '"></span><span><b>' + p.nome + ':</b> ' + txt + '</span>';
+    palco.appendChild(el);
+    bolhas.forEach(function (b) { if (b.p === p) b.sobe += 1; });
+    var b = { el: el, p: p, sobe: 0 }; bolhas.push(b);
+    setTimeout(function () { el.style.opacity = '0'; }, 7000);
+    setTimeout(function () { el.remove(); bolhas = bolhas.filter(function (x) { return x !== b; }); }, 7700);
+  }
+  function posicionarBolhas() {
+    bolhas.forEach(function (b) {
+      var c = comodos[b.p.comodo], x = Math.max(80, Math.min(W - 80, b.p.x)), y = c.piso - 110 - b.sobe * 22;
+      b.el.style.left = (x * escala) + 'px'; b.el.style.top = (y * escala) + 'px';
+    });
+  }
+
+  /* ---------- Som ---------- */
+  var somLigado = true, audio = null, toque = null;
+  function bip(freqs, dur) {
+    if (!somLigado) return;
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      var t0 = audio.currentTime;
+      freqs.forEach(function (f, k) {
+        var o = audio.createOscillator(), g = audio.createGain(), ini = t0 + k * dur;
+        o.type = 'square'; o.frequency.value = f; o.connect(g); g.connect(audio.destination);
+        g.gain.setValueAtTime(0.0001, ini); g.gain.linearRampToValueAtTime(0.05, ini + 0.01); g.gain.linearRampToValueAtTime(0.0001, ini + dur * 0.9);
+        o.start(ini); o.stop(ini + dur);
+      });
+    } catch (e) { /* sem som neste navegador */ }
+  }
+  function tocar() { bip([880, 1175, 880, 1175], 0.09); toque = setInterval(function () { bip([880, 1175, 880, 1175], 0.09); }, 1300); }
+  function pararToque() { clearInterval(toque); toque = null; }
+
+  /* ---------- Roteiro ---------- */
+  var bInterfonar = document.getElementById('b-interfonar'), bAtender = document.getElementById('b-atender'),
+      bDeNovo = document.getElementById('b-denovo'), bSom = document.getElementById('b-som'), status = document.getElementById('status');
+  function dizer(html) { status.innerHTML = html; }
+  function esperar(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function andar(p, x) { return new Promise(function (r) { p.alvo = { x: x, fim: r }; }); }
+  var autoAtender = null;
+
+  bInterfonar.addEventListener('click', async function () {
+    estado.roteiro = true; bInterfonar.hidden = true; bip([660], 0.05);
+    dizer('A Eduarda cansou. Lá vai ela até o interfone…<small>Ela precisa acordar cedo para o plantão.</small>');
+    await andar(gente.eduarda, PARADA.eduarda);
+    gente.eduarda.dir = 1; gente.eduarda.fone = true;
+    await esperar(450);
+    estado.tocando = true; tocar();
+    dizer('Tocando no apartamento de cima…<small>A Lorena ainda não faz ideia do que está acontecendo no próprio quarto.</small>');
+    bAtender.hidden = false; bAtender.focus();
+    autoAtender = setTimeout(function () { if (!bAtender.hidden) bAtender.click(); }, 9000);
+  });
+
+  bAtender.addEventListener('click', async function () {
+    clearTimeout(autoAtender); bAtender.hidden = true;
+    estado.tocando = false; pararToque();
+    await andar(gente.lorena, PARADA.lorena);
+    gente.lorena.dir = 1; gente.lorena.fone = true; bip([520], 0.06);
+    await esperar(500);
+    bolha(gente.eduarda, 'Para de fazer barulho!');
+    dizer('A vizinha de baixo não está nada feliz.');
+    await esperar(1900);
+    bolha(gente.lorena, 'Vai trabalhar!');
+    dizer('E a Lorena também não.');
+    await esperar(1500);
+    gente.lorena.fone = false; bip([180], 0.12);
+    estado.textos.push({ txt: 'TÁ!', x: FONE.lorena.x - 6, y: FONE.lorena.y - 30, cor: '#ffffff', vida: 0, max: 1.4, tam: 16 });
+    await esperar(800);
+    gente.eduarda.fone = false;
+    estado.textos.push({ txt: '…', x: FONE.eduarda.x, y: FONE.eduarda.y - 30, cor: '#ffffff', vida: 0, max: 2, tam: 16 });
+    await esperar(400);
+    dizer('Desligaram na cara uma da outra. E a cama lá de cima continua: nheco nheco.<small>Toque no quarto escuro de cima para espiar quem é que está fazendo tanto barulho.</small>');
+    estado.roteiro = false; bDeNovo.hidden = false;
+  });
+
+  bDeNovo.addEventListener('click', function () {
+    bDeNovo.hidden = true; bInterfonar.hidden = false;
+    gente.eduarda.alvo = { x: 92 }; gente.lorena.alvo = { x: 392 };
+    dizer('Meia-noite no Rochester. Lá de cima vem um barulho que não para…<small>Toque no chão da sala para andar com a Eduarda ou com a Lorena.</small>');
+    bInterfonar.focus();
+  });
+
+  bSom.addEventListener('click', function () {
+    somLigado = !somLigado; bSom.textContent = 'Som: ' + (somLigado ? 'ligado' : 'desligado');
+    bSom.setAttribute('aria-pressed', String(somLigado)); if (!somLigado) pararToque(); else if (estado.tocando) tocar();
+  });
+
+  /* ---------- Toque na tela: andar e espiar ---------- */
+  var falasQuarto = ['a Beatriz não está sozinha…', 'quem é a loira?!', 'nheco nheco nheco', 'a Lorena nem desconfia'], falaQ = 0;
+  tela.addEventListener('click', function (ev) {
+    var r = tela.getBoundingClientRect(), x = (ev.clientX - r.left) / r.width * W, y = (ev.clientY - r.top) / r.height * H;
+    var alvo = null;
+    Object.keys(comodos).forEach(function (k) { var c = comodos[k]; if (x >= c.x0 && x <= c.x1 && y >= c.y0 && y <= c.y1) alvo = c; });
+    if (!alvo) return;
+    if (alvo.id === 'lorQuarto') {
+      for (var k = 0; k < 10; k++) estado.coracoes.push({ x: 150 + Math.random() * 110, y: 176 + Math.random() * 10, vida: 0, max: 1.8 + Math.random(), cor: '#ff7aa6', vx: (Math.random() - 0.5) * 40 });
+      estado.textos.push({ txt: falasQuarto[falaQ++ % falasQuarto.length], x: 190, y: 100, cor: '#ffd1e0', vida: 0, max: 2.4 });
+      return;
+    }
+    if (alvo.id === 'eduQuarto') { estado.textos.push({ txt: 'só a cama dela. silêncio.', x: 330, y: 398, cor: '#c9d6f0', vida: 0, max: 2.4 }); return; }
+    if (estado.roteiro || gente.eduarda.fone || gente.lorena.fone) return;
+    var p = alvo.id === 'eduSala' ? gente.eduarda : gente.lorena;
+    p.alvo = { x: Math.max(alvo.x0 + 26, Math.min(alvo.x1 - 26, x)) };
+  });
+
+  /* ---------- Tamanho da tela ---------- */
+  function ajustar() {
+    var larg = Math.min(window.innerWidth - 24, 760), alt = window.innerHeight - 190;
+    escala = Math.max(0.55, Math.min(larg / W, Math.max(alt, 360) / H));
+    if (escala > 1) escala = Math.floor(escala * 2) / 2;
+    tela.style.width = Math.round(W * escala) + 'px'; tela.style.height = Math.round(H * escala) + 'px';
+    palco.style.width = Math.round(W * escala) + 'px';
+  }
+  window.addEventListener('resize', ajustar); ajustar();
+
+  var iniciar = function () { requestAnimationFrame(function (t) { ultimo = t / 1000; quadro(t); }); };
+  if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('8px Silkscreen'), document.fonts.load('13px "Pixelify Sans"')]).then(iniciar, iniciar);
+  else iniciar();
+})();
+</script>
+</body>
+</html>

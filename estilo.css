@@ -504,3 +504,14 @@ body.sem-rolagem { overflow: hidden; }
 .texto .secao-prosa:first-child { margin-top: 0; }
 .texto .secao-prosa + p { text-indent: 0; }
 .texto .secao-prosa:first-child + p::first-letter { float: left; font: 500 2.6em/.85 var(--grotesca); letter-spacing: -.04em; color: var(--laranja); margin: .06em .08em 0 0; }
+
+/* Aba Jogo */
+.abas { overflow-x: auto; scrollbar-width: none; }
+.abas a { white-space: nowrap; }
+.jogo-topo { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.jogo-topo h2 { margin: 0 0 4px; font: 600 1.25rem/1.2 var(--grotesca); letter-spacing: -.02em; }
+.jogo-topo p { margin: 0; color: var(--suave); font-size: .92rem; max-width: 60ch; }
+.botao-sec { flex: none; font: 500 .85rem/1 var(--grotesca); color: var(--texto); text-decoration: none; padding: 9px 14px; border: 1px solid var(--linha); border-radius: 999px; }
+.botao-sec:hover { border-color: var(--laranja); color: var(--laranja); }
+.jogo-moldura { border-radius: 14px; overflow: hidden; background: #121a33; border: 1px solid var(--linha-clara); }
+.jogo-moldura iframe { display: block; width: 100%; height: clamp(640px, calc(55vw + 420px), 860px); border: 0; }

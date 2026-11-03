@@ -1,7 +1,7 @@
 /*
   discografia ias — lógica do site. O conteúdo vem de obras.js e perfis.js.
   Rotas: #inicio · #aus · #fanfics · #oneshots
-         #au/ID  (abas: #au/ID/personagens · #au/ID/infos)  · #au/ID/cap/N
+         #au/ID  (abas: #au/ID/personagens · #au/ID/jogo · #au/ID/infos)  · #au/ID/cap/N
          #fanfic/ID (mesmas abas) · #fanfic/ID/cap/N
          #oneshot/ID
 */
@@ -311,6 +311,7 @@
         maior18: !!o.maior18, data: o.data || '', infos: String(o.infos || ''),
         personagens: (o.personagens || []).filter(function (p) { return p && (p.id || p.nome); }),
         nucleos: Array.isArray(o.nucleos) ? o.nucleos : [], secoesInfo: Array.isArray(o.secoesInfo) ? o.secoesInfo : [],
+        jogo: o.jogo && o.jogo.arquivo ? o.jogo : null,
         mapa: {}
       };
       obra.personagens.forEach(function (p) { obra.mapa[String(p.id || p.nome).toLowerCase()] = p; });
@@ -519,8 +520,20 @@
     var alvo = $('#hub');
     if (precisaAviso(o, alvo, function () { mostrarHub(o, aba); })) return;
     var base = linkObra(o);
-    var abas = [['capitulos', 'Faixas', base], ['personagens', 'Personagens', base + '/personagens'], ['infos', 'Infos', base + '/infos']];
+    var abas = [['capitulos', 'Faixas', base], ['personagens', 'Personagens', base + '/personagens']];
+    if (o.jogo) abas.push(['jogo', o.jogo.aba || 'Jogo', base + '/jogo']);
+    abas.push(['infos', 'Infos', base + '/infos']);
     var conteudo = '';
+
+    if (aba === 'jogo' && !o.jogo) aba = 'capitulos';
+    if (aba === 'jogo') {
+      conteudo = '<section class="jogo">' +
+        '<header class="jogo-topo"><div><h2>' + escapar(o.jogo.titulo || 'Jogo') + '</h2>' +
+          (o.jogo.descricao ? '<p>' + formatar(o.jogo.descricao) + '</p>' : '') + '</div>' +
+          '<a class="botao-sec" href="' + escapar(o.jogo.arquivo) + '" target="_blank" rel="noopener">abrir em tela cheia ↗</a></header>' +
+        '<div class="jogo-moldura"><iframe src="' + escapar(o.jogo.arquivo) + '?v=' + (window.LQ_VERSAO || '') + '" title="' + escapar(o.jogo.titulo || 'Jogo') + '" loading="lazy" allow="autoplay"></iframe></div>' +
+      '</section>';
+    } else
 
     if (aba === 'personagens' && o.nucleos.length) {
       conteudo = o.nucleos.map(function (nu) {
