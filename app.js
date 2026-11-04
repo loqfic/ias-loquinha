@@ -328,7 +328,7 @@
       } else {
         var caps = Array.isArray(o.capitulos) && o.capitulos.length ? o.capitulos : (o.texto ? [{ numero: 1, titulo: obra.titulo, texto: o.texto }] : []);
         obra.capitulos = caps.map(function (c, i) {
-          var numero = Number(c.numero) || i + 1;
+          var numero = (c.numero !== undefined && c.numero !== null && c.numero !== '' && !isNaN(Number(c.numero))) ? Number(c.numero) : i + 1;
           if (c.midias) return capituloDeMidias(c, numero);
           var texto = String(c.texto || ''), blocos = tipo === 'au' ? lerAU(texto) : null;
           return {
@@ -672,7 +672,7 @@
     alvo.innerHTML =
       '<article class="leitura leitura-' + o.tipo + '">' +
         cabecalhoLeitura({
-          status: 'tocando agora · ' + NOMES[o.tipo].um + ' · faixa ' + c.numero + ' de ' + o.capitulos.length,
+          status: 'tocando agora · ' + NOMES[o.tipo].um + ' · ' + (c.numero === 0 ? 'intro' : 'faixa ' + c.numero + ' de ' + o.capitulos.filter(function (x) { return x.numero !== 0; }).length),
           titulo: tituloCap(c), subtitulo: o.titulo, minutos: min,
           dados: deMidias
             ? [[numeroBR(c.total - c.nVideos), 'prints'], [numeroBR(c.nVideos), c.nVideos === 1 ? 'vídeo' : 'vídeos'], [numeroBR(c.nNarracoes), c.nNarracoes === 1 ? 'narração' : 'narrações']]
@@ -690,7 +690,7 @@
           (prox ? '<a class="botao" href="' + base + '/cap/' + prox.numero + '"><small>próxima faixa</small>' + escapar(tituloCap(prox)) + '</a>' : '<span></span>') +
         '</nav>' +
       '</article>';
-    prepararLeitura(alvo, min, '▶ faixa ' + c.numero, deMidias ? 'mídias' : 'min');
+    prepararLeitura(alvo, min, c.numero === 0 ? '▶ intro' : '▶ faixa ' + c.numero, deMidias ? 'mídias' : 'min');
   }
 
   function mostrarOneshot(o) {

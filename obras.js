@@ -91,8 +91,31 @@ const OBRAS = [
     status: "Em andamento",
     maior18: true,
     data: "2026-11-03",
+    personagens: [
+      { id: "lorena", nome: "Lorena Ferette", cor: "#1F8A5B",
+        papel: "Terceiro ano do Ensino Médio · time de xadrez",
+        descricao: "Morena de olhos verdes, cabelos negros e unhas pintadas de preto. Filha de Santiago Ferette, virou ativista aos 15 anos só para incomodar a família conservadora. Ama poesia e leva para todo canto um caderninho de couro com seus poemas favoritos, rabiscado nas beiradas. Odeia Eduarda Fragoso desde a creche." },
+      { id: "eduarda", nome: "Eduarda Fragoso", cor: "#F26B21",
+        papel: "Terceiro ano do Ensino Médio · time de futsal",
+        descricao: "A ruiva baixinha e sardenta (1,61 m) do skate e do all star vermelho. Apaixonada por Lorena desde criança, mudou de escola depois da pior briga das duas, no quinto ano. Volta no terceiro ano do Ensino Médio, de jaqueta de couro e coturno." },
+      { id: "lucelia", nome: "Lucélia", cor: "#3C6FB0",
+        papel: "Time de xadrez",
+        descricao: "Dupla de Lorena nos treinos de xadrez. Estranha cada vez mais o quanto a colega anda aérea, e perdendo." },
+      { id: "santiago", nome: "Santiago Ferette", cor: "#6B6A65",
+        papel: "Pai de Lorena",
+        descricao: "Chefe de uma família extremamente conservadora. Ensaiou por anos a conversa sobre \"quando um homem e uma mulher se amam muito\"." },
+      { id: "leonardo", nome: "Leonardo", cor: "#8A7A6E",
+        papel: "Irmão mais velho de Lorena",
+        descricao: "Protagonista de um dos sermões mais memoráveis da mãe." },
+      { id: "ines", nome: "Dona Inês", cor: "#B85C9E",
+        papel: "Professora de Lorena",
+        descricao: "Apresentou a Lorena os primores da Língua Portuguesa e lhe deu um exemplar de Poesias Nunca Publicadas, de Caio Fernando Abreu." },
+      { id: "arminda", nome: "Arminda", cor: "#C9A227",
+        papel: "Diretora da escola na infância",
+        descricao: "Mais do que acostumada a receber as duas encrenqueiras na sua sala. Juntas, inclusive." }
+    ],
     capitulos: [
-      { numero: 1, titulo: "Capítulo 1", texto: `## Lorena
+      { numero: 0, titulo: "Prólogo", texto: `## Lorena
 
 Lorena tinha poucas certezas em sua vida.
 
@@ -190,11 +213,8 @@ Mas, ao procurar enlouquecidamente na multidão de estudantes naquela tarde e en
 
 O caos estava apenas começando.
 
-.
-
-## Primeiro ato — Lorena em: o despertar sexual
-
-O despertar sexual acontece de maneiras esdrúxulas. Essa é uma forma bonita de dizer que o ser humano sente-se excitar das mais variadas formas. Lorena, em seus 16 anos de vida, estava certa de que esse negócio de sexo não era para ela. Ora, já havia flagrado sem querer Leonardo, seu irmão mais velho, assistindo profanidades na televisão da sala em uma madrugada qualquer. Ali, na tela gigante, nos berros e feições distorcidas de um prazer artificial, ela não enxergou-se naquelas mulheres.
+.` },
+      { numero: 1, titulo: "Primeiro ato - Lorena em: o despertar sexual", texto: `O despertar sexual acontece de maneiras esdrúxulas. Essa é uma forma bonita de dizer que o ser humano sente-se excitar das mais variadas formas. Lorena, em seus 16 anos de vida, estava certa de que esse negócio de sexo não era para ela. Ora, já havia flagrado sem querer Leonardo, seu irmão mais velho, assistindo profanidades na televisão da sala em uma madrugada qualquer. Ali, na tela gigante, nos berros e feições distorcidas de um prazer artificial, ela não enxergou-se naquelas mulheres.
 
 A reprodução era algo natural do ser humano, assim como a nudez, mas ela não deixava de se sentir incomodada com o que vira escondida por detrás do sofá. Lembrava-se de uma conversa muito desconfortável que teve com seus pais depois da primeira menstruação.
 
