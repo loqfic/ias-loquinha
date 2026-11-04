@@ -515,3 +515,10 @@ body.sem-rolagem { overflow: hidden; }
 .botao-sec:hover { border-color: var(--laranja); color: var(--laranja); }
 .jogo-moldura { border-radius: 14px; overflow: hidden; background: #121a33; border: 1px solid var(--linha-clara); }
 .jogo-moldura iframe { display: block; width: 100%; height: clamp(640px, calc(55vw + 420px), 860px); border: 0; }
+
+/* Imagem no meio do texto corrido (ex.: páginas do caderninho de poemas) */
+.texto .prosa-img { margin: 1.8em auto; max-width: 460px; text-indent: 0; }
+.texto .prosa-img button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 28px rgba(0, 0, 0, .18); }
+.texto .prosa-img img { display: block; width: 100%; height: auto; }
+.texto .prosa-img figcaption { margin-top: .7em; text-align: center; font: 500 .72em/1.3 var(--grotesca); letter-spacing: .06em; text-transform: uppercase; color: var(--suave); }
+.texto .prosa-img + p { text-indent: 0; }

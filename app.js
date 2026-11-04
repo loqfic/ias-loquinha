@@ -83,6 +83,13 @@
       var l = b.trim();
       if (!l) { fechar(); return; }
       if (ehDivisor(l)) { fechar(); html.push(divisor()); return; }
+      var img = l.match(/^imagem:\s*([^|]+?)\s*(?:\|\s*(.+))?$/i);
+      if (img) {
+        fechar();
+        html.push('<figure class="prosa-img" data-visor-grupo><button type="button" data-visor="' + escapar(img[1]) + '" data-legenda="' + escapar(img[2] || '') + '" aria-label="Ampliar ' + escapar(img[2] || 'imagem') + '"><img src="' + escapar(img[1]) + '" alt="' + escapar(img[2] || '') + '" loading="lazy"></button>' +
+          (img[2] ? '<figcaption>' + formatar(img[2]) + '</figcaption>' : '') + '</figure>');
+        return;
+      }
       var sec = l.match(/^#{2,3}\s+(.+)$/);
       if (sec) { fechar(); html.push('<h3 class="secao-prosa">' + formatar(sec[1]) + '</h3>'); return; }
       if (atual.length && /^[—–]/.test(l)) fechar();

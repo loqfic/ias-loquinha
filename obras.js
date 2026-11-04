@@ -56,6 +56,7 @@
 
   TEXTO CORRIDO (oneshot e capítulos de fanfic)
     Linha em branco = parágrafo · *itálico* · **negrito** · *** = divisor
+    ## Título = título de seção · imagem: arquivo.jpg | legenda = imagem no meio do texto
 
   ----------------------------------------------------------------------
   COMO ESCREVER UM CAPÍTULO DE AU (blocos separados por UMA linha em branco)
@@ -79,6 +80,390 @@
 */
 
 const OBRAS = [
+  {
+    id: "trottoir",
+    tipo: "fanfic",
+    titulo: "Trottoir",
+    autora: "ias | @medverias",
+    capa: "trottoir-poema-1.jpg",
+    sinopse: "Lorena e Eduarda se odeiam desde a creche. No ensino médio, um caderninho de poemas eróticos muda tudo.",
+    tags: ["escola", "inimigas", "poesia"],
+    status: "Em andamento",
+    maior18: true,
+    data: "2026-11-03",
+    capitulos: [
+      { numero: 1, titulo: "Capítulo 1", texto: `## Lorena
+
+Lorena tinha poucas certezas em sua vida.
+
+Tinha certeza de que o papai Noel não existia, e que era seu pai quem colocava os presentes debaixo da enorme árvore de plástico todo natal; tinha certeza de que ficava muito estilosa com seu tênis da Sandy; tinha certeza de que todos os dias o sol se punha mas voltava na manhã seguinte.
+
+Mas tinha uma coisa que superava todas essas suas certezas. E Lorena, em seu metro e pouco de altura, 8 anos de vida e dentes ainda por nascer, tinha certeza das mais absolutas de que odiava Eduarda Fragoso.
+
+Eduarda Fragoso, a ruiva baixinha e sardenta que estava na sua turma durante toda a sua infância, desde o pré até o terceiro ano. Com seu skate estúpido e suas roupas estúpidas e seu estúpido all star vermelho. Tudo naquela menina era estúpido para Lorena.
+
+A única coisa que Lorena conseguia pensar era que Eduarda era a pessoa mais estúpida do mundo até mesmo ali, sentada na diretoria com um papel higiênico enfiado em um dos buracos de seu nariz sangrento, cabelos ruivos bagunçados, cotovelos e joelhos ralados e uma cara de emburrada que era impagável. Ela mesma não se encontrava diferente, na verdade.
+
+Lá estavam as duas encrenqueiras, de frente e Arminda, a diretora. Ela as olhava séria, desapontada. Estava mais do que acostumada a recebê-las em sua sala. Juntas, inclusive. O histórico de briga delas era gigantesco, e remontava a tempos de creche onde elas brigavam pelo cobertor da soneca. A diretora estava tão farta daquilo, que nem sequer esperou as explicações e já acionou os pais, e enquanto eles não chegavam, quis entender as motivações para tal briga.
+
+-Essa bobona me beijou! - Lorena gritou, completamente vermelha e suada, um dedo em riste na direção de Eduarda.
+
+-Mas, Diretora, a gente estava brincando de casamento e o padre disse “pode beijar a noiva”! A Lorena era a noiva! - Justificou-se a ruiva.
+
+-Mas você nem era o noivo, o José que era!
+
+-Mas ele foi ao banheiro e eu era suplente, você concordou que eu poderia ser a suplente! - Eduarda praticamente choramingou, gesticulando nervosamente com as mãos.
+
+-Eu nem sei o que é um suplente! - Indignada, Lorena rebateu.
+
+A verdade é que apenas havia aceitado Eduarda na brincadeira porque José havia explicado que o suplente da brincadeira ficava ali parado sem fazer nada e só entrava se alguém saísse. Eles inventaram essa posição na brincadeira porque a professora Laís os havia proibido de excluir os colegas, então sempre colocavam os indesejados como suplentes. Era o caso de Eduarda naquele dia.
+
+Arminda olhou de uma para a outra, dividida entre dar a bronca em Eduarda por ter roubado o beijo, em Lorena por ter iniciado a briga, ou na turma toda por estar brincando de casamento. Abriu a boca uma, duas vezes. Fechou. Balançou a cabeça em negação e coçou as têmporas, decidida a deixar a resolução daquele problema para quando os pais chegassem.
+
+Essa foi apenas uma das inúmeras brigas protagonizadas por Eduarda e Lorena. Durante toda a infância das duas, um ódio quase visceral fez com que Lorena amaldiçoasse a existência de Eduarda. Teve a primeira briga, pelos cobertores na creche. Depois na aula de balé, Eduarda sem querer pegou a cadeira de Lorena na apresentação de “Bolinha de sabão” e levou uma surra no meio do teatro completamente boquiaberto com a confusão. E então essa briga no terceiro ano, seguida de inúmeras discussões.
+
+Até que no quinto ano a pior briga física entre elas (que rendeu um braço quebrado em Eduarda e três pontos no queixo de Lorena) fez com que os pais da ruiva a mudassem de escola. Até naquilo Eduarda conseguia ser irritante, Lorena pensou. Enquanto a ruiva tinha um gesso super maneiro que poderia ser assinado por todos, Lorena cultivava uma pequena e imperceptível cicatriz no queixo até sua vida adulta.
+
+Era uma birra infantil, elas sabiam. Eduarda provocava, Lorena respondia, as duas brigavam e no outro dia tinham que se encarar. E assim seguiram até o quinto ano, na derradeira briga que culminou na transferência (praticamente compulsória) de Eduarda.
+
+Lorena viveu quase em paz por todo o Ensino Fundamental ll. Quase, por que além de ser muito bonita e chamar muito a atenção, era extremamente desafiadora, atrevida e *disruptiva*. Amava aquela palavra, havia visto pela primeira vez na capa de uma revista cuja modelo exibia, orgulhosamente, seus pêlos axilares. Criada em berço de ouro, com um pai extremamente conservador, Lorena divertia-se por ser a rebelde da família. Gostava de incomodar, percebeu durante sua adolescência.
+
+Entendeu que se tornar uma ativista incomodaria em vários aspectos Santiago Ferette, e tomou aquilo como meta pessoal. Amava muito o pai, era fato, mas também era adolescente. Adolescentes não necessariamente fazem sentido, veja bem. Aos 15 anos, tornou-se vegana. Aos 16, acorrentou-se a um enorme carvalho que ficava nas dependências do colégio em que estudava para que não cortassem fora a árvore centenária.
+
+E então, quando estava no terceiro ano do Ensino Médio, uma *não tão grata surpresa* retornou para sua vida como um convidado indesejado de um casamento que a gente é obrigado a convidar porque faz parte da família: Eduarda Fragoso. A diferença era que a vida não era um casamento, Eduarda não fazia parte da família e muito menos havia sido convidada a voltar para sua convivência.
+
+E foi nos corredores do Colégio Santa Úrsula, às 13h13 de uma tarde de segunda-feira, que Lorena a avistou. Reconheceria as madeixas ruivas em qualquer lugar. Com um sorriso arrebatador, coturnos estilosos e uma jaqueta de couro que não condizia com o calor veranesco da tarde, Eduarda Fragoso a encarou, escorada displicentemente na soleira de uma porta qualquer.
+
+Lorena, paralisada como a uma estátua de sal, deixou de acompanhar os passos das amigas que andavam ao seu lado. Os anos de inimizade voltaram à tona, a raiva borbulhou em seu peito e, para alastrar ainda mais a fogueira que a consumia, Eduarda piscou em sua direção.
+
+E foi ali que o verdadeiro caos começou.
+
+## Eduarda
+
+Eduarda tinha várias certezas em sua vida.
+
+Tinha certeza de que seus pais preferiam sua irmã mais velha, e que muito provavelmente teriam parado de ter filhos logo após o nascimento de Elena; tinha certeza de que garotos eram bobos, feios e fediam; tinha certeza de que era incontestavelmente apaixonada por uma garota morena de olhos verdes desde os seus 7 anos de idade.
+
+Ela tinha apenas uma incerteza. Como uma boa e velha criança atentada o suficiente para não passar despercebida, mas comportada o bastante para ser considerada uma menina de ouro, Eduarda guardava para si a resignação latente de que Lorena Ferette era e para sempre seria sua única incerteza.
+
+Desde criança, tentou mapear o humor de sua colega de sala. Era patético como, depois de aprender a rezar durante seu catecismo, rezava todas as noites para que Lorena caísse em sua turma da escola, ano após ano. E assim, tentava sem sucesso prever o humor instável de seu objeto de contemplação.
+
+Às vezes, ela apenas se sentava no pátio da escola por longos minutos no intervalo, observando como os cabelos negros de Lorena pareciam emoldurar o seu rosto, ou como ela ficava extremamente adorável usando seu tênis da Sandy que brilhava a cada passada. Ela, ao contrário dos meninos de sua sala, tinha cheiro de banho tomado, que Eduarda catalogou na própria mente como um cheiro que era mais de pele e corpo que de perfume, algo como sabonete e essência de menina moça.
+
+Até tentou se aproximar de Lorena da maneira convencional.
+
+-Oi, você quer ser minha amiga?
+
+Lorena, na época com 5 anos, havia lhe lançado um olhar tão cortante que Eduarda agradeceu por olhos serem feitos de retina e não de lâminas. E, desde então, tudo havia piorado. *Progressivamente.*
+
+Houve a briga pelos cobertores na creche, era fato, mas Eduarda era apenas um bebê! E aquele era um contexto de sobrevivencia na selva. Ora, crianças aprendiam as maiores selvagerias em uma creche, como a habilidade de morder. Lorena a havia mordido um dia com força suficiente para deixar uma marca e um bilhete em sua agenda justificando o acontecido para seus pais.
+
+Então teve a briga no balé. Era outra certeza de Eduarda: odiava balé. Era desajeitada para dança, seus movimentos não possuíam fluidez e ela não tinha delicadeza ou graça alguma. E então, como era uma criança extremamente lenta para certas atividades que exigiam uma veia mais artística, acabou se confundindo em uma apresentação com cadeiras e quando deu por si já estava estirada no chão com uma Lorena enfurecida puxando seu coque ruivo com toda força de seus bracinhos infantis.
+
+Houveram, claro, outras ocasiões. Lorena podia ser muito violenta quando tirada do eixo, e, por vezes, suas palavras doíam - como seu olhar esverdeado. Ainda assim, era melhor receber uma atenção raivosa do que não receber atenção alguma. Foi então que percebeu que Lorena funcionava mais ou menos como seus pais: só lhe daria atenção se ela provocasse até o limite, se conseguisse se fazer ver. E foi o que ela fez.
+
+Até o dia da briga do casamento. Ora, Eduarda já tinha plena certeza de que jamais deixaria que a boca de um garoto encostasse a sua. Mas, no meio daquela brincadeira, encostar seus lábios nos de Lorena não pareceu uma ideia tão péssima. Já era secretamente apaixonada por ela desde o primeiro ano, mas era uma paixão daquelas juvenis que considera andar de mãos dadas o auge do namoro. Naquele dia, Eduarda agiu antes de pensar, e levou outra pisa bem dada.
+
+No dia, tentou se justificar para a diretora Arminda, mas Lorena tinha batido sua cabeça contra o chão um punhado de vezes e ela não estava fazendo tanto sentido. Nunca haviam brigado tão feio, e Eduarda se perguntou, sentada encolhida naquela sala da direção, se não havia ido longe demais. Algumas coisas eram para ser, e talvez Lorena havia nascido apenas para odiá-la. Se bem que, sua mãe sempre dizia que “ódio” era uma palavra forte. Aparentemente não quando se tratava de Lorena.
+
+Na quinta série, a pior briga física delas aconteceu por causa de um diário mágico. Era um daqueles livrinhos com cadeado e tudo, que podia ser escrito com uma caneta super mágica e só revelaria os seus segredos sob a luz da lanterna que ficava na ponta contrária dessa caneta. Lorena o havia ganhado em seu aniversário de 10 anos, e guardava-o como a um tesouro preciosíssimo.
+
+Em uma tentativa desesperada de conseguir a atenção de Lorena, Eduarda o havia furtado. Não conseguiu ler, pois estava em posse do diário sem a caneta mágica, mas aquilo não impediu a ira de sua dona. Naquela tarde de terça-feira, os esforços de Eduarda de se manter longe dos punhos ferozes de Lorena Ferette se provaram inúteis, e, como diria sua falecida avó, ela apanhou até o céu da boca.
+
+Após aquele acontecido, trocou de escola. Aquela havia sido a segunda vez que sua mãe compareceu ao lugar onde ela estudava, uma vez que não tinha costume de frequentar as reuniões pedagógicas - sua filha nunca havia dado motivos para isso, afinal, sempre fora uma criança exemplar.
+
+Eduarda então se deixou viver depois daquilo sem orbitar Lorena Ferette, afinal, a vida de uma criança enquanto estuda é sua escola. Mudou seu círculo de amigos, descobriu com seu irmão mais novo que preferia jogar futebol em vez de fazer balé (embora seus pais tenham demorado muito tempo para retirá-la das aulas) e seguiu vivendo sua vida.
+
+E Lorena seguiu em seu coração como a sombra de uma muda que, um dia, tornaria-se uma enorme árvore. Vez ou outra Eduarda se lembrava dela e perguntava-se onde ela estaria, o que estaria fazendo e se pensava nela com a mesma frequência. Mesmo depois de ter se descoberto melhor em sua pré-adolescência, nenhuma menina havia chamado sua atenção como aquela sua paixão de infância. Jamais admitiria para alguém, mas guardava em seu peito uma enorme satisfação por ter sido o primeiro beijo de Lorena.
+
+Foi então que, em seu terceiro ano do ensino médio, Eduarda mudou de escola mais uma vez. Acontece que seu irmão mais novo queria entrar para o time de futsal de uma escola que ficava em outro bairro, mais distante de onde moravam, mas que tinha um enorme prestígio na área de esportes. Seus pais não precisaram de muito para serem convencidos, afinal, Elias possuía algo entre as pernas que ela mesma não possuía: poder de escolha.
+
+Um dia antes da transferência definitiva, Eduarda quase não dormiu. Lembrava-se daquela escola, havia estudado nela durante toda sua infância. Havia descoberto ali que não gostava de meninos, que detestava balé e que era irremediavelmente apaixonada por Lorena Ferette.
+
+*Lorena Ferette.*
+
+Será que se lembrava dela? Será que ainda a odiava? Deixou que seus pensamentos a iludissem, levando-a a um cenário em que Lorena não apenas se lembraria dela, mas que riria pensando em como elas haviam sido bobas e agora poderiam ser amigas. *Talvez até mais que aquilo.* Agora, tinha maturidade suficiente para fazer tudo diferente, e conquistar aquela amizade de verdade, sem incitar o ódio.
+
+Vestiu sua jaqueta mais descolada, lavou seu cabelo e se arrumou para ir à escola como nunca teve o costume de fazer. Passou perfume, conferiu o hálito, ajeitou a mochila em um ombro só. Quase não se aguentou de ansiedade durante todo o caminho de ida.
+
+Mas, ao procurar enlouquecidamente na multidão de estudantes naquela tarde e encontrar os verdes olhos a encarando de volta, Eduarda soube. Aquele não era o olhar de reconhecimento pacífico como esperava, mas o olhar-lâmina típico de Lorena Ferette. Ali, naqueles olhos-adagas, Eduarda soube que nunca havia presenciado o caos de verdade. Aceitou o desafio silencioso, piscando na direção de Lorena em uma tentativa de cortar com as próprias pálpebras o fitar assassino.
+
+O caos estava apenas começando.
+
+.
+
+## Primeiro ato — Lorena em: o despertar sexual
+
+O despertar sexual acontece de maneiras esdrúxulas. Essa é uma forma bonita de dizer que o ser humano sente-se excitar das mais variadas formas. Lorena, em seus 16 anos de vida, estava certa de que esse negócio de sexo não era para ela. Ora, já havia flagrado sem querer Leonardo, seu irmão mais velho, assistindo profanidades na televisão da sala em uma madrugada qualquer. Ali, na tela gigante, nos berros e feições distorcidas de um prazer artificial, ela não enxergou-se naquelas mulheres.
+
+A reprodução era algo natural do ser humano, assim como a nudez, mas ela não deixava de se sentir incomodada com o que vira escondida por detrás do sofá. Lembrava-se de uma conversa muito desconfortável que teve com seus pais depois da primeira menstruação.
+
+*-Lorena, minha filha -* Santiago havia ensaiado dizer anos antes *- quando um homem e uma mulher se amam muito…*
+
+Ora, Lorena não era ingênua e sabia muito bem de onde os bebês vinham. Era algo muito simples, prático, meramente científico. Logo, sua mente, solo fértil, imaginou que, por ser mulher, deveria se sentir tocada por aquelas imagens absurdas. Mas nada sentiu a não ser uma repulsa inexplicável. Aqueles corpos pareciam gritar sem sentir, expressar sem razão de ser. Não compreendia. Claro, na época do acontecido tinha apenas 14 anos, mas aquilo havia ficado cravado em seu córtex pré-frontal nada desenvolvido.
+
+Era por isso que, em uma de suas andanças literárias, ao ler que uma personagem era “frígida”, pareceu se compreender. Leu um dia: “[...] e Jane, com sua pálida e altiva tez, transmitia o verdadeiro espírito vitoriano: era, inegavelmente, uma mulher frígida.”
+
+*Mulher frígida: termo utilizado para descrever mulheres sem apetite sexual. A resposta sexual tem três fases: desejo, excitação e orgasmo. A dificuldade pode acontecer em qualquer uma delas.*
+
+Era aquilo, só podia ser aquilo. Lorena era uma mulher frígida da era vitoriana, tal qual suas maiores heroínas literárias. Certo dia, em uma discussão sobre pertencimento e representatividade na literatura, ela expôs isso a sua professora, dona Inês. A velha mulher, incrédula com tal conclusão e surpresa por sua aluna de 15 anos compreender o que era a frigidez feminina na literatura inglesa, tratou de dissuadi-la.
+
+Dona Inês deu a Lorena um exemplar de *Poesias Nunca Publicadas,* de Caio Fernando de Abreu. Não era dada a literatura erótica, e aquilo era o mais visceral que se permitia ser fora de Adélia Prado (a quem, posteriormente, também apresentou a sua aluna). E foi assim que Lorena descobriu a poesia.
+
+Lorena havia descoberto várias coisas naquele fatídico ano, a primeira sendo a poesia.
+
+A segunda, era que definitivamente não gostava de garotos. Até se esforçou pelos dois primeiros anos do Ensino Médio, mais para agradar as amigas do que para qualquer outra coisa. Mas depois da sua última experiência beijando um dos meninos do time de vôlei da escola, teve certeza de que aquilo não era para ela. Quer dizer, sentiu-se uma privada sendo desentupida, e pelo que lia em seus livros de poesia, não era aquilo que um beijo deveria causar.
+
+Queria o beijo de Adélia Prado, que giraria as engrenagens da sua vida, urgiria à necessidade cósmica de prosseguir.
+
+*A vida é tão bonita,*
+*basta um beijo*
+*e a delicada engrenagem movimenta-se,*
+*uma necessidade cósmica nos protege.*
+
+imagem: trottoir-poema-1.jpg | Caderninho da Lorena · Adélia Prado
+
+Queria o beijo de Martha Medeiros, que a faria ter *ânsia,* que faria com quem ela acolhesse um corpo delinquente, que lhe renderia respostas roucas ao pé do ouvido.
+
+*foi um beijo onde não importava a boca*
+*só tuas mãos quentes me apertando pelas costas*
+*nada estava acontecendo na minha frente*
+*e a ansiedade que havia não era pouca*
+*teus dedos perguntavam pra minha blusa*
+*se meu corpo acolheria um delinquente*
+*descoladas as línguas um instante*
+*minha resposta saiu um tanto rouca*
+
+imagem: trottoir-poema-2.jpg | Caderninho da Lorena · Martha Medeiros
+
+A sua terceira descoberta foi que o tempo havia sido muito bom não somente com ela, mas também com Eduarda. Lorena tinha de admitir, a ruiva era muito bonita. E tinha um *sex appeal,* uma energia meio *bad girl* que era capaz de baixar calcinhas com um mero sorriso. Não que Lorena soubesse de nada dessas coisas, afinal, era super virgem. E se beijar homens já era ruim, ficou feliz de permanecer daquela forma até se descobrir.
+
+A sua quarta descoberta também envolvia Eduarda, mas era mais sobre a forma como ela a fazia se sentir. Depois que riscou *garotos* da lista de coisas que gostava, obviamente que as *garotas* entraram no lugar. Ainda nutria um ódio inexplicável por Eduarda, e piorou depois que ela começou a flertar e beijar todas as garotas disponíveis da sua escola. E pior de tudo: apesar de ser uma galinha completa e total, a ruiva continuava linda e atraente com seus estúpidos coturnos e sua estúpida jaqueta de couro.
+
+O que levava Lorena a crer que Eduarda havia mudado muito, menos o fato de ser uma *estúpida*. E ela havia chegado a essa conclusão depois de um acontecido muito, mas muito *específico.*
+
+O despertar sexual acontece de formas diferentes para cada indivíduo, e Lorena se tornou ciente disso depois de seu contato com a literatura. É uma quentura que sobe pelo pescoço, atravessa as bochechas, desregula a respiração e contrai o baixo ventre. E foi tudo isso que Lorena sentiu quando Eduarda Fragoso, em seus gloriosos 1,61 de altura, adentrou o vestiário feminino depois do treino de futsal, porque era óbvio que ela estaria no time de futsal. *Não era lésbico o bastante andar por aí de coturnos e jaquetas de couro.*
+
+Naquele dia, por ironia do destino, Eduarda havia saído mais cedo do treino porque precisava ir ao dentista, e não planejava encontrar ninguém no banheiro. Por isso, Lorena encarou estática quando ela cruzou a porta arrancando a blusa azul do time da escola de qualquer jeito por sobre a cabeça, apenas um top esportivo cobrindo seu torso.
+
+Lorena estava descobrindo seus desejos mais obscuros naquele momento mesmo sem saber. Observou através do espelho (estava lavando as mãos) a figura atrás de si. O peito quase nu, o suor escorrendo pelo pescoço, descendo pelo vale entre os seios cuja única defesa era o top esportivo preto. Observou os músculos tensionados de seu abdômen, a curvatura delicada de sua cintura, os profundos e ardentes olhos castanhos a encarando de volta.
+
+Lorena tensionou no mesmo instante, abaixando o olhar. Seu rosto ardia tanto que por um instante ela pensou que havia uma fogueira dentro de seu peito. Questionou-se se era aquele ardor que ardia sem se ver de Camões. Ainda odiava Eduarda, terrivelmente. Mas a partir daquele momento, o rubor em seu rosto ao vê-la deixaria de ser apenas de raiva.
+
+-Gosta do que vê, *Ferette*? - Perguntou a ruiva, ainda parada no centro do banheiro feminino segurando a blusa suada em uma das mãos.
+
+Seu tom irritava profundamente Lorena, assim como o uso de seu sobrenome. E Eduarda *sabia* daquilo, fazia de propósito. Ela nada respondeu, tão sem graça que ficou, apenas saiu dali pisando firme e esbarrando propositalmente no ombro de sua arqui-inimiga.
+
+O despertar do desejo, de fato, acontece de maneiras curiosas. Durante o dia, Lorena empurrou o acontecido para o fundo da mente. Tentou debilmente agarrar-se às suas tarefas diárias, aos seus estudos e até mesmo tentou ler. De nada adiantava, pois começava em Caio F. Abreu e parava de novo na curvatura da cintura branca de Eduarda. Seria macia? Seria sedosa ao toque, seria marcável por suas cálidas mãos? Caio F. Abreu não a havia preparado para aquilo.
+
+E enquanto lia *Poesias Nunca Publicadas*, só conseguia sentir algo ainda mais primitivo brotar em si.
+
+*-Deixa-me entrelaçar margaridas nos cabelos de teu peito.* - Leu em voz alta para o vazio da sala de estar, onde estava jogada como a uma pintura de uma mulher renascentista que espera por algo que não sabe ao certo. Ao finalizar a frase, franziu o cenho. Não possuía interesse algum em peitos masculinos.
+
+Continuou a leitura mentalmente, seguindo os versos com os dedos.
+
+*Deixa-me singrar teus mares*
+*mais remotos,*
+*com minha língua em brasa.*
+*Quero um amor de suor e carne,*
+*agora: enquanto tenho sangue.*
+*Mas deixa-me sangrar teus lábios*
+*com a adaga de meus dentes.*
+*Deixa-me dilacerar teu flanco*
+*mais esquivo,*
+*na lâmina de minhas unhas.*
+*Quero um amor de faca e grito,*
+*agora: enquanto tenho febre.*
+
+imagem: trottoir-poema-3.jpg | Caderninho da Lorena · Caio F. Abreu
+
+E, de fato, sentia-se febril. Realmente gostaria que Caio F. Abreu a houvesse preparado para tudo aquilo.
+
+Naquela noite, Lorena pensou. Pensou sobre qual seria o gosto do hálito de Eduarda. Não do hálito de menta, depois de escovar os dentes. Não, mas do hálito quente, íntimo, do âmago, do fundo da garganta. Humano, visceral, hálito que mordia.
+
+*Deixa-me singrar teus mares*
+*mais remotos,*
+*com minha língua em brasa.*
+
+Pensou sobre o gosto de sua pele. Seria salgado? Acentuadamente doce, ácido ao final da língua?
+
+*Quero um amor de suor e carne,*
+*agora: enquanto tenho sangue.*
+
+Pensou também no gosto de sua boca. Seria úmido, com certeza. Úmido e morno. Morno não, *fervente*. Tomaria seu paladar e ela engoliria, engoliria feliz. Eduarda tinha cara de quem beijava sorrindo, o contrário dos beijos que Lorena já havia experimentado. Lorena arrepiou-se, sentiu a boca aguar. Podia sentir o gosto no palato, atravessando o céu da boca e perpassando por toda sua garganta.
+
+*Mas deixa-me sangrar teus lábios*
+*com a adaga de meus dentes.*
+
+Pensou também no gosto dos lábios de Eduarda. Mas não esses, *os outros.* Desceu a mão pelo corpo. O que encontrou pelo caminho a fez arfar, um suspiro rouco e quase desacreditado. Imaginou em sua mente, viajou por um corpo que não era seu. Pensou nas mãos femininas, delicadas, até mesmo nas unhas. Curtas, pretas, *afiadas*.
+
+*Deixa-me dilacerar teu flanco*
+*mais esquivo,*
+*na lâmina de minhas unhas.*
+
+Até então, Lorena não conhecia o prazer feminino. Não entendia a logística, não compreendia o próprio corpo. Afinal, não era um homem, e para eles era fácil: um órgão externo, quase um apêndice, que se apertava, puxava, sentia o sangue bombear. Era simples, fácil de se imaginar. Mas, naquela noite, ela descobriu que seu prazer era mais tenro, menos bruto, quase agudo. Podia ser silencioso, partia do âmago e atingia muitas mais partes do que as que suas dobras escondiam.
+
+Repuxava o pé do ventre, arrepiava pêlos e contorcia os dedos do pé. Umedecida, reivindicava a garganta e explodia em ondas molhadas. Na sua mente, apenas um nome: *Eduarda.* A boca não conteve, vocalizou baixinho com a garganta rouca, acompanhando o cérebro.
+
+*Eduarda.*
+
+Seu gemido ecoou na noite, e, ao proferi-lo, subiu a mão e cobriu a própria boca. Seu corpo tremia, sua mão direita, molhada, umedecia os lábios *de cima.* Ficou com os olhos verdes arregalados por minutos fitando, atônita, o teto do quarto. Depois, deu uma gargalhada desacreditada. Havia, pela primeira vez, experimentado o gozo.
+
+Naquela noite, Lorena descobriu muitas coisas.
+
+Descobriu que seu corpo, de fato, *funcionava.* Não era a mulher frígida da literatura inglesa, a esposa inerte na cama à deriva do marido. Não era a eterna donzela que desconhecia a obscuridade e a necessidade gritante do próprio prazer. Porque sim, seu corpo e seu prazer gritavam. Havia demorado para entender, mas agora que entendia, sentia-se livre.
+
+*Quero um amor de faca e grito,*
+*agora: enquanto tenho febre.*
+
+Ardia em febre, mas não qualquer uma: era uma febre de desejo. E, para seu completo pânico, o objeto menos palpável de todo esse prazer platônico e advindo da imaginação, era Eduarda. Ela, a ruiva a qual havia jurado odiar. Quando voltou a redescobrir seu prazer outras noites, sempre era o mesmo rosto que a fazia inundar-se e ao mesmo tempo quase a impedia de prosseguir: *Eduarda.*
+
+Pouco depois de descobrir os tremores da própria carne, Lorena começou a ter uma fantasia com lábios muito específicos. Ora, dar-se prazer era muito bom, satisfazia-a, mas, ao mesmo tempo, fazia-a entrar em um dilema complexo, afinal, era apenas ela e sua mão. Começou, então, a desejar *outra* mão. Saciar-se sozinha era como tomar banho de *piscina* tendo sede de *mar*; era como ser tocada pela *mão* tendo sede da *boca;* era como sentir sobre a pele o *vento* tendo sede do *toque.*
+
+Aquele pensamento elevou suas noites de prazer solitário a níveis que ela jamais pensou alcançar. E ali, no silencioso e escuro de seu quarto, ela fantasiava lábios molhados por sobre os seus. Buscava em sua memória o beijo roubado na brincadeira de casamento, mas havia sido tão breve, tão abrupto e havia lhe causado tanta raiva, que a memória parecia invenção.
+
+Não tornava mais fácil o fato de ver Eduarda todos os dias na escola, somado ainda ao fato das provocações terem aumentado depois da cena do banheiro. Lorena finalmente entendia o motivo pelo qual as ruivas foram tão perseguidas na idade média: Eduarda parecia ter um tipo estranho de feitiçaria, puxando-a a todo momento.
+
+Depois que percebeu que havia ganhado a atenção de Lorena com suas vestimentas (ou naquele caso, a falta delas), passou a praticar seu tão adorado e nada hétero esporte com cada vez menos roupas. E Lorena, que para sua infelicidade compartilhava do ginásio para treinar xadrez, a via todas as vezes.
+
+Sorriso leve, suor escorrendo, e um maldito perfume que se fazia presente todos os treinos, porque Eduarda fazia questão de se escorar na sua mesa para soltar frases aleatórias de incentivo, para ela ou para Lucélia, a outra atleta do time de xadrez. Ela aparecia, jogava seu irremediável charme nas duas e deixava Lorena à mercê das jogadas de Lucélia, que cada vez mais estranhava o quão aérea sua dupla parecia.
+
+Aquilo era muito injusto, Lorena pensava. Sempre que trombava com Eduarda nos corredores da escola ou durante os treinos, lembrava-se do soneto de Chico Buarque:
+
+*“Por que me incendiaste de desejo*
+*Quando eu estava bem, morta de sono?”*
+
+imagem: trottoir-poema-4.jpg | Caderninho da Lorena · Chico Buarque
+
+Estava feliz em não ser desperta para os desejos de sua carne, e então Eduarda Fragoso estragou tudo *de novo*. Como quando elas brigaram no segundo ano e a ruiva maldita quebrou sua garrafa térmica nova da Floribella. Não entendia como o ódio e o desejo podiam coexistir em um corpo tão pequeno quanto o seu, mas, ora, as menores pimentas eram sempre as mais ardidas.
+
+E Lorena se esforçava, mas não podia evitar ler Eduarda em cada um de seus poemas favoritos, como se ela fosse um espírito obsessor rondando sua mente. De tanto lê-la, decidiu-se por exorcizar aquele sentimento estranho do peito. Em seu caderninho de poesias favoritas, no qual escrevia tudo que lhe agradava, deixava rabiscos nervosos das coisas que lhe chamavam a atenção. Para se concentrar, levava-o para todos os cantos, inseparável.
+
+O primeiro poema era, claro, de Adélia Prado. Sempre endeusaria Dona Inês por lhe apresentar os primores da Língua Portuguesa. Na primeira página do pequeno caderno de capa de couro, lia-se:
+
+como ficar sozinha neste planeta velhíssimo.
+“Para os montes levanto os olhos:
+de onde me virá o socorro?”
+Do Senhor que fez o céu e a terra
+e me plantou na alma
+uma fome tão grande?
+*Sinto vergonha de não ser um anjo,*
+peço perdão à areia que desarrumei do monte.
+
+No fim de tudo uma graça consola-me:
+vou repetindo, repetindo a palavra
+que me torna abordável ao próprio Deus.
+Adonai! Adonai! Adoro-vos.
+
+Ao lado, várias observações da própria Lorena, que, perdida nos desejos de seus prazeres, sentia-se arder ao ler tais versos. Escreveu rente ao poema:
+
+*Como pode o Deus que criou o Céu e a Terra, criar na gente um desejo tão profundo? Desejo não; fome. Fome é maior, mais latente. Fome tem cura: a comida. Desejo tem cura? Qual a cura do desejo? O prazer?*
+
+Mas abaixo, puxou uma flecha torta do sétimo verso e escreveu:
+
+*Sinto vergonha de querer tanto que ela me queira.*
+
+Na beirada da página, ao deixar-se vagar naquele mar ruivo, Lorena permitiu-se, em um lapso de culpa cristã, rabiscar o nome que lhe tirava o juízo naqueles longos e quentes dias de verão. Foi então que *Eduarda* passou a decorar a folha amarelada de seu caderno gasto.
+
+imagem: trottoir-poema-5.jpg | Caderninho da Lorena · Adélia Prado
+
+Os dias se passaram, Eduarda não deixou de existir, e pior, passou a existir ainda mais perto de Lorena. Seu corpo, agora desperto para a vida, sentia os sintomas das poesias do início ao fim: os tremores, o coração que saltava, o suor que escorria, as palavras que faltavam. Parecia uma louca, ensandecida, e, tal qual Caio F. Abreu, queria correr desvairada e nua pela rua.
+
+Um dia, quando sua mãe descobriu que Leonardo estava viciado em pronografia, havia proferido uma sequência de palavras das quais ela foi a primeira de sua geração a ouvir, juntamente com seu irmão:
+
+*-Leonardo, às vezes a gente precisa tirar a mão do caralho e botar na consciência!*
+
+Lorena repetiu aquilo mentalmente para si, substituindo o falo por seu próprio órgão. Aquela loucura tinha que acabar, não era possível. Se a cura para o desejo era o prazer e dar-se prazer sozinha não estava adiantando, precisava arranjar um jeito de expurgar Eduarda de si, de findar aquele sentimento esquisito que a habitava.
+
+E, como uma boa adolescente afetada por escolhas *completamente* questionáveis, decidiu que se Eduarda lhe odiasse de volta, sua vida seria muito mais fácil. Calha-nos saber que Lorena interpretava poemas como nunca, mas não sabia interpretar a vida. A vida é como um grande poema. Mas, claro, Lorena só viria a descobrir aquilo muito depois de todas as atitudes precipitadas que tomaria ao longo da vida.
+
+Foi pensando nisso, que planejou com cautela seus próximos passos naquela semana. Sabia que os treinos de futsal eram às terças e quintas, afinal, também treinava xadrez nos mesmos dias. Como forma de retaliação por toda concentração que lhe havia sido sugada - estava sem vencer de Lucélia há duas semanas, e isso nunca havia acontecido antes - resolveu agir.
+
+Naquela terça-feira calorenta, sentou-se com um sorriso ladino frente à sua colega de treino, que estranhou. Franziu as sobrancelhas em sua direção e perguntou, desconfiada:
+
+-O que você está aprontando, Lorena?
+
+-Eu? Como assim, Lucélia? - Se fez de desentendida, encarando as próprias unhas pintadas de preto.
+
+-Você está fazendo a cara que costumava fazer antes de me bater no xadrez. - Explicou - Não gosto disso.
+
+Lorena apenas sorriu mais largo, exibindo quase todos os seus dentes. Sentia-se poderosa novamente, sentia que podia tudo.
+
+-É melhor você se preparar, então. - Deu de ombros.
+
+Depois de ganhar todas as partidas e se forçar a ignorar paulatinamente todos os movimentos ao redor, especialmente quando Eduarda apareceu ao seu lado e debruçou-se sobre a mesa, Lorena esperou que as pessoas começassem a sair do ginásio. Sua algoz era a última a usar o banheiro, ela já havia reparado. Não sabia ao certo o porquê, muito provavelmente era para passar mais tempo lhe atazanando e fazendo comentários sagazes sobre um jogo que sequer entendia.
+
+Guardou pacientemente as peças do xadrez, garantindo a Lucélia que podia ir para casa que ela se encarregaria de colocar o tabuleiro no lugar correto. Quando se viu sozinha, escapuliu para o banheiro, rezando a todos os deuses da poesia para que Eduarda estivesse ao menos vestida daquela vez. Entrou devagar, olhando para os lados. De dentro da cabine, a ruiva cantarolava uma música qualquer sobre mamutes quando Lorena avistou sobre a pia sua mochila.
+
+Rapidamente a abriu, procurando alguma coisa, *qualquer coisa.* Lembrava-se de sua infância, ela e Eduarda costumavam cometer pequenos delitos quando se tratava de sua inimizade eterna. Lorena roubava seu gameboy, Eduarda respondia roubando seu diário fechado a cadeado. As duas discutiam, se estapeavam e a diretora resolvia o problemão que haviam criado sem um motivo plausível. Assim a competição idiota entre elas havia nascido e voltaria a renascer, como a uma florzinha no asfalto.
+
+Ao procurar pela bolsa, não encontrou nada que julgou ser de extrema importância. Em um dos bolsos, achou um pequeno hidratante labial de cereja, o que a fez congelar. Sentiu a boca aguar, o coração acelerar e sua mente vagou por uma boca que já havia tocado a sua. Engoliu com tanta força que sua garganta doeu. Lá estava ela novamente, *a fome.* Pensou em beijar Eduarda de novo, pensou que aquela fome só passaria quando sentisse em seus lábios - terra ressequida - o gosto do batom através daquela outra boca.
+
+O barulho do cantarolar na cabine ao lado a puxou de volta para a realidade na tarde quente, e ela precisou agir. Antes de sair correndo ginásio afora, recolheu as chuteiras de Eduarda, que descansavam tranquilas no canto do banco. Se ela tivesse um respiro daqueles malditos cabelos ruivos pelo menos durante seu treino de xadrez, já se sentiria menos como uma hortaliça em uma estufa: úmida e abafada.
+
+Levou as chuteiras para sua casa e as depositou em sua escrivaninha. Passou minutos ininterruptos as encarando, como se elas pudessem tomar vida e lhe beijar.
+
+-Droga! - Murmurou, jogando-se de costas na cama, exasperada.
+
+Aquilo era loucura, sim. Estava enlouquecendo. Definitivamente. Alguém precisava ajuda-la, mas quem? Jamais conversaria sobre isso com Leonardo, e não havia contado para sua mãe ainda sobre sua recente preferência por *corpos femininos.* Corpos femininos como o de Eduarda, que estava seminua no mesmo banheiro que ela, com apenas uma porta as separando. Lorena desejou que ela tivesse saído da cabine, sem a blusa, novamente. Outra onda de desespero se apossou dela ao concluir aquele pensamento.
+
+Levantou-se de um pulo e caçou em sua bolsa seu caderninho de poemas. Precisava sangrar seus olhos com poesia, precisava ferir os dedos de escrever. Precisava vagar a mente por mares menos úmidos, precisava fincar os pés na areia seca do deserto de seus desejos. Tomando o caderno em mãos, abriu em uma página aleatória e leu em voz alta:
+
+*Te levarei ao inferno*
+*para te dar um beijo ardente*
+*E meus braços queimarão*
+*Ao agarrarem teu corpo em brasa*
+*Quero te ter louca, cálida, densa, inconsequente*
+
+imagem: trottoir-poema-6.jpg | Caderninho da Lorena · Augusto Branco
+
+E, ao ler, a imagem se formou em sua cabeça. A visão de não um, mas dois corpos em chamas se agarrando. O crepitar das brasas, o barulho da carne queimando e se unindo. *O cheiro.* Qual cheiro teriam duas almas condenadas se emaranhando? As chamas são metafóricas, estão no pensamento e só passam para a nossa pele através do suor. Lorena nunca havia sido religiosa, mas tinha certeza de que o que sentia naquele momento, ao ler aquele poema em específico, era culpa católica.
+
+Dormiu quente, fervendo, mas recusou-se a colocar outro orgasmo na conta de Eduarda. Voltaria a ser folha seca, e recitaria feliz Cecília Meireles em seu antro de solidão: *Perdoa-me, folha seca, não posso cuidar de ti.* Desejou apenas que sua calcinha tivesses os mesmo planos de seu coração e da folha seca, mas aquele infelizmente não era o caso. As chuteiras permaneceram ali, encarando-a de cima do móvel. Velaram seu sono a noite toda.
+
+No dia seguinte, após uma noite de se revirar na cama - pois a *fome* ainda estava dentro de si, latente - não largou seu caderninho de poemas durante todo o dia na escola. Julgou-se merecedora da culpa católica naquele dia pois só tinha separado, ao que parecia, poesia erótica. Lorena tentou convencer-se de que gostava dos mais variados tipos de poesia e resolveu que inovaria seu arsenal com poesias não-eróticas e não-românticas.
+
+Arriscou um livro de poesia pop, mas a cada linha lida tinha mais vontade de arrancar os próprios olhos com uma colher de sopa. Não se fazia mais poesias como antes. Distraiu-se rabiscando na beirada de um poema uma reflexão sobre pássaros, quando teve seu caderninho arrancado de suas mãos. Ao erguer os olhos, gelou.
+
+-Eduarda, devolve isso agora! - Gritou, levantando-se de sua mesa para reivindicar seu bem mais precioso.
+
+-O que é isso, Ferette? É seu diário? - Eduarda afastou-se, escondendo o pequeno caderno atrás das costas.
+
+-É um caderno de poesias, sua idiota! - *O que dá no mesmo*, completou mentalmente.
+
+Quando estava prestes a tornar aquela discussão algo físico, Eduarda a impediu com um gesto e uma frase:
+
+-Eu devolvo seu caderno de poesias quando você devolver minhas chuteiras. - E, com o queixo erguido, acrescentou - E se você não trouxer ela até amanhã, a diretora vai ficar sabendo da sua gracinha.
+
+-Mas eu não peguei nada! - Mentiu descaradamente e tentou novamente alcançar o caderninho, falhando. Como podia uma pessoa menor que ela ser tão mais ágil?
+
+-Eu te conheço, Ferette, não é de hoje. - Eduarda prosseguiu - E quero minhas chuteiras de volta. Não vou cair mais nas suas provocações, estamos grandinhas demais para isso, não acha?
+
+-Se você não devolver esse caderno, Eduarda, eu juro que vou…
+
+-Vai o que? - Rebateu a ruiva, a voz mais alta, o olhar altivo. Ergueu o caderninho, segurando-o entre os dedos e ameaçou abrir as páginas. Lorena empalideceu.
+
+-Eu vou contar para a diretora!
+
+Eduarda sorriu em sua direção, aquele sorriso perfeito de lábios com sabor de cereja.
+
+-Até você chegar lá eu já preguei cada uma dessas páginas na porta de uma sala.
+
+-E se eu mesma pegar ele de volta, *Fragoso*? - Lorena aproximou-se perigosamente, encarando-a de perto - Nunca fugi de briga, você sabe.
+
+Eduarda, tentando disfarçar a quantidade de saliva que se formou em sua boca com a aproximação, fez um esforço hercúleo para manter a postura e responder à altura.
+
+-Você pode tentar, *Ferette.*
+
+Encararam-se pelo que pareceu horas. Eduarda enxergou-se nas pupilas dilatadas dos olhos verdes de Lorena, o cheiro doce de seu perfume a envolvendo e quase fazendo-a perder a compostura. Lorena jurava que, com a proximidade, podia sentir o cheiro do hidratante labial de cereja. Sem perceber, como se seu corpo fosse um carro desgovernado, deixou que sua língua escapasse da boca e umedecesse seu lábio inferior. Eduarda, hipnotizada, acompanhou o movimento com o olhar.
+
+Quando a tensão estava prestes a explodir - ou se batiam ou se beijavam - a professora chegou na sala. Eduarda, que nem daquela sala era, recompôs-se, pedindo licença e saindo da sala junto do caderninho. Lorena ali permaneceu, e ficou em pé por tempo suficiente para levar uma bronca da professora. Quando a adrenalina de ter ficado tão perto do seu objeto de desejo passou, sentiu o peso de tudo que tinha acontecido.
+
+Seu caderninho, que possuía suas poesias favoritas (e eróticas) estava em posse de Eduarda. O mesmo caderninho que ela escrevia nos rodapés, nas beiradas, seus pensamentos mais profundos e profanos, onde sua alma havia tomado a forma de tinta para fincar-se. O tal caderninho que exibia o nome de Eduarda em mais páginas do que ela podia se lembrar. Uma náusea a tomou enquanto a professora fazia a chamada, alheia a toda a tempestade que acometia sua aluna.
+
+Eduarda havia, sem saber, roubado o coração escancarado de Lorena, mas isso nem era o pior: o pior era que Lorena havia *deixado*.` }
+    ]
+  },
   {
     id: "se-amar-for-crime",
     tipo: "oneshot",
