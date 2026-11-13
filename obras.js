@@ -85,6 +85,7 @@ const OBRAS = [
     tipo: "oneshot",
     titulo: "numa ilha",
     autora: "ias | @medverias",
+    capa: "capa-numa-ilha.jpg",
     icone: "veado",
     sinopse: "Na qual Eduarda aprende que talvez não odeia tanto assim a praia…",
     tags: ["praia", "férias", "namoradas", "ilha de Gigoia"],
