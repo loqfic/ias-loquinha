@@ -81,6 +81,292 @@
 
 const OBRAS = [
   {
+    id: "numa-ilha",
+    tipo: "oneshot",
+    titulo: "numa ilha",
+    autora: "ias | @medverias",
+    icone: "veado",
+    sinopse: "Na qual Eduarda aprende que talvez não odeia tanto assim a praia…",
+    tags: ["praia", "férias", "namoradas", "ilha de Gigoia"],
+    maior18: true,
+    data: "2026-11-13",
+    texto: `## Notas da autora
+
+Oi, gente. Se eu pudesse escolher um título alternativo para essa obra, provavelmente seria “Período Fértil”. A mulher ovulando ela não é uma pessoa pura em suas faculdades mentais, viu…
+
+ENFIM.
+
+Se você conhece essa oneshot de algum lugar, você está correto! Ela já foi postada em outro site, em outro fandom (tempos sombrios, não me perguntem). Eu mesma escrevi e adaptei, então se for familiar: oi, você me achou.
+
+Ademais, ela faz parte das 13 oneshots que eu prometi postar caso o Lula ganhasse (A ESTRELA BRILHOU NESSA PORRA CARALHO PUTA QUE PARIU).
+
+***
+
+Eduarda, contrariando o fato de ter nascido no Rio de Janeiro, não gostava de praias.
+
+Não mesmo, nem sequer um pouco. Odiava areia, odiava o salgado do mar em sua pele e odiava o Sol. Se pudesse descrever-se, seria o antônimo da musa do Verão: a musa do Inverno. Havia sido praticamente arrastada por sua namorada e por suas amigas para a ilha de Gigoia, em Angra dos Reis, para passar as férias, e seu mau humor estava estampado em seu rosto. As mulheres haviam alugado um casarão para passar o feriado prolongado, com direito a cerveja, sol e um pedaço do paraíso apenas para elas.
+
+Sentada debaixo de uma tenda enorme montada por ela e por Lorena com muito suplício e usando um boné que a protegia duplamente do Sol, Eduarda se espreguiçou em sua cadeira. Suas amigas, Lucélia e Gerluce, estavam espalhadas pela praia fazendo sei lá o que enquanto ela esperava sua namorada voltar do mar, e Maggye, sua outra amiga, próxima a ela mexendo distraidamente no celular. Não assumiria para ninguém, mas apesar de odiar a praia, iria a qualquer lugar que Lorena fosse. Porque poderia até detestar a sensação da areia sob seus pés e entre seus dedos, mas amava sua namorada mais que tudo naquele mundo.
+
+E amava mais ainda a visão espetacular de Lorena em seu biquíni listrado e *minúsculo.* Ao longe, na orla da praia, ela apareceu por entre a areia, submergida das águas calmas do mar de Angra. Seu cabelo escuro se colava à sua nuca e ao seu pescoço, fazendo um caminho curvilíneo por seu colo e alcançando o meio dos seus seios. A água pingava por seu corpo perfeito e o biquíni pequeno não deixava muito para a imaginação.
+
+Eduarda ajeitou-se em sua cadeira, sentindo sua boca salivar.
+
+Avistando-a no meio de seu trajeto até a tenda, sua namorada acenou alegremente. O Sol lambia sua pele, já mais morena do que na hora em que elas haviam chegado, seus olhos verdes estavam cristalinos como ao mar, e Eduarda pensou ter tido o vislumbre de uma deusa. Era a mulher mais sortuda do mundo por namorar Lorena.
+
+A cada passo que a namorada dava para mais perto da tenda, Eduarda sentia crescer em si um frio na barriga de antecipação. Quando a brisa gelada do litoral atingiu a pele de Lorena e endureceu seus mamilos, conseguiu ver através do tecido fino do biquíni a marca perfeita dos *piercings*. Engolindo em seco, remexeu-se na cadeira mais uma vez. Era completamente obcecada pelos piercings nos mamilos de Lorena. Sentia-se enlouquecer só de imaginar os seios desnudos da mulher, cada um com um pequeno ornamento em prata.
+
+Lembrava-se de quando viu os piercings pela primeira vez. Na ocasião, ficou imersa em um transe de excitação tão grande, que o espaço de seu *T-cross* ficou ainda mais diminuto com Lorena em seu colo, rebolando devagar e com os seios balançando próximo ao seu rosto. Podia sentir o gelado metálico na ponta da língua, juntamente com a textura do mamilo rígido.
+
+Lorena parecia ir em sua direção em câmera lenta, e a lembrança do corpo nu e louco de prazer em cima do seu fez com que Eduarda cruzasse as pernas com força. Estava perdendo completamente a razão e a culpa era toda daquela morena, dos piercings indecentes e de seu biquíni listrado.
+
+Eduarda fantasiou poder tirá-lo. Rasgaria a parte de cima de uma só vez, lamberia cada centímetro de pele e tiraria a parte de baixo bem devagar para aproveitar a vista. Quando Lorena já estivesse nua, ia lambê-la tão lentamente que a ouviria implorar para gozar. Se perguntou internamente se o gosto de sua namorada havia mudado depois do mergulho no mar e quis prová-la. Queria se enfiar nela bem devagar, fundo e forte, e ouvi-la baixinho em seu ouvido dizendo “eu vou gozar” para poder, ela mesma, dizer “então goza pra mim”.
+
+Arrepiou-se inteira ao pensar nos gemidos sôfregos e desejou poder ouvi-los ao pé do ouvido. Despiu-a com os olhos quando ela finalmente chegou até a tenda, e podia jurar que suas pupilas estavam tão dilatadas que pareciam dois pratos negros dentro de suas íris. Estava tão excitada e perdida nas gotículas de água que deslizavam pela pele de Lorena que nem ao menos reclamou quando ela sentou-se molhada em seu colo, molhando seus short jeans e sua regata.
+
+— Você deveria entrar, o mar está uma *delícia.* - Disse Lorena, inconsciente de como sua presença havia afetado a namorada.
+
+Eduarda sorriu de lado. *Não é só o mar que está uma delícia*, pensou. Incapaz de se conter, rodeou a cintura fina com as mãos e a apertou mais contra si, enfiando o rosto na curva molhada de seu pescoço e inspirando com força o cheiro de Lorena misturado ao cheiro do mar.
+
+Enquanto distribuía pequenos beijinhos perto do seu ouvido, Eduarda sentiu-a se arrepiar sob seu toque e se aventurou mais abaixo com suas mãos. Lorena moveu-se inconscientemente em seu colo e a ruiva ajeitou-se na cadeira para sentir a bunda dela contra a própria intimidade um pouco melhor. Sentia-se queimar e precisava de algum toque, algum alívio.
+
+Lorena, percebendo que a mão de Eduarda vagava sobre seu baixo ventre e sentindo o calor emanar através de suas roupas, engoliu em seco. Podia sentir a energia sexual que emanava de sua parceira, sabia dizer exatamente quando ela queria sexo e sabia que a movimentação abaixo de si não era inocente. Sentia como ela estava encaixada perfeitamente, como havia feito várias vezes antes de tomá-la por inteiro.
+
+Assistiu a mão de Eduarda alcançando a barra de seu biquíni, se apressou em puxar para cima do seu colo a toalha que estava em sua bolsa ao lado da cadeira. Pelo canto de olho, reparou que Maggye, uma das únicas debaixo da tenda, mexia tranquilamente em seu celular sem notar o que elas faziam. As outras amigas estavam espalhadas pela praia, completamente alheias ao fogo que as consumia.
+
+— Duda… - chamou fracamente quando a mão em seu corpo ameaçou adentrar o biquíni — O que você está fazendo?
+
+— Eu? — A ruiva sorriu contra a pele de seu pescoço e lambeu lentamente atrás de sua orelha para em seguida sussurrar — *Eu não estou fazendo nada.*
+
+Eduarda sentiu o abdômen de Lorena se contrair contra uma de suas mãos e sorriu mais abertamente. Com a respiração contida, sua namorada moveu-se sobre seu colo, levando um arrepio instantâneo até sua coluna. Lorena estava pressionando um lugar muito delicado com a bunda e ela sentia-se na beira do precipício.
+
+— A gente não pode fazer isso aqui. — Lorena disse, mas sua voz estava fraca demais.
+
+A respiração da morena saía sôfrega, e ela engolia a saliva com muita dificuldade, como se tivesse que engolir o desejo absurdo que a tomava naquele momento. Nunca havia sido uma pessoa com muitos fetiches, mas, naquele momento, desejou rebolar lentamente nos dedos da namorada e gozar ali mesmo, debaixo da tenda e ao lado de sua melhor amiga. O mero pensamento de ter Eduarda colocando uma mão firmemente contra sua boca para impedir seus gemidos enquanto a outra a fodia por debaixo da toalha a deixava quase tonta.
+
+Eduarda cogitou retirar as mãos dela, mas então a toalha estrategicamente posicionada sobre elas a relembrou que se Lorena realmente não quisesse aquilo, não teria puxado a toalha para início de conversa. Ousadamente, enfiou a mão por debaixo do biquíni da namorada e sentiu-a amolecer em seu colo.
+
+— Isso não me parece ser o molhado da água do mar… — assoprou baixinho sem seu ouvido enquanto rodeava o clitóris de Lorena lentamente.
+
+— Desgraçada… — murmurou ela e cravou com força as unhas curtas em suas coxas para prender o gemido na garganta. Precisou se controlar para não se virar de frente e rebolar no colo da namorada até ficar mole de tanto gozar.
+
+Mas elas ainda estavam na praia, Maggye ainda estava a três passos dali e as outras estavam mais à frente passeando pela areia.
+
+— Sabe, eu estava pensando muitas coisas *gostosas* quando te vi saindo do mar. — Eduarda disse, mordendo devagar o ombro de Lorena e empurrando com certo ritmo sua pélvis contra a bunda dela em busca de alívio. Aquele movimento abaixo de si estava a deixando ainda mais em frangalhos, *se é que aquilo era possível.* A umidade no meio de suas pernas estava se tornando insuportável.
+
+— Por que então você não me leva para dentro da casa e me mostra essas *coisas*? — Respondeu Lorena, praticamente em um miado, fechando os olhos e sentindo a excitação crescendo em si pelo toque contínuo em seu sexo.
+
+Eduarda soltou o que parecia ser um rosnado e retirou a mão de dentro do biquíni de Lorena, empurrando-a levemente pela cintura para que ela se levantasse. Com as pernas moles como macarrões cozidos, a morena se colocou de pé e sentiu falta do calor do outro corpo contra o seu. Em segundos, Eduarda já havia se levantado e a agarrado pela cintura novamente.
+
+Maggye desviou os olhos do celular por um instante, mas achou de bom tom fingir que não estava vendo nada daquilo que estava acontecendo bem debaixo do seu nariz. Lembrou-se de um ditado popular muito famoso que dizia que *“o povo quer gozar”*.
+
+— Se você não andar rápido até a casa, eu vou te empurrar na areia e te foder aqui mesmo. — Rosnou a ruiva próximo ao ouvido de Lorena, que não precisou de uma segunda ameaça e se colocou a andar, puxando Eduarda pela mão.
+
+Chutando a areia, caminharam o mais rápido que puderam sem começar a correr e em segundos estavam dentro da casa. O lugar tinha dois andares, e contava com uma sala e uma cozinha enormes no primeiro andar, assim como o hall de entrada, e quatro quartos no segundo andar. A urgência que crescia em ambas era tão grande que não conseguiram nem ao menos chegar ao quarto, escadas acima.
+
+Eduarda guiou Lorena com uma força meio desmedida para o primeiro cômodo que viu, que se tratava do banheiro que ficava no hall. Assim que entraram, a empurrou de novo contra a madeira para fechar a porta e finalmente juntou suas bocas. Lorena deslizou pela porta por ainda estar molhada, sua boca tinha um gosto salgado leve. Quando as línguas se tocaram, gemeu tão pecaminosamente contra a boca de Eduarda que ela se viu novamente empurrando a namorada contra a porta, fazendo com que o barulho dos corpos se chocando contra a madeira ecoasse pelo banheiro.
+
+Colocou sua perna estrategicamente entre as de Lorena e beijou-a até sentir que ela estava mais uma vez mole em seus braços. Sentia as mãos em seu cabelo, apertando, puxando e arranhando sua nuca, e precisou segurar a urgência de morder o lábio da namorada tão forte que arrancaria sangue. As línguas se provaram, o gosto de Lorena a enlouquecia e Eduarda sentia que poderia morrer ali, naquele beijo molhado.
+
+Se afastou com um barulho estalado e a encarou, os lábios vermelhos e os olhos úmidos de excitação. Lorena tinha aquela cara sofrida de prazer e as bochechas coradas. Era tão linda que Eduarda desacelerou um pouco e acariciou seu rosto, encostando as testas e engolindo a respiração afoita que lhe tocava os lábios. Suas mãos subiram lentamente da cintura de Lorena para suas costelas e ela estremeceu. Passou os polegares por debaixo do biquíni, ensaiando tocá-la ali.
+
+— Sabe, eu queria muito rasgar esse seu biquíni. — Disse baixinho e observou os olhos de Lorena escurecerem ainda mais, as pupilas negras engolindo a imensidão verde — Mas você ficou tão *gostosa* nele, que eu mudei de ideia.
+
+Com um movimento lento, Eduarda desatou a amarra da peça e fez contato visual com Lorena enquanto a retirava.
+
+— Agora — Sussurrou ao se inclinar contra ela e levar as mãos por sobre seus seios, apertando com certa força — *Eu quero colocar a boca em você.*
+
+Eduarda sabia como Lorena amava que ela falasse durante o sexo, sabia exatamente o que dizer para fazer sua namorada se contrair. Lorena apertou as pernas tentando buscar algum alívio, mas a coxa de Eduarda estava firme entre elas e não permitiu que se aliviasse.
+
+— Onde você quer colocar a boca? — Perguntou em um suspiro, sentindo o aperto se intensificar em seus seios e adorando a ânsia selvagem que a possuía.
+
+— Primeiro aqui. — Eduarda respondeu, apertando um mamilo entre os dedos — E depois mais embaixo…
+
+*— Mais embaixo?* — A voz de Lorena não passava de um sussurro sôfrego, e ela resfolegou quando Eduarda abaixou a cabeça e assoprou com o hálito quente em seus seios descobertos.
+
+— Eu quero comprovar minha teoria. - Um sorriso sacana rasgava os lábios cheios da ruiva.
+
+— Que teoria?
+
+Com um sorriso de lado, Eduarda respondeu:
+
+— De que seu gosto mudou com a água do mar.
+
+E então, com uma fome inédita às duas, tomou um dos mamilos rosados entre os lábios e lambeu. Um gemido alto rasgou a garganta das duas, de Lorena pela sensação gostosa da língua quente de sua namorada e de Eduarda pelo gosto da pele salgada. Rodeou o mamilo com a língua, sugou e mordeu, sentindo como a mulher sob si se remexia. Sentiu a pele enrijecer sob sua língua, e se deliciou com a maciez que sentiu na boca, assim como o gelado metálico do piercing contrastando com a carne em chamas.
+
+Lorena agarrou os cabelos ruivos na esperança de descontar em algum lugar todo o prazer que sentia. Era quase como se fosse cair no chão se não se amparasse em alguma coisa. Eduarda sentiu o aperto em seus cabelos e gemeu contra o seio de Lorena, provando em sua língua o gosto de metal do piercing misturado com o gosto salgado do mar.
+
+— Porra, Eduarda… — foi a única coisa que Lorena foi capaz de emitir.
+
+Seu corpo pegava fogo quando Eduarda mudou de seio e lambeu com a mesma devoção que havia feito com o outro. Lorena estava tão molhada que tinha certeza que nunca voltaria a ficar seca na vida. Quando ela soltou seu mamilo com um estalo e a olhou, suas pernas fraquejaram mais uma vez. Estava tão sensível e com a pele tão ardida, *do Sol e de Eduarda,* que sentiu que estava muito próxima de gozar ali mesmo, contra a porta e sem ser tocada.
+
+Segurando a cintura da namorada com firmeza, Eduarda guiou-a até a pia do banheiro. Antes de ajudá-la a se sentar ali, puxou por entre suas pernas a parte debaixo do biquíni e lambeu os lábios.
+
+— Eu sou sortuda pra caralho. — Disse e a ergueu com facilidade, posicionando-a sobre a pia e ficando entre suas pernas abertas — Você é a mulher mais gostosa do mundo, Lorena. Porra…
+
+Lorena estava preparada. Aberta, molhada, meio desesperada e *deliciosa.* O gelado da bancada de mármore da pia contrastava com sua pele febril e elevava as sensações a níveis inexplicáveis. Eduarda abaixou-se e ficou de joelhos nos azulejos do banheiro. O sexo de Lorena fechou-se contra o nada com a visão de sua namorada ajoelhada aos seus pés e pronta para lhe dar prazer.
+
+Sem muitas cerimônias, Eduarda apanhou uma das pernas de Lorena e a apoiou em seu ombro, abrindo-a ainda mais. O cheiro do tesão invadiu seu olfato e ela deu um beijinho casto na coxa apoiada em si antes de finalmente prová-la.
+
+A primeira lambida foi longa, obscena e barulhenta. O gosto fantástico explodiu no paladar de Eduarda e era puramente Lorena com um adicional da água salgada do mar. Sua língua trabalhava ruidosamente, pressionando os pontos certos e massageando o clitóris da morena com maestria.
+
+Eduarda apertou a coxa de Lorena com uma mão, fincando as unhas na pele, e posicionou a outra em seu ventre. *Gostava de sentir seu abdômen se contrair enquanto a chupava.* Lorena aos poucos se transformou em uma bagunça de pernas e gemidos, que além do som molhado dos beijos de Eduarda em sua parte mais íntima, eram os únicos sons naquele banheiro.
+
+Apertou com força os cabelos que tinha entre os dedos e cravou as unhas na cabeça de Eduarda com força, que estava tão excitada com tudo que deixou um som rouco escapar de sua garganta. Seu gemido reverberou pelo sexo de Lorena, fazendo-a sentir tudo com mais força. E quanto mais Lorena puxava seus cabelos, mais Eduarda gemia, e quanto mais Eduarda gemia, mais vibrações Lorena sentia em sua intimidade. Ela sentia o prazer se acumulando em seu ventre com rapidez, e começou a rebolar contra a língua da namorada, buscando o próprio orgasmo.
+
+— Eduarda… — disse entre um gemido e outro e deixou com que seu pé se pressionasse contra as costas da ruiva com força — Eu vou…
+
+Não completou a frase, apenas levou uma das mãos até a borda da pia e a segurou até que os nós de seus dedos ficassem brancos. Eduarda, percebendo que ela estava quase lá, cessou seus movimentos e se levantou lentamente. Lorena a encarou com um olhar tão incrédulo e necessitado que era de dar dó.
+
+*— Mas que porra?* — Esbravejou meio sem ar.
+
+— Shhh… — Eduarda a calou com um beijo indecente.
+
+Deixou que Lorena provasse o próprio gosto em sua língua, e movimentou-a de maneira tão sensual dentro da boca dela que a morena desejou ter aquela língua no lugar onde estava segundos atrás.
+
+— Me fala o que você quer. — Pediu depois de separar o beijo. Tinha um lema que levava para a vida: *mulher mandada era mulher feliz.* E obedeceria a tudo que Lorena lhe mandasse.
+
+Lorena amava quando Eduarda exigia respostas com aquela voz mandona, o timbre era tão rouco de tesão que deixava suas pernas ainda mais moles. Mas era uma mulher de atos, não de palavras, e com uma determinação feroz em seus olhos verdes, agarrou-a pelos cabelos e a empurrou para baixo.
+
+— Me faz gozar na sua boca, meu amor. — Pediu, a voz quebrada de desejo.
+
+Segurando um gemido, Eduarda voltou a se ajoelhar e mais uma vez deu uma lambida deliberada no sexo de Lorena. Daquela vez, no entanto, seus movimentos eram mais lentos e intensos. Lorena sentia-se em um estado tão deplorável que latejava, e a dor era um adendo para o prazer incrível que sentiria em alguns minutos.
+
+Daquela vez, segurou os cabelos de Eduarda com as duas mãos bem firmes para garantir que ela não saísse dali e gemeu. Gemeu tão alto e obscenamente que Eduarda se apiedou dela e entregou tudo o que Lorena queria. Lambeu, chupou e deixou seus dentes resvalarem por onde que conseguiu colocar a boca.
+
+Lorena sentiu mais um gemido longo vibrando em seu sexo e finalmente se deixou ir. Gozou com tanta força que Eduarda precisou segurá-la pela coxa com uma mão e pela cintura com a outra para que não escorregasse da pia. A morena tremeu entre espasmos alucinados e louvou a Eduarda com toda a sua voz enquanto descia por espirais.
+
+Seu sexo pulsou e se contraiu, despejando todo seu prazer diretamente na boca de sua namorada, que bebeu cada gota de bom grado e continuou lambendo sua carne castigada. Quando estava sensível demais para continuar sendo estimulada, Lorena puxou Eduarda pelos cabelos e apertou-a contra si, rodeando sua cintura com as pernas e enfiando a cabeça em seu pescoço suado.
+
+O banheiro tinha cheiro de sexo e maresia, e Lorena precisou de bons minutos de uma carícia leve nas costas para se recuperar do orgasmo poderoso que a havia dominado.
+
+— Você está bem? — Eduarda perguntou baixinho.
+
+Lorena de início sorriu, mas então seu sorriso se transformou em uma gargalhada gostosa. Se ela estava bem? Havia acabado de ter um dos orgasmos mais fortes de sua vida. Lorena não estava bem, estava *maravilhosa.*
+
+— Você acabou de me fazer esquecer meu próprio nome por alguns segundos, Duda. Eu estou mais que bem, eu estou *ótima.*
+
+Eduarda também sorriu e se afastou um pouco da namorada, erguendo as mãos para arrumar as mechas de seu cabelo bagunçadas pós-foda. Os olhos verdes e brilhantes de Lorena a encaravam curiosamente.
+
+— Você ainda está sensível? — Perguntou.
+
+— Um pouco, sim. Por quê?
+
+— Porque eu meio que quero te dobrar contra a pia e te comer por trás. - Eduarda respondeu, olhando fundo dentro de seus olhos, os castanhos tão brilhantes que pareciam dois holofotes.
+
+Lorena sentiu um arrepio tão agudo transpassar seu corpo com aquelas simples palavras que precisou pressionar suas coxas para não gozar de novo com apenas uma simples brisa. Tremeu e cravou as unhas nos ombros de Eduarda, abaixando a cabeça e mordendo os lábios com força suficiente para machucá-los, sentindo o gosto metálico na própria língua.
+
+— O que foi isso? — Eduarda indagou, divertida.
+
+— Isso foi eu tentando me segurar pra não gozar de novo. — Lorena respondeu com os dentes cerrados e quando se sentiu com mais controle de si, puxou Eduarda para um beijo desajeitado e molhado.
+
+A ruiva se deixou ser beijada por algum tempo, e então se separou devagar.
+
+— Pensei que você ainda estivesse sensível. — Disse, apertando a carne da cintura de Lorena entre as mãos.
+
+— Acho que sou capaz de aguentar ser dobrada sobre a pia e comida por trás. — Foi a resposta de Lorena, que entre os beijos fez questão de morder e puxar o lábio inferior de Eduarda entre os próprios dentes — Eu quero gozar gostoso pra você de novo, Duda… — disse baixinho contra seus lábios e não demorou a voltar a beijá-la.
+
+Eduarda sentiu a umidade no meio de suas próprias pernas e cogitou enfiar uma de suas mãos dentro de seu short. A ideia facilmente esvaiu de seu cérebro quando Lorena gemeu contra sua boca, carente e preparada para o segundo *round*. Aquilo era sobre sua namorada, não sobre si, Eduarda pensou.
+
+Ela era assumidamente lésbica, e gostava de acreditar que as duas eram relativas. Mas o prazer de tocar Lorena, de levá-la à loucura e tê-la mole em seus braços, pedindo e *implorando*, era indescritível. Se contentaria apenas em vê-la se desmanchar, molhada e necessitada, vermelha, arfando.
+
+Com uma fome que só seria saciada se tivesse Lorena para si mais uma vez, gozando em seus dedos, Eduarda a puxou da pia e a girou em um movimento brusco. A morena se deixou ser manejada como um fantoche, e quase cedeu ao seu próprio peso quando viu a imagem refletida no espelho por sobre a pia.
+
+Eduarda estava atrás dela segurando seus braços e com um olhar tão feroz que a fez estremecer. Seu próprio rosto estampava um prazer tão cru e seus seios estavam tão vermelhos das investidas anteriores que Lorena se sentiu uma *depravada.* Não pôde reparar muito mais que aquilo, pois em instantes, Eduarda a forçou a se inclinar sobre a pia. Seus seios nus encostaram no mármore gelado e Lorena soltou um chiado audível.
+
+Sua namorada não enrolou muito, afinal, ela estava completamente molhada e pronta. Eduarda afastou suas pernas de forma brusca e deixou que um rosnado vibrasse em seu peito ao notar o quão preparada Lorena estava apesar de ter sido fodida minutos atrás. Sua excitação escorria pelas coxas, melando as pernas e exalando o cheiro indescritível.
+
+— Você vai gozar gostoso nos meus dedos, meu amor? — Perguntou, colando o próprio corpo nas costas de Lorena e sussurrando em seu ouvido.
+
+Lorena se remexeu, afirmando com a cabeça freneticamente e respondendo em forma de gemido. Sem cerimônias, Eduarda enfiou dois dedos na entrada inchada e molhada da namorada por trás, estocando devagar e fundo. Novamente gemidos altos ecoaram pelos azulejos do banheiro enquanto a ruiva a penetrava devagar, vendo os próprios dedos entrando e saindo dela. Quando aumentou o ritmo, apertou uma coxa contra a outra, sentindo-se a ponto de gozar só de olhar o quão entregue Lorena estava.
+
+Com os impulsos poderosos dos dedos de Eduarda em si, Lorena era arrastada para cima e para baixo na superfície lisa da pia. Os sons molhados do sexo dela sendo fodido pelos dedos de Eduarda complementavam a sinfonia obscena presente naquele banheiro abafado. A ruiva sentiu como o sexo de Lorena apertava seus dedos e aumentou a intensidade de suas estocadas, apoiando a pélvis em sua mão para se enfiar com mais força ainda.
+
+—Tá gostoso, meu amor? — Perguntou, a mão livre afastando os cabelos de Lorena para lamber e morder o pescoço suado. Queria marcá-la para que todos soubessem que era sua e de mais ninguém.
+
+— Puta que pariu, Duda… — Lorena respondeu em meio a gemidos — Você faz tão gostoso…
+
+Eduarda recolheu os cabelos úmidos de Lorena, juntando-os com a mão em punho e puxando-os com força para trás, mantendo o ritmo dos dedos que se enfiavam nela.
+
+— Buceta gostosa do caralho, *meu amor.* — Praticamente rosnou, mantendo o aperto em seus cabelos.
+
+O gemido que saiu da boca de Lorena depois daquilo foi tão sofrido que e amoleceu tanto por sobre a bancada que Eduarda precisou soltar os cabelos e se inclinar sobre seu corpo para puxá-la contra si.
+
+Lorena, apesar de fraca e perdida em prazer, levantou seu tronco para se apoiar em Eduarda e sentiu a mão dela que não a estava fodendo impiedosamente se posicionar em seu pescoço. Eduarda a segurou pelo queixo e encarou a cena no espelho. Lorena sendo impulsionada para frente, seu rosto sofrido de prazer, seus seios com os piercings subindo e descendo com as estocadas.
+
+— Olha pra mim enquanto eu te fodo. — Eduarda disse, segurando seu pescoço com pressão o suficiente para que a falta de oxigênio fosse o suficiente para enlouquecê-la, mas não para sufocá-la — Olha como você geme igual uma putinha pra mim, *amor.*
+
+— Duda, eu vou gozar… — Lorena gemeu, sendo tomada por um prazer descomunal.
+
+— Goza, goza pra mim… — Ordenou a ruiva e curvou os dedos dentro de Lorena.
+
+A mulher que via refletida no espelho, atrás de si, a fodia como se fossem *animais.* A postura de Eduarda, seu rosto contorcido de prazer e a forma como se projetava sobre ela eram quase *selvagens* e a empurrou para o inferno rapidamente. Seu segundo orgasmo a rasgou no meio em questão de segundos e se alongou. Eduarda, ao ouvir o som, mordeu com força o ombro esquerdo da namorada para evitar soltar ela mesmo um gemido alto demais. Sua mão foi encharcada pelo orgasmo de Lorena e ela continuou com seus movimentos até que a mulher parasse de tremer.
+
+Sentindo-se escorregar pela pia, Lorena deixou que seu corpo exausto caísse. Foi amparada firmemente por Eduarda, que a virou para si e a envolveu em um abraço apertado. Lorena se segurou nela como se esta fosse sua tábua da salvação, e se deixou ser vestida novamente com seu biquíni listrado.
+
+Ainda podia sentir dentro de si toda a adrenalina de minutos atrás, assim como uma leve dor em seu sexo. Não se importava, na realidade adorava ficar quase assada depois de uma boa transa.
+
+Apoiada na pia, Lorena finalmente prestou atenção em Eduarda. Sua mulher estava descabelada, suada e com a roupa desalinhada, além de estar respirando alto. Sem perceber que estava sendo observada, Eduarda tentou ajeitar os shorts, que pressionavam seu biquíni contra a própria intimidade, criando um atrito incômodo.
+
+Lorena sorriu em meio ao seu torpor pós-orgasmo e se aproximou lentamente, pousando as mãos na cintura de Eduarda e a encarando com os olhos ainda nublados de prazer.
+
+— Acho que é a minha vez de te ajudar, né? — Disse com a voz baixa, aproximando a boca do ouvido da ruiva e depositando um beijo lento e molhado ao pé do seu pescoço alvo.
+
+— Meu amor, não precisa. — Eduarda começou a falar, mas suas mãos fincaram-se na bunda de Lorena, puxando-a para perto, mais perto — Você precisa descansar um pouco e…
+
+—Shhh… — Lorena disse, próxima aos lábios repentinamente secos de Eduarda, e moveu uma mão de sua cintura para seu abdômen, sentindo os músculos definidos se contraírem contra o seu toque — Você foi *tão boa* pra mim, Duda. Agora é a minha vez de te sentir, meu amor. — Sua mão atrevida desabotoou o short jeans, o barulho do zíper descendo sendo o único no banheiro. Lentamente e sem ensaios, enfiou a mão por debaixo do biquíni de Eduarda, encontrando-a encharcada — Você vai ser uma boa garota pra mim de novo? Vai?
+
+Eduarda apenas assentiu, erguendo as mãos à bancada da pia para se sustentar enquanto sentia Lorena circular seu clitóris e descer para sua entrada, recolhendo umidade e redistribuindo. Sem que pudesse se controlar, gemeu baixinho e ondulou o quadril contra a mão da namorada.
+
+— Tudo isso pra mim? — Lorena continuou, um sorriso felino desenhando seus lábios — Você me cansou muito, meu amor. — Murmurou, lambendo o pescoço de Eduarda e pressionando com mais força seus dedos na carne úmida — Agora eu vou me ajoelhar aqui e você vai ser uma boa garota e usar minha boca pra gozar.
+
+Eduarda estremeceu violentamente, segurando-se ao máximo para não se derramar ali, só ouvindo as palavras de sua mulher. Era uma predadora nata na cama, mas se derretia ao ouvir a voz rouca de Lorena falando sobre o quanto ela era uma *boa garota.* Queria ser boa para ela, era tudo o que mais queria.
+
+Ao se ajoelhar no chão, Lorena enganchou os indicadores no short de Eduarda e o abaixou, juntamente com a parte de baixo do biquíni preto, deixando-a nua da cintura para baixo. Ao se ajeitar nos próprios joelhos, Lorena buscou as mãos da sua ruiva que estavam apoiadas no mármore da pia atrás de si, e guiou-as aos próprios cabelos.
+
+— Não precisa se segurar, meu amor. — Disse, olhando-a de baixo, olhos nublados de prazer — Fode a minha boca.
+
+Cedendo totalmente o controle restante, Eduarda apertou as mechas escuras entre os dedos até a raiz, e puxou Lorena com força contra si.
+
+— Abre a boca e começa a chupar. — Pediu, a voz tremendo.
+
+Lorena atendeu prontamente, encostando sua boca completamente aberta, com a língua projetada para fora, na intimidade de Eduarda. Lambeu de baixo para cima, fez círculos no clitóris inchado e bebeu dela com toda a sede acumulada em si. Eduarda gemeu, e não demorou a empurrar o próprio quadril contra a boca faminta que a devorava.
+
+Completamente ensandecida, rebolava e se insinuava contra a boca de Lorena, e seu descontrole foi tanto que fez com que a morena se desequilibrasse e caísse sentada nos azulejos do banheiro. Lorena, maravilhada com a brutalidade de Eduarda, tendo como recompensa pela sua sede dela deliciosos puxões no cabelo e grunhidos roucos, gemeu contra a intimidade da namorada.
+
+Sua cabeça foi pressionada contra o armário da pia, seus gemidos sendo sugados pela carne de Eduarda e sua boca sendo usada de forma brusca, de uma forma que jamais pensou que seria. A ruiva segurou-a firmemente pelos cabelos com uma mão e usou a outra para se apoiar no mármore da pia, investindo impiedosamente contra sua boca. Sempre que chupava Eduarda, ela quem comandava o ritmo, torturando a namorada com lambidas longas e lânguidas. Daquela vez, no entanto, a ruiva controlava o próprio prazer, rebolando e se empurrando com força contra Lorena.
+
+Eduarda sentia o prazer em seu ventre chegando ao ponto de ruptura, e quando olhou para baixo e viu os olhos lacrimejados de Lorena e a forma como seu rosto estava molhado da própria excitação, sentiu a barreira do seu juízo rompendo.
+
+— Porra, Lorena… — gemeu, fechando os olhos com força e rebolando ainda mais na língua que a provava, o barulho molhado de sua buceta inevstindo contra a boca da namorada a estava enlouquecendo — Engole, engole tudo. — Disse ao agarrar com mais força os cabelos pretos, deixando o ápice levá-la ao limite.
+
+Quando seu orgasmo veio, foi barulhento e úmido, e Lorena não hesitou em *engolir* tudo. Lambeu Eduarda até que o último tremor passasse, e esperou que as coxas a sua frente parassem de tremer para se erguer. Foi erguida quase que desesperadamente do chão gelado e elas se beijaram, o gosto uma da outra resvalando pelas línguas.
+
+*— Boa garota.* — Lorena murmurou rindo, encostando a sua testa na testa suada de Eduarda.
+
+— Eu achei que você fosse me matar nesse banheiro, gatinha. — Disse a ruiva, respirando fundo e abraçando preguiçosamente o corpo da namorada.
+
+Lorena deu uma risada gostosa, se apertando contra o corpo febril de Eduarda.
+
+— Eu vou te matar mais tarde, meu amor…
+
+Eduarda engoliu em seco, o corpo todo se arrepiando de novo.
+
+— Vai, é?
+
+— Hm-hm. — Lorena sussurrou, esfregando o rosto no pescoço de Eduarda como uma gata manhosa — Eu ainda pretendo rebolar bem gostoso no seu colo e gozar em você, Duda…
+
+— Porra… — Eduarda praticamente miou — Eu quero, eu quero muito, *gatinha…*
+
+— Então sobe esse short e me leva pro quarto.
+
+***
+
+## Notas finais da autora
+
+Gente, em minha defesa, eu estava ovulando quando escrevi essa, ok. Por isso já vou pedindo desculpa aí por qualquer coisa e etc. Pra quem tá acostumado a ler minha longshot, gostaria apenas de dizer que quando o tesão entra no meu corpo, a poesia vai embora. Eh isto.`
+  },
+  {
     id: "trottoir",
     tipo: "fanfic",
     titulo: "Trottoir",
